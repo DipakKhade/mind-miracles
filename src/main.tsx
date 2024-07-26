@@ -10,9 +10,9 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <Header />
     <App />
     <DotPattern
-        className={cn(
-          "[mask-image:radial-gradient(900px_circle_at_center,white,transparent)]",
-        )}
-      />
+      className={cn(
+        "[mask-image:radial-gradient(900px_circle_at_center,white,transparent)]",
+      )}
+    />
   </React.StrictMode>,
 );
