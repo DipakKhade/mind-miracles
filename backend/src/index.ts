@@ -10,5 +10,4 @@ app.use(express.json());
 
 app.use('/api/v1/client',clientRouter)
 
-
 app.listen(PORT)
