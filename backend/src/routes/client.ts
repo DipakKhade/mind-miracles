@@ -26,8 +26,27 @@ clientRouter.post('/contact',async(req,res)=>{
     }
 
 })
-clientRouter.post('/inquiry',(req,res)=>{
+clientRouter.post('/inquiry',async(req,res)=>{
+    const {data}=req.body
+    const {name,age,gmail,place,whatsappno } = data
 
+    try{
+       const data= await db.inquiry.create({
+            data:{
+                name,place,age,gmail,whatsappno
+            }
+        })
+        console.log(data)
+
+        return res.status(200).json({
+            "success":true,
+            data
+        })
+
+        
+    }catch(e){
+        console.log(e)
+    }
 })
 
 
