@@ -1,3 +1,0 @@
-# mind miracles
-
-Sonali Khade

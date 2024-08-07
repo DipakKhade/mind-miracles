@@ -8,7 +8,7 @@ export default function Home() {
 <div></div>
   <Register/>
   </div>
-  {/* <Programs/> */}
+  <Programs/>
  </main>
   );
 }
