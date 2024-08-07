@@ -1,4 +1,4 @@
-import Contact from "@/components/Contact";
+import Register from "@/components/Register";
 import { Programs } from "@/components/Programs";
 
 export default function Home() {
@@ -6,7 +6,7 @@ export default function Home() {
  <main className="p-8">
   <div className="flex justify-between">
 <div></div>
-  <Contact/>
+  <Register/>
   </div>
   {/* <Programs/> */}
  </main>
