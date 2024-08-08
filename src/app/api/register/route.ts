@@ -6,15 +6,16 @@ export async function POST(req: NextRequest) {
   const { firstName, lastName, mobileNo, email, age, place } = await req.json();
 
   try {
-    // getMailonRegester(`${firstName},${lastName}, ${mobileNo} , ${email} , ${age} , ${place}`)
+    const data = { firstName, lastName, mobileNo, email, age, place };
+    await getMailonRegester(data);
 
     const new_register = await db.register.create({
       data: {
         firstName,
         lastName,
-        mobileNo:Number(mobileNo),
+        mobileNo: Number(mobileNo),
         email,
-        age:Number(age),
+        age: Number(age),
         place,
       },
     });
@@ -24,10 +25,10 @@ export async function POST(req: NextRequest) {
       message: "register successfully",
     });
   } catch (e) {
-    console.log(e)
+    console.log(e);
   }
 
   return NextResponse.json({
-    message: true,
+    message: false,
   });
 }
