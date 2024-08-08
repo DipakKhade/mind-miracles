@@ -26,30 +26,12 @@ export default function WhoWeAre() {
 
   return (
     <>
-      {/* <motion.div
-      ref={ref}
-      initial="hidden"
-      animate={controls}
-      variants={variants}
-    >
-    <div className="text-4xl font-semibold">
-        WHO ARE WE
-    </div>
-
-    <div>
-        <Image alt="mindmiracles" src={weweare_logo} height={400} width={300}/>
-    </div>
-    
-    <div className="w-24 h-24">
- 
-</div>
-
-    </motion.div> */}
       <motion.div
         ref={ref}
         initial="hidden"
         animate={controls}
         variants={variants}
+        className="pb-12"
       >
         <motion.h1
           initial={{ opacity: 0.5, y: 100 }}
@@ -66,7 +48,7 @@ export default function WhoWeAre() {
               <div className="md:text-4xl font-mono md:pt-12">WHO ARE WE</div>
 
               <div>
-                <div>
+                <div className="flex justify-center">
                   <Image
                     alt="mindmiracles"
                     src={weweare_logo}
@@ -74,10 +56,10 @@ export default function WhoWeAre() {
                     width={300}
                   />
                 </div>
+          <Info />
               </div>
             </div>
           </div>
-          <Info />
         </motion.h1>
       </motion.div>
     </>
