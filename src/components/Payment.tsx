@@ -71,6 +71,7 @@ export default function Payment() {
           color: "#3399cc",
         },
       };
+      //@ts-ignore
       const paymentObject = new window.Razorpay(options);
       paymentObject.on("payment.failed", function (response: any) {
         alert(response.error.description);
