@@ -7,7 +7,7 @@ export async function POST(req: NextRequest) {
 
   try {
     const data = { firstName, lastName, mobileNo, email, age, place };
-    // getMailonRegester(data);
+    getMailonRegester(data);
 
     const new_register = await db.register.create({
       data: {
