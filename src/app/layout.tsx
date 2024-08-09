@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Merriweather } from "next/font/google";
 import "./globals.css";
 import Appbar from "@/components/Appbar";
 import { Toaster } from "sonner";
 
-const inter = Inter({ subsets: ["latin"] });
+const merriweather = Merriweather({ subsets: ["latin"] , weight:"300" });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} text-[#003C2F]`}>
+      <body className={`${merriweather.className} text-[#003C2F] bg-[#F8F9FA]`}>
         <Appbar />
         <Toaster richColors position="top-right" />
         {children}

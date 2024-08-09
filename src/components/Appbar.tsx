@@ -1,12 +1,7 @@
 export default function Appbar() {
   return (
     <>
-      {/* <nav className="h-16 border bg-[#F8F9FA] border-green-400 flex justify-between p-3">
-        <div className="text-2xl font-serif ">Mindmiracles</div>
-        <div>asd</div>
-      </nav> */}
-
-      <nav className="shadow mb-2 bg-[#F8F9FA]">
+      <nav className="">
         <div className="relative flex max-w-screen-xl flex-col overflow-hidden px-4 py-4 md:mx-auto md:flex-row md:items-center">
           <span className="text-black text-xl">Mindmiracles</span>
 
