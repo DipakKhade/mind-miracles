@@ -1,48 +1,80 @@
-"use client";
+'use client';
 
-import React, { useEffect, useState } from "react";
-import { InfiniteMovingCards } from "./ui/infinite-moving-cards";
+import * as React from "react"
+
+import { Card, CardContent ,CardHeader } from "@/components/ui/card"
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel"
 
 export function ServicesCards() {
   return (
-    <div>
-      <InfiniteMovingCards
-        items={testimonials}
-        direction="right"
-        speed="fast"
-      />
-    </div>
-  );
-}
+    <>
+     <main className="hidden md:flex md:flex-col md:p-8">
+       <p className="text-6xl p-3 text-green-900">Service</p>
+     <Carousel className="w-full max-w-xs md:max-w-[90vw]">
+       <CarouselContent className="w-full">
+         {Array.from({ length: 2 }).map((_, index) => (
+           <div key={index}>
+           <CarouselItem key={index}>
+             <div className="p-1">
+               <div className="flex md:h-96 md:space-x-6 md:pl-4">
+               <Card className="md:w-[400px]">
+               <CardHeader>Meditation and yoga</CardHeader>
+                 <CardContent className="flex aspect-square items-center justify-center p-6">
+                   <span className="text-4xl font-semibold">asd</span>
+                 </CardContent>
+               </Card>
+               <Card className="md:w-[400px]">
+               <CardHeader>Training Programs</CardHeader>
+                 <CardContent className="flex aspect-square items-center justify-center p-6">
+                   <span className="text-4xl font-semibold">{index + 1}</span>
+                 </CardContent>
+               </Card>
+               <Card className="md:w-[400px]">
+                 <CardContent className="flex aspect-square items-center justify-center p-6">
+                   <span className="text-4xl font-semibold">{index + 1}</span>
+                 </CardContent>
+               </Card>
+              
+               </div>
+             </div>
+           </CarouselItem>
+         
 
-const testimonials = [
-  {
-    quote:
-      "It was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness, it was the epoch of belief, it was the epoch of incredulity, it was the season of Light, it was the season of Darkness, it was the spring of hope, it was the winter of despair.",
-    name: "Charles Dickens",
-    title: "A Tale of Two Cities",
-  },
-  {
-    quote:
-      "To be, or not to be, that is the question: Whether 'tis nobler in the mind to suffer The slings and arrows of outrageous fortune, Or to take Arms against a Sea of troubles, And by opposing end them: to die, to sleep.",
-    name: "William Shakespeare",
-    title: "Hamlet",
-  },
-  {
-    quote: "All that we see or seem is but a dream within a dream.",
-    name: "Edgar Allan Poe",
-    title: "A Dream Within a Dream",
-  },
-  {
-    quote:
-      "It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife.",
-    name: "Jane Austen",
-    title: "Pride and Prejudice",
-  },
-  {
-    quote:
-      "Call me Ishmael. Some years ago—never mind how long precisely—having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world.",
-    name: "Herman Melville",
-    title: "Moby-Dick",
-  },
-];
+           </div>
+          
+         ))}
+       </CarouselContent>
+       <CarouselPrevious />
+       <CarouselNext />
+     </Carousel>
+     </main>
+
+<main>
+    <Carousel className="w-full max-w-xs md:hidden">
+      <CarouselContent>
+        {Array.from({ length: 5 }).map((_, index) => (
+          <CarouselItem key={index}>
+            <div className="p-1">
+              <Card>
+                <CardContent className="flex aspect-square items-center justify-center p-6">
+                  <span className="text-4xl font-semibold">{index + 1}</span>
+                </CardContent>
+              </Card>
+            </div>
+          </CarouselItem>
+            ))}
+            </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
+
+          </main>
+          </>
+  )
+}

@@ -32,7 +32,7 @@ export default function WhoWeAre() {
         initial="hidden"
         animate={controls}
         variants={variants}
-        className="pb-12"
+        className="pb-12 pt-12"
       >
         <motion.h1
           initial={{ opacity: 0.5, y: 100 }}
