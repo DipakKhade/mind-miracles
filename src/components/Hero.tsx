@@ -1,10 +1,37 @@
+'use client';
 import Image from "next/image";
 import logo from "../../public/mind_miracles_logo.png";
 import React from "react";
+import { motion, useAnimation, useInView } from "framer-motion";
 
 export default function Hero() {
+  const controls = useAnimation();
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.5,
+  });
+
+  React.useEffect(() => {
+    if (inView) {
+      controls.start("visible");
+    }
+  }, [controls, inView]);
+
+  const variants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.2 } },
+  };
   return (
     <>
+    <motion.div
+        initial={{ opacity: 0.8, y: 100 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{
+          delay: 0.3,
+          duration: 0.8,
+          ease: "easeInOut",
+        }}
+      >
       <main className="min-h-[420px] md:flex">
         <div className="flex justify-center ">
           <div>
@@ -27,6 +54,9 @@ export default function Hero() {
           </div>
         </div>
       </main>
+
+      
+      </motion.div>
     </>
   );
 }
