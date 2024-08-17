@@ -5,6 +5,7 @@ import Payment from "@/components/Payment";
 import Hero from "@/components/Hero";
 import WhoWeAre from "@/components/WhoAreWe";
 import { ServicesCards } from "@/components/ServicesCards";
+import MissionVision from "@/components/MissionVision";
 
 export default function Home() {
   return (
@@ -26,6 +27,12 @@ export default function Home() {
       <div>
         <ServicesCards />
       </div>
+      <div className="min-h-screen flex items-center justify-center">
+      <MissionVision />
+    </div>
+
+    
+
       <Register />
     </main>
   );

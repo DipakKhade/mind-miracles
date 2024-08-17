@@ -5,6 +5,7 @@ import React from "react";
 import Image from "next/image";
 import weweare_logo from "../../public/who_we_are.png";
 import { LampContainer } from "./ui/lamp";
+import img from '../../public/whoweare.png'
 
 export default function WhoWeAre() {
   const controls = useAnimation();
@@ -41,24 +42,35 @@ export default function WhoWeAre() {
             duration: 0.8,
             ease: "easeInOut",
           }}
-          className="mt-8 bg-gradient-to-br text-slate-50 from-slate-300 to-green-500 py-4 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl"
+          className="mt-8 bg-gradient-to-br text-slate-50 from-slate-300 to-green-500 py-4 bg-clip-text text-center  font-medium tracking-tight text-transparent"
         >
+          <div className="md:flex justify-around">
+          
           <div className="flex justify-center">
             <div className="flex flex-col">
-              <div className="md:text-4xl font-mono md:pt-12 text-green-600">WHO ARE WE ?</div>
+              <div className="md:text-5xl font-mono md:pt-12 text-green-900">WHO ARE WE ?</div>
 
               <div>
                 <div className="flex justify-center">
                   <Image
                     alt="mindmiracles"
                     src={weweare_logo}
-                    height={400}
-                    width={300}
+                    height={800}
+                    width={600}
                   />
                 </div>
-                <Info />
+
               </div>
             </div>
+          </div>
+
+
+
+          <div className="md:w-[500px] md:pt-24 md:text-2xl text-green-900">
+          Mind Miracles is a dedicated Hypnotherapy and healing center established in 2019, focused on empowering the mental health of society, particularly the youth. We offer expert Hypnotherapy and counseling services to address your mental, emotional, and educational needs with care and expertise.
+          </div>
+          </div>
+          <div>
           </div>
         </motion.h1>
       </motion.div>
@@ -66,19 +78,4 @@ export default function WhoWeAre() {
   );
 }
 
-function Info() {
-  return (
-    <>
-      <div className="md:text-2xl text-sm font-normal text-green-600 max-w-[900px] ">
-        <p>
-          Mind Miracles is a dedicated Hypnotherapy and healing center
-          established in 2019, focused on empowering the mental health of
-          society, particularly the youth. We offer expert Hypnotherapy and
-          counseling services to address your mental, emotional, and educational
-          needs with care and expertise.
-        </p>
-        
-      </div>
-    </>
-  );
-}
+
