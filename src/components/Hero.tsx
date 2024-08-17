@@ -6,16 +6,6 @@ import { motion, useAnimation, useInView } from "framer-motion";
 
 export default function Hero() {
   const controls = useAnimation();
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    threshold: 0.5,
-  });
-
-  React.useEffect(() => {
-    if (inView) {
-      controls.start("visible");
-    }
-  }, [controls, inView]);
 
   const variants = {
     hidden: { opacity: 0, y: 20 },

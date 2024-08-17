@@ -55,8 +55,9 @@ export function ServicesCards() {
      </Carousel>
      </main>
 
-<main>
-    <Carousel className="w-full max-w-xs md:hidden">
+<main className="md:hidden w-[80vw] pb-8">
+<p className="text-6xl p-3 text-green-900">Service</p>
+    <Carousel className="md:hidden">
       <CarouselContent>
         {Array.from({ length: 5 }).map((_, index) => (
           <CarouselItem key={index}>
