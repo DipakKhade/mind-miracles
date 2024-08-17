@@ -21,7 +21,7 @@ export default function Appbar() {
             >
               <path
                 strokeLinecap="round"
-                stroke-linejoin="round"
+                strokeLinejoin="round"
                 d="M4 6h16M4 12h16M4 18h16"
               />
             </svg>
@@ -30,18 +30,18 @@ export default function Appbar() {
             aria-label="Header Navigation"
             className="peer-checked:mt-8 peer-checked:max-h-56 flex max-h-0 w-full flex-col items-center justify-between overflow-hidden transition-all md:ml-24 md:max-h-full md:flex-row md:items-start"
           >
-            <ul className="flex flex-col items-center space-y-2 md:ml-auto md:flex-row md:space-y-0">
+            <ul className="flex flex-col font-medium items-center space-y-2 md:ml-auto md:flex-row md:space-y-0">
               <li className="md:mr-12 hover:text-green-600">
                 <a href="#">Home</a>
               </li>
               <li className="md:mr-12 hover:text-green-600">
-                <a href="#">About</a>
+                <a href="#about">About</a>
               </li>
               <li className="md:mr-12 hover:text-green-600">
                 <a href="#">Our Work</a>
               </li>
               <li className="md:mr-12 hover:text-green-600">
-                <a href="#">Contact Us</a>
+                <a href="#contact">Contact Us</a>
               </li>
             </ul>
           </nav>

@@ -67,3 +67,9 @@
     @apply bg-background text-foreground;
   }
 }
+
+* {
+  margin: o;
+  padding: 0;
+  box-sizing: border-box;
+}

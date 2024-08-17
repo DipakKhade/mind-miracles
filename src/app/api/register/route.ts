@@ -1,13 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import db from "@/db";
-import { getMailonRegester } from "@/mail";
+import { getMailonRegister } from "@/mail";
 
 export async function POST(req: NextRequest) {
   const { firstName, lastName, mobileNo, email, age, place } = await req.json();
 
   try {
     const data = { firstName, lastName, mobileNo, email, age, place };
-    getMailonRegester(data);
+    getMailonRegister(data);
 
     const new_register = await db.register.create({
       data: {

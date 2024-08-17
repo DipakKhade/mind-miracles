@@ -7,27 +7,29 @@ import WhoWeAre from "@/components/WhoAreWe";
 import { ServicesCards } from "@/components/ServicesCards";
 import MissionVision from "@/components/MissionVision";
 import Founder from "@/components/Founder";
+import { Footer } from "@/components/Footer";
 
 export default function Home() {
   return (
-    <main className="p-2 md:p-8 bg-slate-50">
+    <main className="p-2 bg-slate-50">
       <Script
         id="razorpay-checkout-js"
         src="https://checkout.razorpay.com/v1/checkout.js"
       />
-
+<div className="md:p-8">
       <Hero />
       <WhoWeAre />
       <div>
         <ServicesCards />
       </div>
       <div className="min-h-screen flex items-center justify-center">
-      <MissionVision />
-    </div>
+        <MissionVision />
+      </div>
 
-    <Founder/>
-
+      <Founder />
+      </div>
       <Register />
+      <Footer/>
     </main>
   );
 }
