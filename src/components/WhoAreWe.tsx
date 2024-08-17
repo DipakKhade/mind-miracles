@@ -44,7 +44,7 @@ export default function WhoWeAre() {
           }}
           className="mt-8 bg-gradient-to-br text-slate-50 from-slate-300 to-green-500 py-4 bg-clip-text text-center  font-medium tracking-tight text-transparent"
         >
-          <div className="md:flex justify-around">
+          <div className="md:flex justify-around" id="about">
           
           <div className="flex justify-center">
             <div className="flex flex-col">
@@ -55,8 +55,8 @@ export default function WhoWeAre() {
                   <Image
                     alt="mindmiracles"
                     src={weweare_logo}
-                    height={800}
-                    width={600}
+                    height={700}
+                    width={500}
                   />
                 </div>
 

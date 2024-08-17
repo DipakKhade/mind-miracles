@@ -31,7 +31,7 @@ export default function Founder(){
         initial="hidden"
         animate="visible"
         variants={revealVariants}
-        style={{ width: '300px', height: '300px', overflow: 'hidden', borderRadius: '10px' }}
+        style={{ width: '400px', height: '400px', overflow: 'hidden', borderRadius: '10px' }}
       >
         <motion.img
           src={founder_img.src}

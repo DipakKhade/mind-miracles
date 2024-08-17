@@ -10,9 +10,9 @@ const Transporter = nodemailer.createTransport({
   },
 });
 
-export async function getMailonRegester(data: any) {
+export async function getMailonRegister(data: any) {
   await Transporter.sendMail({
-    from: "dipakhade214@gmail.com", //aws verified email
+    from: "dipakhade214@gmail.com",
     sender: "dipakhade214@gmail.com",
     to: "dipak841184@gmail.com",
     subject: "new registration",

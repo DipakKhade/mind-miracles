@@ -26,7 +26,7 @@ export function ServicesCards() {
                <Card className="md:w-[400px]">
                <CardHeader>Meditation and yoga</CardHeader>
                  <CardContent className="flex aspect-square items-center justify-center p-6">
-                   <span className="text-4xl font-semibold">asd</span>
+                   <span className="text-4xl font-semibold">karto he pn</span>
                  </CardContent>
                </Card>
                <Card className="md:w-[400px]">

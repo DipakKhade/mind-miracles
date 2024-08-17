@@ -13,7 +13,7 @@ const MissionVision = () => {
         <div className='md:pl-[20vw] pt-4'>
              
         <div className="md:flex items-center bg-teal-100 md:p-8 pb-3 rounded-lg shadow-lg md:w-[70vw] justify-end">
-          <div className="md:w-1/4 flex justify-center pt-4">
+          <div className="md:w-1/4 flex justify-center pt-2">
           <Image
           src={m1}
           height={200}
