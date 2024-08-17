@@ -48,7 +48,7 @@ export default function WhoWeAre() {
           
           <div className="flex justify-center">
             <div className="flex flex-col">
-              <div className="md:text-5xl font-mono md:pt-12 text-green-900">WHO ARE WE ?</div>
+              <div className="text-4xl md:text-5xl font-mono md:pt-12 text-green-900">WHO ARE WE ?</div>
 
               <div>
                 <div className="flex justify-center">
@@ -66,7 +66,7 @@ export default function WhoWeAre() {
 
 
 
-          <div className="md:w-[500px] md:pt-24 md:text-2xl text-green-900">
+          <div className="md:w-[500px] md:pt-24 md:text-2xl text-teal-800 pt-4 text-base/loose">
           Mind Miracles is a dedicated Hypnotherapy and healing center established in 2019, focused on empowering the mental health of society, particularly the youth. We offer expert Hypnotherapy and counseling services to address your mental, emotional, and educational needs with care and expertise.
           </div>
           </div>
