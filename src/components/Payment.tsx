@@ -38,7 +38,7 @@ export default function Payment() {
     try {
       const orderId: string = await createOrderId();
       const options = {
-        key: process.env.key_id,
+        key: process.env.key_id || "",
         amount: parseFloat(amount) * 100,
         currency: currency,
         name: "name",
