@@ -3,12 +3,12 @@ import crypto from "crypto";
 
 const generatedSignature = (
   razorpayOrderId: string,
-  razorpayPaymentId: string,
+  razorpayPaymentId: string
 ) => {
-  const keySecret = process.env.key_secret;
+  const keySecret = process.env.key_secret || "";
   if (!keySecret) {
     throw new Error(
-      "Razorpay key secret is not defined in environment variables.",
+      "Razorpay key secret is not defined in environment variables."
     );
   }
   const sig = crypto
@@ -26,11 +26,11 @@ export async function POST(request: NextRequest) {
   if (signature !== razorpaySignature) {
     return NextResponse.json(
       { message: "payment verification failed", isOk: false },
-      { status: 400 },
+      { status: 400 }
     );
   }
   return NextResponse.json(
     { message: "payment verified successfully", isOk: true },
-    { status: 200 },
+    { status: 200 }
   );
 }
