@@ -16,20 +16,18 @@ export default function Home() {
         id="razorpay-checkout-js"
         src="https://checkout.razorpay.com/v1/checkout.js"
       />
-<div className="md:p-8">
-      <Hero />
-      <WhoWeAre />
-      <div>
-        <ServicesCards />
-      </div>
-      <div className="min-h-screen flex items-center justify-center">
-        <MissionVision />
-      </div>
+      <div className="md:p-8">
+        <Hero />
+        <WhoWeAre />
+        <div>{/* <ServicesCards /> */}</div>
+        <div className="min-h-screen flex items-center justify-center">
+          <MissionVision />
+        </div>
 
-      <Founder />
+        <Founder />
       </div>
       <Register />
-      <Footer/>
+      <Footer />
     </main>
   );
 }
