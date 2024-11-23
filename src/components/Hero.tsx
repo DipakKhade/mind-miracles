@@ -35,7 +35,7 @@ export default function Hero() {
           <div className="flex flex-col justify-center align-middle">
             <div className="text-2xl md:text-4xl p-4 md:p-12 font-semibold text-center">
               <p className="font-mono">
-                We are the helping hand you've been searching for but couldn't find.           </p>
+                We are the helping hand you&apos;ve been searching for but couldn&apos;t find.           </p>
             </div>
             <div className="flex justify-end text-2xl font-bold p-2">
               <p>~Mind Miracles</p>
