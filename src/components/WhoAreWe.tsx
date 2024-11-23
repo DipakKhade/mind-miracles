@@ -45,30 +45,29 @@ export default function WhoWeAre() {
           className="mt-8 bg-gradient-to-br text-slate-50 from-slate-300 to-green-500 py-4 bg-clip-text text-center  font-medium tracking-tight text-transparent"
         >
           <div className="md:flex justify-around" id="about">
-          
-          <div className="flex justify-center">
-            <div className="flex flex-col">
-              <div className="text-4xl md:text-5xl font-mono md:pt-12 text-green-900">WHO ARE WE ?</div>
 
-              <div>
-                <div className="flex justify-center">
-                  <Image
-                    alt="mindmiracles"
-                    src={weweare_logo}
-                    height={700}
-                    width={500}
-                  />
+            <div className="flex justify-center">
+              <div className="flex flex-col">
+                <div className="text-4xl md:text-5xl font-mono md:pt-12 text-green-900">WHO ARE WE ?</div>
+
+                <div>
+                  <div className="flex justify-center">
+                    <Image
+                      alt="mindmiracles"
+                      src={weweare_logo}
+                      height={700}
+                      width={500}
+                    />
+                  </div>
+
                 </div>
-
               </div>
             </div>
-          </div>
 
 
 
-          <div className="md:w-[500px] md:pt-24 md:text-2xl text-teal-800 pt-4 text-base/loose">
-          Mind Miracles is a dedicated Hypnotherapy and healing center established in 2019, focused on empowering the mental health of society, particularly the youth. We offer expert Hypnotherapy and counseling services to address your mental, emotional, and educational needs with care and expertise.
-          </div>
+            <div className="md:w-[500px] md:pt-24 md:text-2xl text-teal-800 pt-4 text-base/loose">
+              Mind Miracles is a dedicated center for psychological healing and Hypnotherapy, established in 2019, focused on enhancing mental health, especially for the youth. We specialize in psychological therapies, relaxation techniques, and counseling to address a wide range of mental, emotional, and behavioral needs with professional care and expertise.          </div>
           </div>
           <div>
           </div>

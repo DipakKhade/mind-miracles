@@ -6,8 +6,7 @@ const MissionVision = () => {
   return (
     <div className="md:p-8 p-4">
       <div className="text-4xl md:text-6xl font-bold text-teal-900 mb-8 pl-4">
-        OUR MISSION{" "}
-        <span className="block md:inline-block pl-12 md:pl-0">& VISION</span>
+        <span className="block md:inline-block pl-12 md:pl-0"> VISION</span>
       </div>
 
       <div className="flex flex-col space-y-8">
@@ -41,10 +40,7 @@ const MissionVision = () => {
                 Our Vision
               </h2>
               <p className="text-teal-800 mt-4 text-center">
-                Our vision is to empower and heal, fostering emotional strength
-                in youth. Through compassionate care, we aim to build a
-                resilient generation, confident in facing life&apos;s
-                challenges.
+                We aim to help the youth improve their mental, emotional, and psychological health, building a strong and confident generation ready to handl::e life’s challenges.
               </p>
             </div>
             <div className="md:w-1/4 flex justify-center">

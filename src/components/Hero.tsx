@@ -13,7 +13,7 @@ export default function Hero() {
   };
   return (
     <>
-    <motion.div
+      <motion.div
         initial={{ opacity: 0.8, y: 100 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{
@@ -22,30 +22,28 @@ export default function Hero() {
           ease: "easeInOut",
         }}
       >
-      <main className="min-h-[420px] md:flex">
-        <div className="flex justify-center ">
-          <div>
-            <Image
-              alt="mindmiracles"
-              src={logo}
-              className="w-60 h-60 md:w-[700px] md:h-[450px]"
-            />
+        <main className="min-h-[420px] md:flex">
+          <div className="flex justify-center ">
+            <div>
+              <Image
+                alt="mindmiracles"
+                src={logo}
+                className="w-60 h-60 md:w-[700px] md:h-[450px]"
+              />
+            </div>
           </div>
-        </div>
-        <div className="flex flex-col justify-center align-middle">
-          <div className="text-2xl md:text-4xl p-4 md:p-12 font-semibold text-center">
-            <p className="font-mono">
-              We are the healing hand you&apos;ve always yearned for but
-              couldn&apos;t catch!
-            </p>
+          <div className="flex flex-col justify-center align-middle">
+            <div className="text-2xl md:text-4xl p-4 md:p-12 font-semibold text-center">
+              <p className="font-mono">
+                We are the helping hand you've been searching for but couldn't find.           </p>
+            </div>
+            <div className="flex justify-end text-2xl font-bold p-2">
+              <p>~Mind Miracles</p>
+            </div>
           </div>
-          <div className="flex justify-end text-2xl font-bold p-2">
-            <p>~Mind Miracles</p>
-          </div>
-        </div>
-      </main>
+        </main>
 
-      
+
       </motion.div>
     </>
   );

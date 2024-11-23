@@ -22,19 +22,12 @@ export default function Founder() {
           <h4 className="text-4xl md:text-6xl font-bold text-teal-900">
             Our Founder
           </h4>
-          <p className="text-xl font-semibold text-teal-900 pt-6">
+          <p className="text-xl font-semibold text-teal-900 pt-6 pb-2">
             Ms. SONALI KHADE
           </p>
+          <p className="pb-2">Clinical Psychologist and Hypnotherapist.</p>
           <p className="indent-8 text-base/loose">
-            Ms. Sonali Khade (Counseling Psychologist & Therapist) is a
-            respected Clinical Psychologist and Hypnotherapist. She has
-            empowered numerous professionals and students to achieve their goals
-            by tapping into their subconscious potential. She also
-            enthusiastically works in the psychological testing field, such as
-            IQ and aptitude testing. Ms. Sonali compassionately supports
-            individuals facing mental, emotional, and educational challenges,
-            facilitating their healing and growth.
-          </p>
+            Ms. Sonali Khade is a Clinical Psychologist and Hypnotherapist with extensive experience supporting the youth. Through personal and group counseling, mind power workshops, training programs, and psychological testing, she has empowered students and young professionals to overcome challenges and achieve their goals with compassion and expertise. </p>
         </div>
 
         <div className="md:w-[40vw]">
