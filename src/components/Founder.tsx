@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import founder_img from "../../public/founder.png";
+import founder_img from "../../public/founder.jpeg";
 import { StaticImageData } from "next/image";
 const revealVariants = {
   hidden: { opacity: 0, scale: 0.8 },
