@@ -26,7 +26,7 @@ export default function Founder() {
             Ms. SONALI KHADE
           </p>
           <p className="pb-2">Psychologist and Hypnotherapist.</p>
-          <p className="indent-8 text-base/loose">
+          <p className="indent-8 text-base/loose mb-24 md:md-4">
             Ms. Sonali Khade is a Psychologist and Hypnotherapist with extensive
             experience supporting the youth. Through personal and group
             counseling, mind power workshops, training programs, and
@@ -36,7 +36,7 @@ export default function Founder() {
           </p>
         </div>
 
-        <div className="md:w-[40vw]">
+        <div className="md:w-[40vw] mb-12 md:md-3">
           <div
             style={{
               display: "flex",

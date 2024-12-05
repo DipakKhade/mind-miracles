@@ -23,8 +23,9 @@ export default function Home() {
         <div className="min-h-screen flex items-center justify-center">
           <MissionVision />
         </div>
-
-        <Founder />
+        <div className="">
+          <Founder />
+        </div>
         {/* <Payment/> */}
       </div>
       <Register />
