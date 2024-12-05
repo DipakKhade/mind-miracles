@@ -25,6 +25,7 @@ export default function Home() {
         </div>
 
         <Founder />
+        {/* <Payment/> */}
       </div>
       <Register />
       <Footer />

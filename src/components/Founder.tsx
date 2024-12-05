@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import founder_img from "../../public/founder.jpeg";
+import founder_img from "../../public/founder_jpg.jpg";
 import { StaticImageData } from "next/image";
 const revealVariants = {
   hidden: { opacity: 0, scale: 0.8 },
@@ -25,9 +25,15 @@ export default function Founder() {
           <p className="text-xl font-semibold text-teal-900 pt-6 pb-2">
             Ms. SONALI KHADE
           </p>
-          <p className="pb-2">Clinical Psychologist and Hypnotherapist.</p>
+          <p className="pb-2">Psychologist and Hypnotherapist.</p>
           <p className="indent-8 text-base/loose">
-            Ms. Sonali Khade is a Clinical Psychologist and Hypnotherapist with extensive experience supporting the youth. Through personal and group counseling, mind power workshops, training programs, and psychological testing, she has empowered students and young professionals to overcome challenges and achieve their goals with compassion and expertise. </p>
+            Ms. Sonali Khade is a Psychologist and Hypnotherapist with extensive
+            experience supporting the youth. Through personal and group
+            counseling, mind power workshops, training programs, and
+            psychological testing, she has empowered students and young
+            professionals to overcome challenges and achieve their goals with
+            compassion and expertise.{" "}
+          </p>
         </div>
 
         <div className="md:w-[40vw]">

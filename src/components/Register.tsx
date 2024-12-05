@@ -1,6 +1,5 @@
 "use client";
 import { toast } from "sonner";
-import { Input } from "./ui/input";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import f1 from "../../public/footer-image-0.png";
@@ -12,7 +11,6 @@ import { IoLogoFacebook } from "react-icons/io";
 import { FaInstagram } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
 import { FaWhatsapp } from "react-icons/fa";
-import { Footer } from "./Footer";
 
 export default function Register() {
   const { register, handleSubmit } = useForm();

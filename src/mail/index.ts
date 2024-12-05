@@ -14,7 +14,7 @@ export async function getMailonRegister(data: any) {
   await Transporter.sendMail({
     from: "dipakhade214@gmail.com",
     sender: "dipakhade214@gmail.com",
-    to: "mindmiracles1707@gmail,com",
+    to: "mindmiracles1707@gmail.com",
     subject: "new registration",
     html: `<div>
 
