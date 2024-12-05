@@ -7,7 +7,7 @@ export async function POST(req: NextRequest) {
 
   try {
     const data = { firstName, lastName, mobileNo, email, age, place };
-    getMailonRegister(data);
+    // getMailonRegister(data);
 
     const new_register = await db.register.create({
       data: {
@@ -19,7 +19,6 @@ export async function POST(req: NextRequest) {
         place,
       },
     });
-    console.log(new_register);
     return NextResponse.json({
       success: true,
       message: "register successfully",
