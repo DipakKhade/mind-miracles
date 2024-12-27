@@ -8,7 +8,6 @@ import { ServicesCards } from "@/components/ServicesCards";
 import MissionVision from "@/components/MissionVision";
 import Founder from "@/components/Founder";
 import { Footer } from "@/components/Footer";
-import Pay from "@/components/Pay";
 
 export default function Home() {
   return (
