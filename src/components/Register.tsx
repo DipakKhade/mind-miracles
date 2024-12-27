@@ -61,9 +61,13 @@ export default function Register() {
 
             </a>
 
+            <a href="https://www.instagram.com/mind_miracles_/profilecard/?igsh=bXNxMjRrcnF2ZnMw">
+              <FaInstagram />
+            </a>
 
-            <FaInstagram />
+            <a href="https://youtube.com/@ms.sonaleepsychologist?si=S3x_G2-Z0zvzcx9n">
             <FaYoutube />
+            </a>
             <a href="https://api.whatsapp.com/send/?phone=917798082219&text&type=phone_number&app_absent=0" target="_blank">
               <FaWhatsapp />
 
