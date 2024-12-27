@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import Script from 'next/script'
 import { toast } from 'sonner'
+import { useRouter } from 'next/navigation'
 // import { Textarea } from "@/components/ui/textarea"
 
 export default function Page() {
@@ -184,6 +185,9 @@ const PayAndRegisterButton = ({name,email,whatsapp,age}:{
   useEffect(()=>{
     // console.log({name,email,whatsapp,age})
   },[name,email,whatsapp,age])
+
+  const router = useRouter()
+
   const amountToPay = 1499 * 100;
 
   const createOrder = async () => {
@@ -221,6 +225,7 @@ const PayAndRegisterButton = ({name,email,whatsapp,age}:{
           })
           const res = await response.json();
           if(res.id){
+            router.push('/')
             toast.success('added to database')
           }else{
             toast.error(`Please Contact to Adminstrator`)
