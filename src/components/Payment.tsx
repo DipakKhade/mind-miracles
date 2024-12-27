@@ -4,6 +4,7 @@ import Script from "next/script";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { toast } from "sonner";
 
 export default function Payment() {
   const [name, setName] = useState("");
@@ -71,8 +72,14 @@ export default function Payment() {
           color: "#3399cc",
         },
       };
-      //@ts-ignore
+
+      if (typeof window.Razorpay === 'undefined') {
+        toast('Razorpay SDK failed to load. Please check your internet connection.');
+        return;
+      }
+
       const paymentObject = new window.Razorpay(options);
+      console.log(paymentObject)
       paymentObject.on("payment.failed", function (response: any) {
         alert(response.error.description);
       });
