@@ -44,7 +44,7 @@ const ProgramInfo = () =>{
           <Card>
             <CardHeader>
               <CardTitle>About the Program</CardTitle>
-              <CardDescription>What you'll learn in 7 days</CardDescription>
+              <CardDescription>What you&apos;ll learn in 7 days</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <p>Our intensive 7-day program is designed to help you:</p>
