@@ -1,3 +1,4 @@
+import Link from "next/link";
 export default function Appbar() {
   return (
     <>
@@ -32,16 +33,20 @@ export default function Appbar() {
           >
             <ul className="flex flex-col font-medium items-center space-y-2 md:ml-auto md:flex-row md:space-y-0">
               <li className="md:mr-12 hover:text-green-600">
-                <a href="#">Home</a>
+                <a href="/#">Home</a>
               </li>
               <li className="md:mr-12 hover:text-green-600">
-                <a href="#about">About</a>
+                <a href="/#about">About</a>
               </li>
               <li className="md:mr-12 hover:text-green-600">
-                <a href="#">Our Work</a>
+                <a href="/#">Our Work</a>
               </li>
               <li className="md:mr-12 hover:text-green-600">
-                <a href="#contact">Contact Us</a>
+                <Link href="/cources">Cources</Link>
+              </li>
+
+              <li className="md:mr-12 hover:text-green-600">
+                <a href="/#contact">Contact Us</a>
               </li>
             </ul>
           </nav>

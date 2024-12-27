@@ -10,11 +10,39 @@ datasource db {
 }
 
 model Register {
- id    String @id @default(auto()) @map("_id") @db.ObjectId
- firstName String
- lastName String
- mobileNo Int
- email String
- age Int
- place String
+ id           String @id @default(auto()) @map("_id") @db.ObjectId
+ firstName    String
+ lastName     String
+ mobileNo     Int
+ email        String
+ age          Int
+ place        String
+}
+
+model Course {
+  id           String       @id @default(auto()) @map("_id") @db.ObjectId
+  name         String
+  from         DateTime
+  to           DateTime
+  by           String[]
+  createdate   DateTime     @default(now())
+  CourseUsers  CourseUsers? @relation(fields: [courseUsersId], references: [id])
+  courseUsersId String?     @db.ObjectId
+}
+
+model CourseUsers {
+  id       String    @id @default(auto()) @map("_id") @db.ObjectId
+  name     String
+  email    String
+  courses  Course[]
+}
+
+
+model SevenDaysProgramUser{
+  id            String @id @default(auto()) @map("_id") @db.ObjectId
+  name          String
+  email         String
+  whatsapp      Int
+  age           Int
+  amountPaid    Int
 }
