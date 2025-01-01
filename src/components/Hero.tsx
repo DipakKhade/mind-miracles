@@ -2,15 +2,9 @@
 import Image from "next/image";
 import logo from "../../public/mind_miracles_logo.png";
 import React from "react";
-import { motion, useAnimation, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 
 export default function Hero() {
-  const controls = useAnimation();
-
-  const variants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.2 } },
-  };
   return (
     <>
       <motion.div
@@ -35,7 +29,8 @@ export default function Hero() {
           <div className="flex flex-col justify-center align-middle">
             <div className="text-2xl md:text-4xl p-4 md:p-12 font-semibold text-center">
               <p className="font-mono">
-                We are helping hand you&apos;ve been searching for            </p>
+                We Are Helping Hands You Have Been Searching For
+              </p>
             </div>
             <div className="flex justify-end text-2xl font-bold p-2">
               <p>~Mind Miracles</p>
