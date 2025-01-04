@@ -135,7 +135,7 @@ function DataTable({ data }: any) {
           <TableBody>
             {paginatedData.map((item) => (
               <TableRow key={item.id}>
-                {Object.entries(item).map(([key, value]) => (
+                {Object.entries(item).map(([key, value]: any) => (
                   <TableCell key={key}>{value}</TableCell>
                 ))}
               </TableRow>
