@@ -17,6 +17,8 @@ model Register {
  email        String
  age          Int
  place        String
+ date         DateTime @default(now())
+
 }
 
 model Course {

@@ -64,7 +64,7 @@ export default function Page() {
           <Input onChange={(e) => SetUsername(e.target.value)} type="text" placeholder="Enter Admin Username" />
           <Input onChange={(e) => SetPassword(e.target.value)} type="password" placeholder="Enter Password" />
         </div>
-        <div className="pl-[35vw] md:pl-[40vw] ">
+        <div className="pl-[35vw] md:pl-[40vw] pt-2">
           <Button className="bg-green-400 hover:bg-text-green-700 text-slate-900" onClick={adminLogin}>Verify</Button>
         </div>
 

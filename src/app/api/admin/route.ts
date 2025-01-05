@@ -8,9 +8,6 @@ export async function POST(req: NextRequest) {
       message: "invalid cred"
     })
   }
-  console.log('user', username, password)
-  console.log('process env', process.env.ADMIN_USERNAME)
-  console.log('process password', process.env.ADMIN_PASSWORD)
   if (process.env.ADMIN_USERNAME === username && process.env.ADMIN_PASSWORD === password) {
     const register = await db.register.findMany({})
     //const sevendayprogram = await db.sevenDaysProgramUser.findMany({})
