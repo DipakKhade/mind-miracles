@@ -20,8 +20,8 @@ export default function Home() {
         <Hero />
         <WhoWeAre />
         <div>{/* <ServicesCards /> */}</div>
-                    <div className="min-h-screen flex items-center justify-center">
-                      <MissionVision />
+        <div className="min-h-screen flex items-center justify-center">
+          <MissionVision />
         </div>
         <div className="">
           <Founder />

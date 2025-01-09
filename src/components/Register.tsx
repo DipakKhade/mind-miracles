@@ -111,7 +111,7 @@ export default function Register() {
                   </g>
                 </g>
               </svg>
-              <span className="pl-2 mx-1">Register here</span>
+              <span className="pl-2 mx-1">Contact Us</span>
             </button>
             <div className="mt-5 bg-white rounded-lg shadow">
               <div className="px-5 pb-5">
