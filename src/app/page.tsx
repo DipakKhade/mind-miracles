@@ -4,7 +4,7 @@ import Script from "next/script";
 import Payment from "@/components/Payment";
 import Hero from "@/components/Hero";
 import WhoWeAre from "@/components/WhoAreWe";
-import { ServicesCards } from "@/components/ServicesCards";
+// import { ServicesCards } from "@/components/ServicesCards";
 import MissionVision from "@/components/MissionVision";
 import Founder from "@/components/Founder";
 import { Footer } from "@/components/Footer";
@@ -20,8 +20,8 @@ export default function Home() {
         <Hero />
         <WhoWeAre />
         <div>{/* <ServicesCards /> */}</div>
-        <div className="min-h-screen flex items-center justify-center">
-          <MissionVision />
+                    <div className="min-h-screen flex items-center justify-center">
+                      <MissionVision />
         </div>
         <div className="">
           <Founder />
