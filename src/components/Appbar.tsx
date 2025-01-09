@@ -2,9 +2,9 @@ import Link from "next/link";
 export default function Appbar() {
   return (
     <>
-      <nav >
+      <nav>
         <div className="relative flex max-w-screen-xl flex-col overflow-hidden px-4 py-4 md:mx-auto md:flex-row md:items-center">
-          <Link href={'/'}>
+          <Link href={"/"}>
             <span className="text-black text-xl">Mindmiracles</span>
           </Link>
 

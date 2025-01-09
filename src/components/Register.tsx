@@ -26,7 +26,7 @@ export default function Register() {
       const response = await r.json();
       SetLoading(false);
       toast.success(response.message, {
-        description: 'thanks for connecting'
+        description: "thanks for connecting",
       });
     } catch (e) {
       SetLoading(false);
@@ -36,8 +36,10 @@ export default function Register() {
   }
   return (
     <>
-
-      <div id="contact" className="flex-none md:flex md:justify-around pt-12 md:pt-16 mt-12 md:mt-24 bg-[#B6ECD5] rounded-sm p-3">
+      <div
+        id="contact"
+        className="flex-none md:flex md:justify-around pt-12 md:pt-16 mt-12 md:mt-24 bg-[#B6ECD5] rounded-sm p-3"
+      >
         <div>
           <div className="pb-6">
             <h2 className="text-4xl md:text-6xl font-bold">CONTACT US</h2>
@@ -51,14 +53,18 @@ export default function Register() {
             </div>
           </div>
           <div className="flex text-3xl space-x-4 pb-12">
-            <a href="https://www.linkedin.com/in/ms-sonali-khade-79b674331?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank">
+            <a
+              href="https://www.linkedin.com/in/ms-sonali-khade-79b674331?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
+              target="_blank"
+            >
               <FaLinkedinIn />
-
             </a>
 
-            <a href="https://www.facebook.com/share/1DZRPYsPws/?mibextid=LQQJ4d" target="_blank">
+            <a
+              href="https://www.facebook.com/share/1DZRPYsPws/?mibextid=LQQJ4d"
+              target="_blank"
+            >
               <IoLogoFacebook />
-
             </a>
 
             <a href="https://www.instagram.com/mind_miracles_/profilecard/?igsh=bXNxMjRrcnF2ZnMw">
@@ -66,11 +72,13 @@ export default function Register() {
             </a>
 
             <a href="https://youtube.com/@ms.sonaleepsychologist?si=S3x_G2-Z0zvzcx9n">
-            <FaYoutube />
+              <FaYoutube />
             </a>
-            <a href="https://api.whatsapp.com/send/?phone=917798082219&text&type=phone_number&app_absent=0" target="_blank">
+            <a
+              href="https://api.whatsapp.com/send/?phone=917798082219&text&type=phone_number&app_absent=0"
+              target="_blank"
+            >
               <FaWhatsapp />
-
             </a>
           </div>
 
@@ -209,9 +217,7 @@ export default function Register() {
             </div>
           </form>
         </div>
-
       </div>
-
     </>
   );
 }

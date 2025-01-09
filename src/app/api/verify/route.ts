@@ -3,7 +3,7 @@ import crypto from "crypto";
 
 const generatedSignature = (
   razorpayOrderId: string,
-  razorpayPaymentId: string
+  razorpayPaymentId: string,
 ) => {
   const keySecret = process.env.key_secret as string;
 
@@ -15,7 +15,7 @@ const generatedSignature = (
 };
 
 export async function POST(request: NextRequest) {
-  debugger
+  debugger;
   const { orderId, razorpayPaymentId, razorpaySignature } =
     await request.json();
 
@@ -23,13 +23,13 @@ export async function POST(request: NextRequest) {
   if (signature !== razorpaySignature) {
     return NextResponse.json(
       { message: "payment verification failed", isOk: false },
-      { status: 400 }
+      { status: 400 },
     );
   }
 
   // Probably some database calls here to update order or add premium status to user
   return NextResponse.json(
     { message: "payment verified successfully", isOk: true },
-    { status: 200 }
+    { status: 200 },
   );
 }

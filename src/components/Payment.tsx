@@ -73,13 +73,15 @@ export default function Payment() {
         },
       };
 
-      if (typeof window.Razorpay === 'undefined') {
-        toast('Razorpay SDK failed to load. Please check your internet connection.');
+      if (typeof window.Razorpay === "undefined") {
+        toast(
+          "Razorpay SDK failed to load. Please check your internet connection.",
+        );
         return;
       }
 
       const paymentObject = new window.Razorpay(options);
-      console.log(paymentObject)
+      console.log(paymentObject);
       paymentObject.on("payment.failed", function (response: any) {
         alert(response.error.description);
       });

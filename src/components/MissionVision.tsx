@@ -40,7 +40,9 @@ const MissionVision = () => {
                 Our Vision
               </h2>
               <p className="text-teal-800 mt-4 text-center">
-                We aim to help the youth improve their mental, emotional, and psychological health, building a strong and confident generation ready to handl::e life’s challenges.
+                We aim to help the youth improve their mental, emotional, and
+                psychological health, building a strong and confident generation
+                ready to handl::e life’s challenges.
               </p>
             </div>
             <div className="md:w-1/4 flex justify-center">

@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import Image from "next/image";
 import logo from "../../public/mind_miracles_logo.png";
 import React from "react";
@@ -37,8 +37,6 @@ export default function Hero() {
             </div>
           </div>
         </main>
-
-
       </motion.div>
     </>
   );

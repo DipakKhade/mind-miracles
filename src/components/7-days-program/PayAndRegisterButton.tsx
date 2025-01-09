@@ -28,7 +28,8 @@ export const PayAndRegisterButton = ({
   const amountToPay = 1499 * 100;
 
   const createOrder = async () => {
-    SetLoading(true); const res = await fetch("/api/createOrder", {
+    SetLoading(true);
+    const res = await fetch("/api/createOrder", {
       method: "POST",
       body: JSON.stringify({ amount: amountToPay }),
     });
@@ -122,4 +123,3 @@ const Spinner = () => {
     </>
   );
 };
-

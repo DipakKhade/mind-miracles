@@ -5,7 +5,7 @@ import React from "react";
 import Image from "next/image";
 import weweare_logo from "../../public/who_we_are.png";
 import { LampContainer } from "./ui/lamp";
-import img from '../../public/whoweare.png'
+import img from "../../public/whoweare.png";
 
 export default function WhoWeAre() {
   const controls = useAnimation();
@@ -45,10 +45,11 @@ export default function WhoWeAre() {
           className="mt-8 bg-gradient-to-br text-slate-50 from-slate-300 to-green-500 py-4 bg-clip-text text-center  font-medium tracking-tight text-transparent"
         >
           <div className="md:flex justify-around" id="about">
-
             <div className="flex justify-center">
               <div className="flex flex-col">
-                <div className="text-4xl md:text-5xl font-mono md:pt-12 text-green-900">WHO ARE WE ?</div>
+                <div className="text-4xl md:text-5xl font-mono md:pt-12 text-green-900">
+                  WHO ARE WE ?
+                </div>
 
                 <div>
                   <div className="flex justify-center">
@@ -59,22 +60,22 @@ export default function WhoWeAre() {
                       width={500}
                     />
                   </div>
-
                 </div>
               </div>
             </div>
 
-
-
             <div className="md:w-[500px] md:pt-24 md:text-2xl text-teal-800 pt-4 text-base/loose">
-              Mind Miracles is a dedicated center for psychological healing and Hypnotherapy, established in 2019, focused on enhancing mental health, especially for the youth. We specialize in psychological therapies, relaxation techniques, and counseling to address a wide range of mental, emotional, and behavioral needs with professional care and expertise.          </div>
+              Mind Miracles is a dedicated center for psychological healing and
+              Hypnotherapy, established in 2019, focused on enhancing mental
+              health, especially for the youth. We specialize in psychological
+              therapies, relaxation techniques, and counseling to address a wide
+              range of mental, emotional, and behavioral needs with professional
+              care and expertise.{" "}
+            </div>
           </div>
-          <div>
-          </div>
+          <div></div>
         </motion.h1>
       </motion.div>
     </>
   );
 }
-
-
