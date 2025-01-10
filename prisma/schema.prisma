@@ -18,7 +18,6 @@ model Register {
  age          Int
  place        String
  date         DateTime @default(now())
-
 }
 
 model Course {
@@ -47,4 +46,13 @@ model SevenDaysProgramUser{
   whatsapp      Int
   age           Int
   amountPaid    Int
+}
+
+model PersonalCounsellingUser{
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  name String
+  email String
+  whatsapp Int
+  age Int
+  amountPaid Int
 }

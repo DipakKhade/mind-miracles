@@ -1,6 +1,4 @@
 "use client";
-
-import { useState } from "react";
 import {
   Card,
   CardContent,
@@ -10,13 +8,28 @@ import {
 } from "../ui/card";
 import { Label } from "@radix-ui/react-label";
 import { Input } from "@/components/ui/input";
-import { PayAndRegisterButton } from "./PayAndRegisterButton";
+import { useRecoilState } from "recoil";
+import { registrationFormStateAtom } from "@/store";
+import { PayAndRegisterButton } from "../7-days-program/PayAndRegisterButton";
+import { courses } from "@/types";
 
-export const ProgramRegistration = () => {
-  const [name, SetName] = useState<string>();
-  const [email, SetEmail] = useState<string>();
-  const [whatsapp, SetWhatsapp] = useState<any>();
-  const [age, SetAge] = useState<any>();
+export function ProgramRegistrationForm({
+  course_name,
+  amount_to_pay,
+}: {
+  course_name: courses;
+  amount_to_pay: number;
+}) {
+  const [formState, setFormState] = useRecoilState(registrationFormStateAtom);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    console.log({ name, value });
+    setFormState((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
 
   return (
     <>
@@ -35,8 +48,10 @@ export const ProgramRegistration = () => {
                   <Label htmlFor="name">Full Name</Label>
                   <Input
                     id="name"
+                    name="name"
                     required
-                    onChange={(e) => SetName(e.target.value)}
+                    value={formState.name}
+                    onChange={handleInputChange}
                   />
                 </div>
                 <div className="space-y-2">
@@ -44,8 +59,10 @@ export const ProgramRegistration = () => {
                   <Input
                     id="email"
                     type="email"
+                    name="email"
                     required
-                    onChange={(e) => SetEmail(e.target.value)}
+                    value={formState.email}
+                    onChange={handleInputChange}
                   />
                 </div>
                 <div className="space-y-2">
@@ -53,8 +70,10 @@ export const ProgramRegistration = () => {
                   <Input
                     id="whatsapp"
                     type="number"
+                    name="whatsapp"
                     required
-                    onChange={(e) => SetWhatsapp(e.target.value)}
+                    value={formState.whatsapp}
+                    onChange={handleInputChange}
                   />
                 </div>
                 <div className="space-y-2">
@@ -62,15 +81,15 @@ export const ProgramRegistration = () => {
                   <Input
                     id="age"
                     type="number"
+                    name="age"
                     required
-                    onChange={(e) => SetAge(e.target.value)}
+                    value={formState.age}
+                    onChange={handleInputChange}
                   />
                 </div>
                 <PayAndRegisterButton
-                  name={name!}
-                  age={age}
-                  email={email!}
-                  whatsapp={whatsapp}
+                  course_name={course_name}
+                  amount_to_pay={amount_to_pay}
                 />
               </div>
             </CardContent>
@@ -79,4 +98,4 @@ export const ProgramRegistration = () => {
       </section>
     </>
   );
-};
+}

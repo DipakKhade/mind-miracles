@@ -15,7 +15,6 @@ const generatedSignature = (
 };
 
 export async function POST(request: NextRequest) {
-  debugger;
   const { orderId, razorpayPaymentId, razorpaySignature } =
     await request.json();
 

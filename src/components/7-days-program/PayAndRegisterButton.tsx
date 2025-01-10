@@ -5,30 +5,28 @@ import { Button } from "../ui/button";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { courses } from "@/types";
+import { useRecoilValue, useResetRecoilState } from "recoil";
+import { registrationFormStateAtom } from "@/store";
 
 export const PayAndRegisterButton = ({
-  name,
-  email,
-  whatsapp,
-  age,
+  course_name,
+  amount_to_pay,
 }: {
-  name: string;
-  email: string;
-  whatsapp: number;
-  age: number;
+  course_name: courses;
+  amount_to_pay: number;
 }) => {
   // const [amount, setAmount] = useState<number>(1499);
+  const form_values = useRecoilValue(registrationFormStateAtom);
+  const reaset_form_values = useResetRecoilState(registrationFormStateAtom);
   const [loading, SetLoading] = useState<boolean>(false);
-  useEffect(() => {
-    // console.log({name,email,whatsapp,age})
-  }, [name, email, whatsapp, age]);
-
   const router = useRouter();
 
-  const amountToPay = 1499 * 100;
+  const amountToPay = amount_to_pay * 100;
 
   const createOrder = async () => {
     SetLoading(true);
+    console.log("recoil value s", form_values);
     const res = await fetch("/api/createOrder", {
       method: "POST",
       body: JSON.stringify({ amount: amountToPay }),
@@ -54,10 +52,8 @@ export const PayAndRegisterButton = ({
           const response = await fetch(`/api/purchase`, {
             method: "POST",
             body: JSON.stringify({
-              name,
-              email,
-              whatsapp,
-              age,
+              form_values,
+              course_name,
               amountToPay,
             }),
           });
@@ -66,6 +62,7 @@ export const PayAndRegisterButton = ({
             SetLoading(false);
             router.push("/");
             toast.success("added to database");
+            reaset_form_values();
           } else {
             SetLoading(false);
             toast.error(`Please Contact to Adminstrator`);
@@ -78,6 +75,7 @@ export const PayAndRegisterButton = ({
 
     const payment = new (window as any).Razorpay(paymentData);
     payment.open();
+    SetLoading(false);
   };
 
   return (
@@ -87,7 +85,7 @@ export const PayAndRegisterButton = ({
         src="https://checkout.razorpay.com/v1/checkout.js"
       />
       <Button
-        disabled={!name || !email}
+        // disabled={!name || !email}
         onClick={createOrder}
         type="submit"
         className="w-full bg-green-700 hover:bg-[#3a5a40]"

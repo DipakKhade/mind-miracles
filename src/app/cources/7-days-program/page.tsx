@@ -1,10 +1,10 @@
 import { ProgramInfo } from "@/components/7-days-program/ProgramInfo";
-import { ProgramRegistration } from "@/components/7-days-program/ProgramRegistration";
 import { VideoPreview } from "@/components/7-days-program/VideoPreview";
 import { Hero } from "@/components/7-days-program/Hero";
 import { TermsAndConditions } from "@/components/7-days-program/TermsAndConditions";
 import { FeeInfo } from "@/components/common/fee-info";
-// import { Textarea } from "@/components/ui/textarea"
+import { ProgramRegistrationForm } from "@/components/common/program-registration";
+import { courses } from "@/types";
 
 export default function Page() {
   return (
@@ -13,7 +13,11 @@ export default function Page() {
       <ProgramInfo />
       <VideoPreview videolink="https://www.youtube.com/embed/v0cTo4eGAOM?si=ADoHRITZoxuHZAxK" />
       <FeeInfo feeAmount={1499} />
-      <ProgramRegistration />
+      {/* <ProgramRegistration /> */}
+      <ProgramRegistrationForm
+        course_name={courses["seven-day-program"]}
+        amount_to_pay={1499}
+      />
       <TermsAndConditions />
     </div>
   );

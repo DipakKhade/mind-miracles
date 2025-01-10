@@ -4,6 +4,7 @@ import "./globals.css";
 import Appbar from "@/components/Appbar";
 import { Toaster } from "sonner";
 import NextTopLoader from "nextjs-toploader";
+import { Providers } from "./Providers";
 
 const merriweather = Merriweather({ subsets: ["latin"], weight: "300" });
 
@@ -20,14 +21,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${merriweather.className} text-[#003C2F] bg-[#F8F9FA] box-border`}
-      >
-        <NextTopLoader showSpinner={false} color="#19c255" />
-        <Appbar />
-        <Toaster richColors position="top-right" />
-        {children}
-      </body>
+      <Providers>
+        <body
+          className={`${merriweather.className} text-[#003C2F] bg-[#F8F9FA] box-border`}
+        >
+          <NextTopLoader showSpinner={false} color="#19c255" />
+          <Appbar />
+          <Toaster richColors position="top-right" />
+          {children}
+        </body>
+      </Providers>
     </html>
   );
 }

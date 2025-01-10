@@ -13,12 +13,14 @@ export async function POST(req: NextRequest) {
     process.env.ADMIN_PASSWORD === password
   ) {
     const register = await db.register.findMany({});
-    //const sevendayprogram = await db.sevenDaysProgramUser.findMany({})
+    const sevendayprogram = await db.sevenDaysProgramUser.findMany({});
+    const personalcounselling = await db.personalCounsellingUser.findMany({});
 
     return NextResponse.json({
       success: true,
       register,
-      //sevendayprogram
+      sevendayprogram,
+      personalcounselling,
     });
   }
   return NextResponse.json({
