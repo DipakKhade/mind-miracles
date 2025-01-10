@@ -1,7 +1,5 @@
 import Register from "@/components/Register";
-import { Programs } from "@/components/Programs";
 import Script from "next/script";
-import Payment from "@/components/Payment";
 import Hero from "@/components/Hero";
 import WhoWeAre from "@/components/WhoAreWe";
 // import { ServicesCards } from "@/components/ServicesCards";
