@@ -21,7 +21,10 @@ interface DataItem {
   place: string;
 }
 
-export function DataTable({ data }: any) {
+export function DataTable({ data, table_name }: {
+  data:any,
+  table_name:string
+}) {
   const [sortColumn, setSortColumn] = useState<keyof DataItem | null>(null);
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
   const [currentPage, setCurrentPage] = useState(1);
@@ -59,7 +62,7 @@ export function DataTable({ data }: any) {
 
   return (
     <div className="w-full pt-4">
-      <h3 className="p-2 text-green-700">Registered Peoples List</h3>
+      <h3 className="p-2 text-blue-700 text-xl">{table_name}</h3>
       <div className="rounded-md border">
         <Table>
           <TableHeader>

@@ -5,21 +5,12 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { DataTable } from "@/components/userDataTable";
 
-interface DataItem {
-  id: string;
-  firstName: string;
-  lastName: string;
-  mobileNo: number;
-  email: string;
-  age: number;
-  place: string;
-}
 
 export default function Page() {
   const [username, SetUsername] = useState<string>();
   const [password, SetPassword] = useState<string>();
   const [isadmin, SetisAdmin] = useState<boolean>(false);
-  const [data, SetData] = useState<DataItem[]>([]);
+  const [data, SetData] = useState<any>({});
   const [loading, SetLoading] = useState<boolean>(false);
 
   const adminLogin = async () => {
@@ -39,7 +30,7 @@ export default function Page() {
     if (response.success === true) {
       SetisAdmin(true);
       SetLoading(false);
-      SetData(response.register);
+      SetData(response);
       toast.success("indentity verified");
       return;
     } else {
@@ -51,8 +42,8 @@ export default function Page() {
 
   return (
     <>
-      <main className="pt-12 p-2 md:p-8 md:pt-24">
-        {data?.length == 0 ? (
+      <main className="pt-12 p-2 md:p-8 md:pt-24 flex">
+        {Object.keys(data).length == 0 ? (
           <div className="max-w-4xl justify-centre md:space-y-4">
             <div className="md:pl-[30vw] space-y-2 ">
               <Input
@@ -103,7 +94,13 @@ export default function Page() {
         ) : (
           ""
         )}
-        {isadmin && data ? <DataTable data={data} /> : ""}
+        {isadmin && data ?
+        <div className="flex flex-col space-y-5">
+        <DataTable data={data?.personalcounselling} table_name="Personal Counselling Patient List"/> 
+        <DataTable data={data?.sevendayprogram} table_name="7 Day Program List"/> 
+        <DataTable data={data?.register} table_name="Contact User List"/> 
+        </div>
+        : ""}
       </main>
     </>
   );
