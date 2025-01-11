@@ -21,9 +21,12 @@ interface DataItem {
   place: string;
 }
 
-export function DataTable({ data, table_name }: {
-  data:any,
-  table_name:string
+export function DataTable({
+  data,
+  table_name,
+}: {
+  data: any;
+  table_name: string;
 }) {
   const [sortColumn, setSortColumn] = useState<keyof DataItem | null>(null);
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
@@ -62,13 +65,13 @@ export function DataTable({ data, table_name }: {
 
   return (
     <div className="w-full pt-4">
-      <h3 className="p-2 text-blue-700 text-xl">{table_name}</h3>
+      <h3 className="md:text-xl p-2 text-blue-700">{table_name}</h3>
       <div className="rounded-md border">
         <Table>
           <TableHeader>
             <TableRow>
               {Object.keys(data[0]).map((key) => (
-                <TableHead key={key} className="font-medium">
+                <TableHead key={key} className="font-medium bg-blue-100">
                   <Button
                     variant="ghost"
                     onClick={() => handleSort(key as keyof DataItem)}

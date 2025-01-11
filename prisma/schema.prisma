@@ -46,13 +46,15 @@ model SevenDaysProgramUser{
   whatsapp      Int
   age           Int
   amountPaid    Int
+  date          DateTime? @default(now())
 }
 
 model PersonalCounsellingUser{
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  name String
-  email String
-  whatsapp Int
-  age Int
-  amountPaid Int
+  id            String @id @default(auto()) @map("_id") @db.ObjectId
+  name          String
+  email         String
+  whatsapp      Int
+  age           Int
+  amountPaid    Int
+  date          DateTime? @default(now())
 }
