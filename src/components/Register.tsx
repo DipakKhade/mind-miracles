@@ -1,16 +1,16 @@
-"use client";
-import { toast } from "sonner";
-import { useForm } from "react-hook-form";
-import { useState } from "react";
-import f1 from "../../public/footer-image-0.png";
-import f2 from "../../public/footer-image-1.png";
-import Image from "next/image";
-import { motion } from "framer-motion";
-import { FaLinkedinIn } from "react-icons/fa";
-import { IoLogoFacebook } from "react-icons/io";
-import { FaInstagram } from "react-icons/fa";
-import { FaYoutube } from "react-icons/fa";
-import { FaWhatsapp } from "react-icons/fa";
+'use client';
+import { toast } from 'sonner';
+import { useForm } from 'react-hook-form';
+import { useState } from 'react';
+import f1 from '../../public/footer-image-0.png';
+import f2 from '../../public/footer-image-1.png';
+import Image from 'next/image';
+import { motion } from 'framer-motion';
+import { FaLinkedinIn } from 'react-icons/fa';
+import { IoLogoFacebook } from 'react-icons/io';
+import { FaInstagram } from 'react-icons/fa';
+import { FaYoutube } from 'react-icons/fa';
+import { FaWhatsapp } from 'react-icons/fa';
 
 export default function Register() {
   const { register, handleSubmit } = useForm();
@@ -18,19 +18,19 @@ export default function Register() {
   async function submitForm(data: any) {
     SetLoading(true);
     try {
-      const r = await fetch("/api/register", {
-        method: "POST",
+      const r = await fetch('/api/register', {
+        method: 'POST',
         body: JSON.stringify(data),
       });
 
       const response = await r.json();
       SetLoading(false);
       toast.success(response.message, {
-        description: "thanks for connecting",
+        description: 'thanks for connecting',
       });
     } catch (e) {
       SetLoading(false);
-      toast.warning("try again");
+      toast.warning('try again');
     }
     return;
   }
@@ -38,21 +38,21 @@ export default function Register() {
     <>
       <div
         id="contact"
-        className="flex-none md:flex md:justify-around pt-12 md:pt-16 mt-12 md:mt-24 bg-[#B6ECD5] rounded-sm p-3"
+        className="mt-12 flex-none rounded-sm bg-[#B6ECD5] p-3 pt-12 md:mt-24 md:flex md:justify-around md:pt-16"
       >
         <div>
           <div className="pb-6">
-            <h2 className="text-4xl md:text-6xl font-bold">CONTACT US</h2>
+            <h2 className="text-4xl font-bold md:text-6xl">CONTACT US</h2>
             <div className="pt-8">
-              <span className="font-bold text-lg">Contact No: &nbsp;</span>{" "}
+              <span className="text-lg font-bold">Contact No: &nbsp;</span>{' '}
               <span className="font-medium">+91-779-808-2219</span>
             </div>
             <div className="pt-8">
-              <span className="font-bold text-lg">Email id: &nbsp;</span>{" "}
+              <span className="text-lg font-bold">Email id: &nbsp;</span>{' '}
               <span className="font-medium">mindmiracles1707@gmail.com</span>
             </div>
           </div>
-          <div className="flex text-3xl space-x-4 pb-12">
+          <div className="flex space-x-4 pb-12 text-3xl">
             <a
               href="https://www.linkedin.com/in/ms-sonali-khade-79b674331?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
               target="_blank"
@@ -85,14 +85,14 @@ export default function Register() {
           <FooterAnimationImages />
         </div>
 
-        <div className="pr-4 ml-3">
+        <div className="ml-3 pr-4">
           <form
-            className="md:w-[600px] p-0"
+            className="p-0 md:w-[600px]"
             onSubmit={handleSubmit(submitForm)}
           >
             <button
               type="button"
-              className="relative w-full flex justify-center items-center px-5 py-2.5 font-medium tracking-wide text-white capitalize bg-green-700 rounded-md hover:bg-green-700 focus:outline-none transition duration-300 transform active:scale-95 ease-in-out"
+              className="relative flex w-full transform items-center justify-center rounded-md bg-green-700 px-5 py-2.5 font-medium capitalize tracking-wide text-white transition duration-300 ease-in-out hover:bg-green-700 focus:outline-none active:scale-95"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -111,27 +111,27 @@ export default function Register() {
                   </g>
                 </g>
               </svg>
-              <span className="pl-2 mx-1">Contact Us</span>
+              <span className="mx-1 pl-2">Contact Us</span>
             </button>
-            <div className="mt-5 bg-white rounded-lg shadow">
+            <div className="mt-5 rounded-lg bg-white shadow">
               <div className="px-5 pb-5">
-                <div className="pt-2 pb-4">
+                <div className="pb-4 pt-2">
                   <div className="w-full">
                     <p>First Name</p>
                     <input
-                      {...register("firstName")}
+                      {...register('firstName')}
                       placeholder="Enter first name"
                       type="text"
-                      className="text-black placeholder-green-600 w-full px-4 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-green-200 focus:border-bluegreen-500 focus:bg-white  focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-green-400"
+                      className="focus:border-bluegreen-500 focus:shadow-outline mt-2 w-full transform rounded-lg border-transparent bg-green-200 px-4 py-2.5 text-base text-black placeholder-green-600 ring-green-400 ring-offset-2 ring-offset-current transition duration-500 ease-in-out focus:bg-white focus:outline-none focus:ring-2"
                     />
                   </div>
                   <div className="w-full">
                     <p>Last Name</p>
                     <input
-                      {...register("lastName")}
+                      {...register('lastName')}
                       placeholder="Enter last name"
                       type="text"
-                      className="text-black placeholder-green-600 w-full px-4 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-green-200 focus:border-bluegreen-500 focus:bg-white  focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-green-400"
+                      className="focus:border-bluegreen-500 focus:shadow-outline mt-2 w-full transform rounded-lg border-transparent bg-green-200 px-4 py-2.5 text-base text-black placeholder-green-600 ring-green-400 ring-offset-2 ring-offset-current transition duration-500 ease-in-out focus:bg-white focus:outline-none focus:ring-2"
                     />
                   </div>
                 </div>
@@ -140,19 +140,19 @@ export default function Register() {
                   <div className="w-full">
                     <p>Mobile Number</p>
                     <input
-                      {...register("mobileNo")}
+                      {...register('mobileNo')}
                       type="number"
                       placeholder="Enter 10 digit mobile number"
-                      className="text-black placeholder-green-600 w-full px-4 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-green-200 focus:border-bluegreen-500 focus:bg-white focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-green-400"
+                      className="focus:border-bluegreen-500 focus:shadow-outline mt-2 w-full transform rounded-lg border-transparent bg-green-200 px-4 py-2.5 text-base text-black placeholder-green-600 ring-green-400 ring-offset-2 ring-offset-current transition duration-500 ease-in-out focus:bg-white focus:outline-none focus:ring-2"
                     />
                   </div>
                   <div className="w-full">
                     <p>Email ID</p>
                     <input
-                      {...register("email")}
+                      {...register('email')}
                       type="email"
                       placeholder="Enter email ID"
-                      className="text-black placeholder-green-600 w-full px-4 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-green-200 focus:border-bluegreen-500 focus:bg-white  focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-green-400"
+                      className="focus:border-bluegreen-500 focus:shadow-outline mt-2 w-full transform rounded-lg border-transparent bg-green-200 px-4 py-2.5 text-base text-black placeholder-green-600 ring-green-400 ring-offset-2 ring-offset-current transition duration-500 ease-in-out focus:bg-white focus:outline-none focus:ring-2"
                     />
                   </div>
                 </div>
@@ -161,34 +161,34 @@ export default function Register() {
                   <div className="w-full">
                     <p>Age</p>
                     <input
-                      {...register("age")}
+                      {...register('age')}
                       type="number"
                       placeholder="Enter your age"
-                      className="text-black placeholder-green-600 w-full px-4 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-green-200 focus:border-bluegreen-500 focus:bg-white focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-green-400"
+                      className="focus:border-bluegreen-500 focus:shadow-outline mt-2 w-full transform rounded-lg border-transparent bg-green-200 px-4 py-2.5 text-base text-black placeholder-green-600 ring-green-400 ring-offset-2 ring-offset-current transition duration-500 ease-in-out focus:bg-white focus:outline-none focus:ring-2"
                     />
                   </div>
                   <div className="w-full">
                     <p>Place</p>
                     <input
-                      {...register("place")}
+                      {...register('place')}
                       placeholder="Enter Place"
                       type="text"
-                      className="text-black placeholder-green-600 w-full px-4 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-green-200 focus:border-bluegreen-500 focus:bg-white  focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-green-400"
+                      className="focus:border-bluegreen-500 focus:shadow-outline mt-2 w-full transform rounded-lg border-transparent bg-green-200 px-4 py-2.5 text-base text-black placeholder-green-600 ring-green-400 ring-offset-2 ring-offset-current transition duration-500 ease-in-out focus:bg-white focus:outline-none focus:ring-2"
                     />
                   </div>
                 </div>
               </div>
 
-              <div className="w-full flex justify-center rounded-3xl">
+              <div className="flex w-full justify-center rounded-3xl">
                 {loading ? (
                   <button
                     type="submit"
-                    className="text-white bg-green-500 w-36 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2"
+                    className="mb-2 me-2 w-36 rounded-full bg-green-500 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300"
                   >
                     <div role="status">
                       <svg
                         aria-hidden="true"
-                        className="inline w-6 h-6 text-gray-200 animate-spin dark:text-gray-600 fill-green-500"
+                        className="inline h-6 w-6 animate-spin fill-green-500 text-gray-200 dark:text-gray-600"
                         viewBox="0 0 100 101"
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
@@ -208,7 +208,7 @@ export default function Register() {
                 ) : (
                   <button
                     type="submit"
-                    className="text-white bg-green-700 w-36 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2"
+                    className="mb-2 me-2 w-36 rounded-full bg-green-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300"
                   >
                     Submit
                   </button>
@@ -227,16 +227,16 @@ function FooterAnimationImages() {
     <>
       <div className="hidden md:block">
         {/* larg screen */}
-        <div style={{ position: "relative", width: "400px", height: "400px" }}>
+        <div style={{ position: 'relative', width: '400px', height: '400px' }}>
           <Image src={f1} alt="" width={400} height={400} />
           <motion.div
-            style={{ position: "absolute", top: 42, left: 32 }}
+            style={{ position: 'absolute', top: 42, left: 32 }}
             animate={{
               y: [0, -20, 0], // Moves the image up by 20px and back
             }}
             transition={{
               duration: 8, // 10 seconds for one complete cycle
-              ease: "easeInOut",
+              ease: 'easeInOut',
               repeat: Infinity, // Repeats the animation infinitely
             }}
           >
@@ -247,16 +247,16 @@ function FooterAnimationImages() {
 
       <div className="md:hidden">
         {/* mobile */}
-        <div style={{ position: "relative", width: "300px", height: "300px" }}>
+        <div style={{ position: 'relative', width: '300px', height: '300px' }}>
           <Image src={f1} alt="" width={400} height={400} />
           <motion.div
-            style={{ position: "absolute", top: 56, left: 40 }}
+            style={{ position: 'absolute', top: 56, left: 40 }}
             animate={{
               y: [0, -20, 0], // Moves the image up by 20px and back
             }}
             transition={{
               duration: 8, // 10 seconds for one complete cycle
-              ease: "easeInOut",
+              ease: 'easeInOut',
               repeat: Infinity, // Repeats the animation infinitely
             }}
           >

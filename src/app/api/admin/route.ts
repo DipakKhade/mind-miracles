@@ -1,11 +1,11 @@
-import { NextRequest, NextResponse } from "next/server";
-import db from "@/db";
+import { NextRequest, NextResponse } from 'next/server';
+import db from '@/db';
 
 export async function POST(req: NextRequest) {
   const { username, password } = await req.json();
   if (!username || !password) {
     return NextResponse.json({
-      message: "invalid cred",
+      message: 'invalid cred',
     });
   }
   if (

@@ -1,11 +1,9 @@
-"use client";
-import { motion, useAnimation } from "framer-motion";
-import { useInView } from "react-intersection-observer";
-import React from "react";
-import Image from "next/image";
-import weweare_logo from "../../public/who_we_are.png";
-import { LampContainer } from "./ui/lamp";
-import img from "../../public/whoweare.png";
+'use client';
+import { motion, useAnimation } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
+import React from 'react';
+import Image from 'next/image';
+import weweare_logo from '../../public/who_we_are.png';
 
 export default function WhoWeAre() {
   const controls = useAnimation();
@@ -16,7 +14,7 @@ export default function WhoWeAre() {
 
   React.useEffect(() => {
     if (inView) {
-      controls.start("visible");
+      controls.start('visible');
     }
   }, [controls, inView]);
 
@@ -40,14 +38,14 @@ export default function WhoWeAre() {
           transition={{
             delay: 0.3,
             duration: 0.8,
-            ease: "easeInOut",
+            ease: 'easeInOut',
           }}
-          className="mt-8 bg-gradient-to-br text-slate-50 from-slate-300 to-green-500 py-4 bg-clip-text text-center  font-medium tracking-tight text-transparent"
+          className="mt-8 bg-gradient-to-br from-slate-300 to-green-500 bg-clip-text py-4 text-center font-medium tracking-tight text-slate-50 text-transparent"
         >
-          <div className="md:flex justify-around" id="about">
+          <div className="justify-around md:flex" id="about">
             <div className="flex justify-center">
               <div className="flex flex-col">
-                <div className="text-4xl md:text-5xl font-mono md:pt-12 text-green-900">
+                <div className="font-mono text-4xl text-green-900 md:pt-12 md:text-5xl">
                   WHO ARE WE ?
                 </div>
 
@@ -64,16 +62,15 @@ export default function WhoWeAre() {
               </div>
             </div>
 
-            <div className="md:w-[500px] md:pt-24 md:text-2xl text-teal-800 pt-4 text-base/loose">
+            <div className="pt-4 text-base/loose text-teal-800 md:w-[500px] md:pt-24 md:text-2xl">
               Mind Miracles is a dedicated center for psychological healing and
               Hypnotherapy, established in 2019, focused on enhancing mental
               health, especially for the youth. We specialize in psychological
               therapies, relaxation techniques, and counseling to address a wide
               range of mental, emotional, and behavioral needs with professional
-              care and expertise.{" "}
+              care and expertise.{' '}
             </div>
           </div>
-          <div></div>
         </motion.h1>
       </motion.div>
     </>

@@ -1,7 +1,7 @@
-import db from "@/db";
-import { courses } from "@/types";
-import { NextRequest, NextResponse } from "next/server";
-import { FormState } from "@/store";
+import db from '@/db';
+import { courses } from '@/types';
+import { NextRequest, NextResponse } from 'next/server';
+import { FormState } from '@/store';
 
 export async function POST(request: NextRequest) {
   debugger;
@@ -17,7 +17,7 @@ export async function POST(request: NextRequest) {
     //FIX : amount_to_pay get it from razorpay payment response
 
     switch (course_name) {
-      case courses["seven-day-program"]:
+      case courses['seven-day-program']:
         const newPurchase = await db.sevenDaysProgramUser.create({
           data: {
             name,
@@ -33,7 +33,7 @@ export async function POST(request: NextRequest) {
           id: newPurchase.id,
         });
 
-      case courses["personal-couselling"]:
+      case courses['personal-couselling']:
         const new_purchase = await db.personalCounsellingUser.create({
           data: {
             name,
@@ -51,7 +51,7 @@ export async function POST(request: NextRequest) {
     }
   } catch (error) {
     return NextResponse.json({
-      message: "Registration failed",
+      message: 'Registration failed',
     });
   }
 }

@@ -1,4 +1,4 @@
-import { atom } from "recoil";
+import { atom } from 'recoil';
 
 export interface FormState {
   name: string;
@@ -8,11 +8,11 @@ export interface FormState {
 }
 
 export const registrationFormStateAtom = atom<FormState>({
-  key: "formState",
+  key: 'formState',
   default: {
-    name: "",
-    email: "",
-    whatsapp: "",
+    name: '',
+    email: '',
+    whatsapp: '',
     age: 0,
   },
 });

@@ -2,7 +2,7 @@ export const TermsAndConditions = () => {
   return (
     <>
       <div>
-        <p className="p-4 md:p-8 text-[0.7rem]">
+        <p className="p-4 text-[0.7rem] md:p-8">
           All payments on our website are securely processed through Razorpay,
           and by using this service, you also agree to Razorpay&apos;s Terms of
           Service and Privacy Policy. contact us at mindmiracles1707@gmail.com

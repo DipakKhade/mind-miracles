@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import Script from "next/script";
-import { Button } from "../ui/button";
-import { toast } from "sonner";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import { courses } from "@/types";
-import { useRecoilValue, useResetRecoilState } from "recoil";
-import { registrationFormStateAtom } from "@/store";
+import Script from 'next/script';
+import { Button } from '../ui/button';
+import { toast } from 'sonner';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { courses } from '@/types';
+import { useRecoilValue, useResetRecoilState } from 'recoil';
+import { registrationFormStateAtom } from '@/store';
 
 export const PayAndRegisterButton = ({
   course_name,
@@ -26,9 +26,9 @@ export const PayAndRegisterButton = ({
 
   const createOrder = async () => {
     SetLoading(true);
-    console.log("recoil value s", form_values);
-    const res = await fetch("/api/createOrder", {
-      method: "POST",
+    console.log('recoil value s', form_values);
+    const res = await fetch('/api/createOrder', {
+      method: 'POST',
       body: JSON.stringify({ amount: amountToPay }),
     });
     const data = await res.json();
@@ -38,8 +38,8 @@ export const PayAndRegisterButton = ({
 
       handler: async function (response: any) {
         // verify payment
-        const res = await fetch("/api/verify", {
-          method: "POST",
+        const res = await fetch('/api/verify', {
+          method: 'POST',
           body: JSON.stringify({
             orderId: response.razorpay_order_id,
             razorpayPaymentId: response.razorpay_payment_id,
@@ -48,9 +48,9 @@ export const PayAndRegisterButton = ({
         });
         const data = await res.json();
         if (data.isOk) {
-          toast.success("Registration successfull");
+          toast.success('Registration successfull');
           const response = await fetch(`/api/purchase`, {
-            method: "POST",
+            method: 'POST',
             body: JSON.stringify({
               form_values,
               course_name,
@@ -60,15 +60,15 @@ export const PayAndRegisterButton = ({
           const res = await response.json();
           if (res.id) {
             SetLoading(false);
-            router.push("/");
-            toast.success("added to database");
+            router.push('/');
+            toast.success('added to database');
             reaset_form_values();
           } else {
             SetLoading(false);
             toast.error(`Please Contact to Adminstrator`);
           }
         } else {
-          alert("Payment failed");
+          alert('Payment failed');
         }
       },
     };
@@ -90,7 +90,7 @@ export const PayAndRegisterButton = ({
         type="submit"
         className="w-full bg-green-700 hover:bg-[#3a5a40]"
       >
-        {loading ? <Spinner /> : "Pay And Register"}
+        {loading ? <Spinner /> : 'Pay And Register'}
       </Button>
     </>
   );
@@ -102,7 +102,7 @@ const Spinner = () => {
       <div role="status">
         <svg
           aria-hidden="true"
-          className="inline w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-green-500"
+          className="inline h-8 w-8 animate-spin fill-green-500 text-gray-200 dark:text-gray-600"
           viewBox="0 0 100 101"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"

@@ -1,5 +1,5 @@
-import Razorpay from "razorpay";
-import { NextRequest, NextResponse } from "next/server";
+import Razorpay from 'razorpay';
+import { NextRequest, NextResponse } from 'next/server';
 
 const razorpay = new Razorpay({
   key_id: process.env.key_id!,
@@ -15,7 +15,7 @@ export async function POST(request: NextRequest) {
   var options = {
     amount: amount,
     currency: currency,
-    receipt: "recipt_asd",
+    receipt: 'recipt_asd',
   };
   const order = await razorpay.orders.create(options);
   console.log(order);

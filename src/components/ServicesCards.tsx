@@ -1,21 +1,21 @@
-"use client";
+'use client';
 
-import * as React from "react";
+import * as React from 'react';
 
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@/components/ui/carousel";
+} from '@/components/ui/carousel';
 
 export function ServicesCards() {
   return (
     <>
       <main className="hidden md:flex md:flex-col md:p-8">
-        <p className="text-6xl p-3 text-green-900">Service</p>
+        <p className="p-3 text-6xl text-green-900">Service</p>
         <Carousel className="w-full max-w-xs md:max-w-[90vw]">
           <CarouselContent className="w-full">
             {Array.from({ length: 2 }).map((_, index) => (
@@ -57,8 +57,8 @@ export function ServicesCards() {
         </Carousel>
       </main>
 
-      <main className="md:hidden w-[80vw] pb-8">
-        <p className="text-6xl p-3 text-green-900">Service</p>
+      <main className="w-[80vw] pb-8 md:hidden">
+        <p className="p-3 text-6xl text-green-900">Service</p>
         <Carousel className="md:hidden">
           <CarouselContent>
             {Array.from({ length: 5 }).map((_, index) => (

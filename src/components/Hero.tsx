@@ -1,8 +1,8 @@
-"use client";
-import Image from "next/image";
-import logo from "../../public/mind_miracles_logo.png";
-import React from "react";
-import { motion } from "framer-motion";
+'use client';
+import Image from 'next/image';
+import logo from '../../public/mind_miracles_logo.png';
+import React from 'react';
+import { motion } from 'framer-motion';
 
 export default function Hero() {
   return (
@@ -13,26 +13,26 @@ export default function Hero() {
         transition={{
           delay: 0.3,
           duration: 0.8,
-          ease: "easeInOut",
+          ease: 'easeInOut',
         }}
       >
         <main className="min-h-[420px] md:flex">
-          <div className="flex justify-center ">
+          <div className="flex justify-center">
             <div>
               <Image
                 alt="mindmiracles"
                 src={logo}
-                className="w-60 h-60 md:w-[700px] md:h-[450px]"
+                className="h-60 w-60 md:h-[450px] md:w-[700px]"
               />
             </div>
           </div>
           <div className="flex flex-col justify-center align-middle">
-            <div className="text-2xl md:text-4xl p-4 md:p-12 font-semibold text-center">
+            <div className="p-4 text-center text-2xl font-semibold md:p-12 md:text-4xl">
               <p className="font-mono">
                 We Are Helping Hands You Have Been Searching For
               </p>
             </div>
-            <div className="flex justify-end text-2xl font-bold p-2">
+            <div className="flex justify-end p-2 text-2xl font-bold">
               <p>~Mind Miracles</p>
             </div>
           </div>

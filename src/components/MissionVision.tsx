@@ -1,17 +1,17 @@
-import React from "react";
-import Image from "next/image";
-import m1 from "../../public/mission1.jpg";
-import m2 from "../../public/mission2.jpg";
+import React from 'react';
+import Image from 'next/image';
+import m1 from '../../public/mission1.jpg';
+import m2 from '../../public/mission2.jpg';
 const MissionVision = () => {
   return (
-    <div className="md:p-8 p-4">
-      <div className="text-4xl md:text-6xl font-bold text-teal-900 mb-8 pl-4">
-        <span className="block md:inline-block pl-12 md:pl-0"> VISION</span>
+    <div className="p-4 md:p-8">
+      <div className="mb-8 pl-4 text-4xl font-bold text-teal-900 md:text-6xl">
+        <span className="block pl-12 md:inline-block md:pl-0"> VISION</span>
       </div>
 
       <div className="flex flex-col space-y-8">
         {/* Mission Section */}
-        <div className="md:pl-[20vw] pt-4">
+        <div className="pt-4 md:pl-[20vw]">
           {/* <div className="md:flex items-center bg-teal-100 md:p-8 pb-3 rounded-lg shadow-lg md:w-[70vw] justify-end">
           <div className="md:w-1/4 flex justify-center pt-2">
           <Image
@@ -34,24 +34,24 @@ const MissionVision = () => {
         {/* Vision Section */}
 
         <div className="md:pr-[20vw]">
-          <div className="md:flex items-center bg-teal-100 md:p-8 pb-3 rounded-lg shadow-lg md:w-[70vw] justify-end">
-            <div className="md:w-3/4 p-6 md:pl-8">
-              <h2 className="text-2xl font-bold text-teal-900 pl-10 md:pl-0">
+          <div className="items-center justify-end rounded-lg bg-teal-100 pb-3 shadow-lg md:flex md:w-[70vw] md:p-8">
+            <div className="p-6 md:w-3/4 md:pl-8">
+              <h2 className="pl-10 text-2xl font-bold text-teal-900 md:pl-0">
                 Our Vision
               </h2>
-              <p className="text-teal-800 mt-4 text-center">
+              <p className="mt-4 text-center text-teal-800">
                 We aim to help the youth improve their mental, emotional, and
                 psychological health, building a strong and confident generation
                 ready to handl::e life’s challenges.
               </p>
             </div>
-            <div className="md:w-1/4 flex justify-center">
+            <div className="flex justify-center md:w-1/4">
               <Image
                 src={m2}
                 height={200}
                 width={200}
                 alt=""
-                className="rounded-full p-2 object-none"
+                className="rounded-full object-none p-2"
               />
             </div>
           </div>

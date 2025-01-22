@@ -4,12 +4,12 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "../ui/card";
+} from '../ui/card';
 
 export const ProgramInfo = () => {
   return (
     <>
-      <section className="py-16 px-4">
+      <section className="px-4 py-16">
         <div className="container mx-auto max-w-4xl">
           <Card>
             <CardHeader>
@@ -20,7 +20,7 @@ export const ProgramInfo = () => {
             </CardHeader>
             <CardContent className="space-y-4">
               <p>Our intensive 7-day program is designed to help you:</p>
-              <ul className="list-disc pl-6 space-y-2">
+              <ul className="list-disc space-y-2 pl-6">
                 <li>Develop powerful mindset strategies</li>
                 <li>Create lasting positive habits</li>
                 <li>Master emotional intelligence</li>

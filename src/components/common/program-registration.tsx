@@ -1,17 +1,17 @@
-"use client";
+'use client';
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "../ui/card";
-import { Label } from "@radix-ui/react-label";
-import { Input } from "@/components/ui/input";
-import { useRecoilState } from "recoil";
-import { registrationFormStateAtom } from "@/store";
-import { PayAndRegisterButton } from "../7-days-program/PayAndRegisterButton";
-import { courses } from "@/types";
+} from '../ui/card';
+import { Label } from '@radix-ui/react-label';
+import { Input } from '@/components/ui/input';
+import { useRecoilState } from 'recoil';
+import { registrationFormStateAtom } from '@/store';
+import { PayAndRegisterButton } from '../7-days-program/PayAndRegisterButton';
+import { courses } from '@/types';
 
 export function ProgramRegistrationForm({
   course_name,
@@ -33,7 +33,7 @@ export function ProgramRegistrationForm({
 
   return (
     <>
-      <section className="py-16 px-4 bg-white">
+      <section className="bg-white px-4 py-16">
         <div className="container mx-auto max-w-2xl">
           <Card>
             <CardHeader>

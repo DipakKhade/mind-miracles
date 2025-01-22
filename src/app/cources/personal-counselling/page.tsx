@@ -1,10 +1,10 @@
-import { ProgramInfo } from "@/components/7-days-program/ProgramInfo";
-import { VideoPreview } from "@/components/7-days-program/VideoPreview";
-import { TermsAndConditions } from "@/components/7-days-program/TermsAndConditions";
-import { Hero } from "@/components/personal-counselling/Hero";
-import { FeeInfo } from "@/components/common/fee-info";
-import { ProgramRegistrationForm } from "@/components/common/program-registration";
-import { courses } from "@/types";
+import { ProgramInfo } from '@/components/7-days-program/ProgramInfo';
+import { VideoPreview } from '@/components/7-days-program/VideoPreview';
+import { TermsAndConditions } from '@/components/7-days-program/TermsAndConditions';
+import { Hero } from '@/components/personal-counselling/Hero';
+import { FeeInfo } from '@/components/common/fee-info';
+import { ProgramRegistrationForm } from '@/components/common/program-registration';
+import { courses } from '@/types';
 
 export default function page() {
   return (
@@ -15,7 +15,7 @@ export default function page() {
         <VideoPreview videolink="https://www.youtube.com/embed/v0cTo4eGAOM?si=ADoHRITZoxuHZAxK" />
         <FeeInfo feeAmount={99} />
         <ProgramRegistrationForm
-          course_name={courses["personal-couselling"]}
+          course_name={courses['personal-couselling']}
           amount_to_pay={99}
         />
         <TermsAndConditions />

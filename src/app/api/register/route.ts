@@ -1,6 +1,6 @@
-import { NextRequest, NextResponse } from "next/server";
-import db from "@/db";
-import { getMailonRegister } from "@/mail";
+import { NextRequest, NextResponse } from 'next/server';
+import db from '@/db';
+import { getMailonRegister } from '@/mail';
 
 export async function POST(req: NextRequest) {
   const { firstName, lastName, mobileNo, email, age, place } = await req.json();
@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
     });
     return NextResponse.json({
       success: true,
-      message: "register successfully",
+      message: 'register successfully',
     });
   } catch (e) {
     console.log(e);

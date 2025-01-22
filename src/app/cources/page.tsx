@@ -1,5 +1,5 @@
-import CoursesList from "@/components/cources-list";
-import Register from "@/components/Register";
+import CoursesList from '@/components/cources-list';
+import Register from '@/components/Register';
 // import { Textarea } from "@/components/ui/textarea"
 
 export default function Page() {

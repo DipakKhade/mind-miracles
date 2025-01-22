@@ -1,15 +1,15 @@
-import Register from "@/components/Register";
-import Script from "next/script";
-import Hero from "@/components/Hero";
-import WhoWeAre from "@/components/WhoAreWe";
+import Register from '@/components/Register';
+import Script from 'next/script';
+import Hero from '@/components/Hero';
+import WhoWeAre from '@/components/WhoAreWe';
 // import { ServicesCards } from "@/components/ServicesCards";
-import MissionVision from "@/components/MissionVision";
-import Founder from "@/components/Founder";
-import { Footer } from "@/components/Footer";
+import MissionVision from '@/components/MissionVision';
+import Founder from '@/components/Founder';
+import { Footer } from '@/components/Footer';
 
 export default function Home() {
   return (
-    <main className="p-2 bg-slate-50">
+    <main className="bg-slate-50 p-2">
       <Script
         id="razorpay-checkout-js"
         src="https://checkout.razorpay.com/v1/checkout.js"
@@ -18,7 +18,7 @@ export default function Home() {
         <Hero />
         <WhoWeAre />
         <div>{/* <ServicesCards /> */}</div>
-        <div className="min-h-screen flex items-center justify-center">
+        <div className="flex min-h-screen items-center justify-center">
           <MissionVision />
         </div>
         <div className="">

@@ -1,6 +1,6 @@
-"use client";
-import { useState } from "react";
-import { ChevronDown, ChevronUp, ChevronsUpDown } from "lucide-react";
+'use client';
+import { useState } from 'react';
+import { ChevronDown, ChevronUp, ChevronsUpDown } from 'lucide-react';
 import {
   Table,
   TableBody,
@@ -8,8 +8,8 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
-import { Button } from "./ui/button";
+} from '@/components/ui/table';
+import { Button } from './ui/button';
 
 interface DataItem {
   id: string;
@@ -29,23 +29,23 @@ export function DataTable({
   table_name: string;
 }) {
   const [sortColumn, setSortColumn] = useState<keyof DataItem | null>(null);
-  const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
+  const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
 
   const handleSort = (column: keyof DataItem) => {
     if (sortColumn === column) {
-      setSortDirection(sortDirection === "asc" ? "desc" : "asc");
+      setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
     } else {
       setSortColumn(column);
-      setSortDirection("asc");
+      setSortDirection('asc');
     }
   };
 
   const sortedData = [...data].sort((a, b) => {
     if (!sortColumn) return 0;
-    if (a[sortColumn] < b[sortColumn]) return sortDirection === "asc" ? -1 : 1;
-    if (a[sortColumn] > b[sortColumn]) return sortDirection === "asc" ? 1 : -1;
+    if (a[sortColumn] < b[sortColumn]) return sortDirection === 'asc' ? -1 : 1;
+    if (a[sortColumn] > b[sortColumn]) return sortDirection === 'asc' ? 1 : -1;
     return 0;
   });
 
@@ -56,7 +56,7 @@ export function DataTable({
   const renderSortIcon = (column: keyof DataItem) => {
     if (sortColumn !== column)
       return <ChevronsUpDown className="ml-2 h-4 w-4" />;
-    return sortDirection === "asc" ? (
+    return sortDirection === 'asc' ? (
       <ChevronUp className="ml-2 h-4 w-4" />
     ) : (
       <ChevronDown className="ml-2 h-4 w-4" />
@@ -65,13 +65,13 @@ export function DataTable({
 
   return (
     <div className="w-full pt-4">
-      <h3 className="md:text-xl p-2 text-blue-700">{table_name}</h3>
+      <h3 className="p-2 text-blue-700 md:text-xl">{table_name}</h3>
       <div className="rounded-md border">
         <Table>
           <TableHeader>
             <TableRow>
               {Object.keys(data[0]).map((key) => (
-                <TableHead key={key} className="font-medium bg-blue-100">
+                <TableHead key={key} className="bg-blue-100 font-medium">
                   <Button
                     variant="ghost"
                     onClick={() => handleSort(key as keyof DataItem)}
@@ -95,10 +95,10 @@ export function DataTable({
           </TableBody>
         </Table>
       </div>
-      <div className="flex justify-between items-center mt-4">
+      <div className="mt-4 flex items-center justify-between">
         <div>
-          Showing {startIndex + 1} to{" "}
-          {Math.min(startIndex + itemsPerPage, sortedData.length)} of{" "}
+          Showing {startIndex + 1} to{' '}
+          {Math.min(startIndex + itemsPerPage, sortedData.length)} of{' '}
           {sortedData.length} entries
         </div>
         <div className="flex gap-2">
