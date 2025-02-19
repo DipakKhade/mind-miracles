@@ -9,7 +9,7 @@ const handler = nextAuth({
     }),
   ],
 
-  secret: process.env.NEXT_AUTH_SECRETE || 'asddipaksecrete',
+  secret: process.env.NEXT_AUTH_SECRET || 'asddipaksecrete',
 
   callbacks: {
     async signIn({ user, account, profile }: any) {
