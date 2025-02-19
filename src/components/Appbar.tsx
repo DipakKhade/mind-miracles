@@ -1,5 +1,12 @@
 import Link from 'next/link';
-export default function Appbar() {
+import { getServerSession } from "next-auth/next";
+import { SignInButton } from './sign-in-button';
+
+export default async function Appbar() {
+  const session = await getServerSession()
+  if(session) console.log('asd==========>',session?.user?.name)
+  
+ 
   return (
     <>
       <nav>
@@ -50,6 +57,10 @@ export default function Appbar() {
               <li className="hover:text-green-600 md:mr-12">
                 <a href="/#contact">Contact Us</a>
               </li>
+              
+             <li>
+              <SignInButton/>
+             </li>
             </ul>
           </nav>
         </div>
