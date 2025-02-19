@@ -9,7 +9,7 @@ export default async function Appbar() {
   return (
     <>
       <nav>
-        <div className="relative flex max-w-screen-xl flex-col overflow-hidden px-4 py-4 md:mx-auto md:flex-row md:items-center">
+        <div className="relative flex max-w-screen-xl flex-col px-4 py-4 md:mx-auto md:flex-row md:items-center">
           <Link href={'/'}>
             <span className="text-xl text-black">Mindmiracles</span>
           </Link>

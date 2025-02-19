@@ -58,3 +58,12 @@ model PersonalCounsellingUser{
   amountPaid    Int
   date          DateTime? @default(now())
 }
+
+
+model Users{
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  name String
+  email String
+  image String
+  token String
+}
