@@ -1,12 +1,11 @@
 import Link from 'next/link';
-import { getServerSession } from "next-auth/next";
+import { getServerSession } from 'next-auth/next';
 import { SignInButton } from './sign-in-button';
 
 export default async function Appbar() {
-  const session = await getServerSession()
-  if(session) console.log('asd==========>',session?.user?.name)
-  
- 
+  const session = await getServerSession();
+  if (session) console.log('asd==========>', session?.user?.name);
+
   return (
     <>
       <nav>
@@ -57,10 +56,10 @@ export default async function Appbar() {
               <li className="hover:text-green-600 md:mr-12">
                 <a href="/#contact">Contact Us</a>
               </li>
-              
-             <li>
-              <SignInButton/>
-             </li>
+
+              <li>
+                <SignInButton />
+              </li>
             </ul>
           </nav>
         </div>
