@@ -16,7 +16,7 @@ export const SignInButton = () => {
           <button onClick={() => SetToggleMenu(!toggleMenu)}>
             <img
               alt="tania andrew"
-              src={session.data.user.image}
+              src={session.data.user.image || ''}
               className="relative inline-block h-10 w-10 cursor-pointer rounded-full object-cover object-center"
               data-popover-target="profile-menu"
             />
