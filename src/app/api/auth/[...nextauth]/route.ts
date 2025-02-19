@@ -11,12 +11,17 @@ const handler = nextAuth({
 
   secret: process.env.NEXT_AUTH_SECRETE || '',
 
-  callbacks:{
-    async signIn({user, account, profile }:any){
-        console.log('----------------------------------->',user, account, profile)
-        return true
-    }
-  }
+  callbacks: {
+    async signIn({ user, account, profile }: any) {
+      console.log(
+        '----------------------------------->',
+        user,
+        account,
+        profile,
+      );
+      return true;
+    },
+  },
 });
 
 export const GET = handler;

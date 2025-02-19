@@ -1,9 +1,9 @@
 'use client';
-import { signIn , signOut} from 'next-auth/react';
+import { signIn, signOut } from 'next-auth/react';
 import { useSession } from 'next-auth/react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { useState } from 'react';
-import { BiSolidPurchaseTagAlt } from "react-icons/bi";
+import { BiSolidPurchaseTagAlt } from 'react-icons/bi';
 
 export const SignInButton = () => {
   const session = useSession();
@@ -13,58 +13,62 @@ export const SignInButton = () => {
     <>
       {session && session.data?.user ? (
         <span className="z-[10]">
-         <button onClick={()=>SetToggleMenu(!toggleMenu)}>
-         <img
-            alt="tania andrew"
-            src={session.data.user.image}
-            className="relative inline-block h-10 w-10 cursor-pointer rounded-full object-cover object-center"
-            data-popover-target="profile-menu"
-          />
-         </button>
-          {
-            toggleMenu && <ul
-            role="menu"
-            data-popover="profile-menu"
-            data-popover-placement="bottom"
-            className="absolute z-10 min-w-[150px] overflow-auto rounded-lg border border-slate-200 bg-white p-1.5 shadow-lg shadow-sm focus:outline-none mr-12"
-          >
-            <li
-              role="menuitem"
-              className="flex w-full cursor-pointer items-center rounded-md p-3 text-sm text-slate-800 transition-all hover:bg-slate-100 focus:bg-slate-100 active:bg-slate-100"
+          <button onClick={() => SetToggleMenu(!toggleMenu)}>
+            <img
+              alt="tania andrew"
+              src={session.data.user.image}
+              className="relative inline-block h-10 w-10 cursor-pointer rounded-full object-cover object-center"
+              data-popover-target="profile-menu"
+            />
+          </button>
+          {toggleMenu && (
+            <ul
+              role="menu"
+              data-popover="profile-menu"
+              data-popover-placement="bottom"
+              className="absolute z-10 mr-12 min-w-[150px] overflow-auto rounded-lg border border-slate-200 bg-white p-1.5 shadow-lg shadow-sm focus:outline-none"
             >
-              <BiSolidPurchaseTagAlt />
-
-              <p className="ml-2 font-medium text-slate-800">Purchases</p>
-            </li>
-           
-            <hr className="my-2 border-slate-200" role="menuitem" />
-            <li
-              role="menuitem"
-              className="flex w-full cursor-pointer items-center rounded-md p-3 text-sm text-slate-800 transition-all hover:bg-slate-100 focus:bg-slate-100 active:bg-slate-100"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                className="h-5 w-5 text-slate-400"
+              <li
+                role="menuitem"
+                className="flex w-full cursor-pointer items-center rounded-md p-3 text-sm text-slate-800 transition-all hover:bg-slate-100 focus:bg-slate-100 active:bg-slate-100"
               >
-                <path
-                  fill-rule="evenodd"
-                  d="M3 4.25A2.25 2.25 0 0 1 5.25 2h5.5A2.25 2.25 0 0 1 13 4.25v2a.75.75 0 0 1-1.5 0v-2a.75.75 0 0 0-.75-.75h-5.5a.75.75 0 0 0-.75.75v11.5c0 .414.336.75.75.75h5.5a.75.75 0 0 0 .75-.75v-2a.75.75 0 0 1 1.5 0v2A2.25 2.25 0 0 1 10.75 18h-5.5A2.25 2.25 0 0 1 3 15.75V4.25Z"
-                  clip-rule="evenodd"
-                />
-                <path
-                  fill-rule="evenodd"
-                  d="M19 10a.75.75 0 0 0-.75-.75H8.704l1.048-.943a.75.75 0 1 0-1.004-1.114l-2.5 2.25a.75.75 0 0 0 0 1.114l2.5 2.25a.75.75 0 1 0 1.004-1.114l-1.048-.943h9.546A.75.75 0 0 0 19 10Z"
-                  clip-rule="evenodd"
-                />
-              </svg>
+                <BiSolidPurchaseTagAlt />
 
-              <button className="ml-2 font-medium text-slate-800" onClick={()=>signOut()}>Sign Out</button>
-            </li>
-          </ul>
-          }
-          
+                <p className="ml-2 font-medium text-slate-800">Purchases</p>
+              </li>
+
+              <hr className="my-2 border-slate-200" role="menuitem" />
+              <li
+                role="menuitem"
+                className="flex w-full cursor-pointer items-center rounded-md p-3 text-sm text-slate-800 transition-all hover:bg-slate-100 focus:bg-slate-100 active:bg-slate-100"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  className="h-5 w-5 text-slate-400"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M3 4.25A2.25 2.25 0 0 1 5.25 2h5.5A2.25 2.25 0 0 1 13 4.25v2a.75.75 0 0 1-1.5 0v-2a.75.75 0 0 0-.75-.75h-5.5a.75.75 0 0 0-.75.75v11.5c0 .414.336.75.75.75h5.5a.75.75 0 0 0 .75-.75v-2a.75.75 0 0 1 1.5 0v2A2.25 2.25 0 0 1 10.75 18h-5.5A2.25 2.25 0 0 1 3 15.75V4.25Z"
+                    clip-rule="evenodd"
+                  />
+                  <path
+                    fill-rule="evenodd"
+                    d="M19 10a.75.75 0 0 0-.75-.75H8.704l1.048-.943a.75.75 0 1 0-1.004-1.114l-2.5 2.25a.75.75 0 0 0 0 1.114l2.5 2.25a.75.75 0 1 0 1.004-1.114l-1.048-.943h9.546A.75.75 0 0 0 19 10Z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+
+                <button
+                  className="ml-2 font-medium text-slate-800"
+                  onClick={() => signOut()}
+                >
+                  Sign Out
+                </button>
+              </li>
+            </ul>
+          )}
         </span>
       ) : (
         <div className="hover:text-green-600 md:mr-12">
