@@ -1,30 +1,51 @@
 import nextAuth from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
+import db from '@/db';
 
-console.log('process.env.GOOGLE_CLIENT_ID------',process.env.GOOGLE_CLIENT_ID)
-console.log('process.env.GOOGLE_CLIENT_SECRET------',process.env.GOOGLE_CLIENT_SECRET)
-console.log('process.env.NEXT_AUTH_SECRET------',process.env.NEXT_AUTH_SECRET)
+const clinet_id = process.env.GOOGLE_CLIENT_ID || '';
+const client_secret = process.env.GOOGLE_CLIENT_SECRET || '';
+const  next_auth_secret = process.env.NEXT_AUTH_SECRET || 'asddipaksecrete';
+
 const handler = nextAuth({
   providers: [
     GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID || '',
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET || '',
+      clientId: clinet_id,
+      clientSecret: client_secret,
     }),
   ],
 
-  secret: process.env.NEXT_AUTH_SECRET || 'asddipaksecrete',
+  secret: next_auth_secret,
 
   callbacks: {
-    async signIn({ user, account, profile }: any) {
-      console.log(
-        '----------------------------------->',
-        user,
-        account,
-        profile,
-      );
+    async signIn({ user, account, profile }) {
+      if(user.email, user.name, user.image, account?.access_token){
+        await db.user.upsert({
+          where: {
+            email: user.email! ,
+          },
+          update:{
+            token:account?.access_token
+          },
+          create:{
+            name:user.name!,
+            email:user.email!,
+            image:user.image!,
+            token:account?.access_token,
+          }
+        })
+
+      }
+      
       return true;
     },
+
+    async session({ session, token }) {
+      console.log('control is in session callback', session,token)
+      return session;
+    },
   },
+
+
 });
 
 export const GET = handler;
