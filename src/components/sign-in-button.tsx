@@ -3,7 +3,7 @@ import { signIn, signOut } from 'next-auth/react';
 import { useSession } from 'next-auth/react';
 import { useState } from 'react';
 import { BiSolidPurchaseTagAlt } from 'react-icons/bi';
-import { PiSignOutBold } from "react-icons/pi";
+import { PiSignOutBold } from 'react-icons/pi';
 
 export const SignInButton = () => {
   const session = useSession();
@@ -42,8 +42,7 @@ export const SignInButton = () => {
                 role="menuitem"
                 className="flex w-full cursor-pointer items-center rounded-md p-3 text-sm text-slate-800 transition-all hover:bg-slate-100 focus:bg-slate-100 active:bg-slate-100"
               >
-               
-               <PiSignOutBold/>
+                <PiSignOutBold />
 
                 <button
                   className="ml-2 font-medium text-slate-800"

@@ -9,7 +9,7 @@ export default function Page() {
         </h3>
       </div>
       {/* <AdminLogin /> */}
-      <AdminDashBoard/>
+      <AdminDashBoard />
     </div>
   );
 }

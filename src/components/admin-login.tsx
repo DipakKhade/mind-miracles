@@ -106,33 +106,32 @@ export const AdminLogin = () => {
   );
 };
 
-
-export const AdminDashBoard = () =>{
+export const AdminDashBoard = () => {
   const [data, SetData] = useState<any>({});
-  const [loading , SetLoading] = useState<boolean>(true);
+  const [loading, SetLoading] = useState<boolean>(true);
 
-  useEffect(()=>{
-    (async()=>{
-      SetLoading(true)
+  useEffect(() => {
+    (async () => {
+      SetLoading(true);
       const res = await fetch('/api/admin', {
         method: 'POST',
-        body: JSON.stringify({
-        }),
+        body: JSON.stringify({}),
       });
       const response = await res.json();
-      console.log(response)
-     
+      console.log(response);
+      if(response.success == true){
         SetData(response);
+        SetLoading(false)
         toast.success('indentity verified');
+      }else{
+        SetLoading(false)
+        toast.error(response.message)
+      }
       
-      SetLoading(false)
+
+      SetLoading(false);
     })();
-  },[])
+  }, []);
 
-
-  return<>
-  {
-    data && !loading ? <UserDataTable data={data} /> : ''
-  }
-  </>
-}
+  return <>{data && !loading ? <UserDataTable data={data} /> : ''}</>
+};
