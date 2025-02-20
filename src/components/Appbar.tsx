@@ -1,10 +1,16 @@
 import Link from 'next/link';
 import { getServerSession } from 'next-auth/next';
 import { SignInButton } from './sign-in-button';
+import { AdminMails } from '@/lib';
+import { authOptions } from '@/lib/auth_options';
 
 export default async function Appbar() {
-  const session = await getServerSession();
-  if (session) console.log('asd==========>', session?.user?.name);
+  const session = await getServerSession(authOptions);
+  console.log('------AdminMails',AdminMails,session)
+  if(AdminMails.includes(session?.user?.email!)){
+    console.log('admin logged in-====')
+    console.log(session?.user?.email)
+  }
 
   return (
     <>
@@ -56,6 +62,15 @@ export default async function Appbar() {
               <li className="hover:text-green-600 md:mr-12">
                 <a href="/#contact">Contact Us</a>
               </li>
+              
+              {
+                session && AdminMails.includes(session.user?.email!) ?
+                <li className="hover:text-green-600 md:mr-12">
+                <a href="/admin">DashBoard</a>
+              </li>
+              :''
+              }
+              
 
               <li>
                 <SignInButton />

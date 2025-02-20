@@ -2,7 +2,7 @@
 
 import { Input } from '@/components/ui/input';
 import { toast } from 'sonner';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { UserDataTable } from './user-data';
 
@@ -105,3 +105,34 @@ export const AdminLogin = () => {
     </>
   );
 };
+
+
+export const AdminDashBoard = () =>{
+  const [data, SetData] = useState<any>({});
+  const [loading , SetLoading] = useState<boolean>(true);
+
+  useEffect(()=>{
+    (async()=>{
+      SetLoading(true)
+      const res = await fetch('/api/admin', {
+        method: 'POST',
+        body: JSON.stringify({
+        }),
+      });
+      const response = await res.json();
+      console.log(response)
+     
+        SetData(response);
+        toast.success('indentity verified');
+      
+      SetLoading(false)
+    })();
+  },[])
+
+
+  return<>
+  {
+    data && !loading ? <UserDataTable data={data} /> : ''
+  }
+  </>
+}

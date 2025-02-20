@@ -1,4 +1,4 @@
-import { AdminLogin } from '@/components/admin-login';
+import { AdminDashBoard, AdminLogin } from '@/components/admin-login';
 
 export default function Page() {
   return (
@@ -8,7 +8,8 @@ export default function Page() {
           Admin DashBoard
         </h3>
       </div>
-      <AdminLogin />
+      {/* <AdminLogin /> */}
+      <AdminDashBoard/>
     </div>
   );
 }
