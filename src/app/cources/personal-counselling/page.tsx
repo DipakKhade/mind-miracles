@@ -13,10 +13,10 @@ export default function page() {
         <Hero />
         {/* <ProgramInfo />*/}
         <VideoPreview videolink="https://www.youtube.com/embed/v0cTo4eGAOM?si=ADoHRITZoxuHZAxK" />
-        <FeeInfo feeAmount={99} />
+        <FeeInfo feeAmount={499} />
         <ProgramRegistrationForm
           course_name={courses['personal-couselling']}
-          amount_to_pay={99}
+          amount_to_pay={499}
         />
         <TermsAndConditions />
       </div>
