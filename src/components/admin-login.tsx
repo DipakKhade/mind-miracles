@@ -119,19 +119,18 @@ export const AdminDashBoard = () => {
       });
       const response = await res.json();
       console.log(response);
-      if(response.success == true){
+      if (response.success == true) {
         SetData(response);
-        SetLoading(false)
+        SetLoading(false);
         toast.success('indentity verified');
-      }else{
-        SetLoading(false)
-        toast.error(response.message)
+      } else {
+        SetLoading(false);
+        toast.error(response.message);
       }
-      
 
       SetLoading(false);
     })();
   }, []);
 
-  return <>{data && !loading ? <UserDataTable data={data} /> : ''}</>
+  return <>{data && !loading ? <UserDataTable data={data} /> : ''}</>;
 };

@@ -28,15 +28,13 @@ export function DataTable({
   data: any;
   table_name: string;
 }) {
-
-
   const [sortColumn, setSortColumn] = useState<keyof DataItem | null>(null);
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
 
-  if(!data || data.length == 0 ) {
-    return <></>
+  if (!data || data.length == 0) {
+    return <></>;
   }
 
   const handleSort = (column: keyof DataItem) => {
