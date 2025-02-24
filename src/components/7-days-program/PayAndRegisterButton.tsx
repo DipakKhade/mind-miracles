@@ -33,7 +33,7 @@ export const PayAndRegisterButton = ({
     });
     const data = await res.json();
     const paymentData = {
-      key: process.env.key_id,
+      key: process.env.PROD_RAZORPAY_KEY_ID,
       order_id: data.id,
 
       handler: async function (response: any) {
