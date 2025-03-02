@@ -90,10 +90,8 @@ export const PayAndRegisterButton = ({
         type="submit"
         className="w-full bg-green-700 hover:bg-[#3a5a40]"
       >
-        {loading ? <Spinner/> : 'Pay And Register'}
+        {loading ? <Spinner /> : 'Pay And Register'}
       </Button>
     </>
   );
 };
-
-
