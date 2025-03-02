@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 const razorpay = new Razorpay({
   key_id: process.env.key_id!,
-  key_secret: process.env.key_secret,
+  key_secret: process.env.key_secret!,
 });
 
 export async function POST(request: NextRequest) {
