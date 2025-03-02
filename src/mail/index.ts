@@ -14,11 +14,20 @@ const Transporter = nodemailer.createTransport({
 
 export async function getMailonRegister(data: any) {
   const { firstName, lastName, mobileNo, email, age, place } = data;
+  console.log('from mailsender ', {
+    firstName,
+    lastName,
+    mobileNo,
+    email,
+    age,
+    place,
+  });
+
   await Transporter.sendMail({
     from: 'dipakhade214@gmail.com',
     sender: 'dipakhade214@gmail.com',
-    // to: "mindmiracles1707@gmail.com",
-    to: 'dipak841184@gmail.com',
+    to: 'mindmiracles1707@gmail.com',
+    // to: 'dipak841184@gmail.com',
     subject: 'new registration',
     html: `<div>
 
