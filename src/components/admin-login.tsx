@@ -118,7 +118,6 @@ export const AdminDashBoard = () => {
         body: JSON.stringify({}),
       });
       const response = await res.json();
-      console.log(response);
       if (response.success == true) {
         SetData(response);
         SetLoading(false);

@@ -54,7 +54,7 @@ export const PayAndRegisterButton = ({
             body: JSON.stringify({
               form_values,
               course_name,
-              amountToPay,
+              amountToPay:(amountToPay/100),
             }),
           });
           const res = await response.json();

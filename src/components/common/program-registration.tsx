@@ -24,7 +24,6 @@ export function ProgramRegistrationForm({
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    console.log({ name, value });
     setFormState((prev) => ({
       ...prev,
       [name]: value,

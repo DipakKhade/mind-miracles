@@ -4,7 +4,6 @@ import { NextRequest, NextResponse } from 'next/server';
 import { FormState } from '@/store';
 
 export async function POST(request: NextRequest) {
-  debugger;
   const { form_values, course_name, amount_to_pay } =
     (await request.json()) as {
       form_values: FormState;
@@ -27,7 +26,6 @@ export async function POST(request: NextRequest) {
             amountPaid: 1499,
           },
         });
-        console.log(newPurchase);
         return NextResponse.json({
           message: `Registration successful`,
           id: newPurchase.id,
@@ -43,7 +41,6 @@ export async function POST(request: NextRequest) {
             amountPaid: 99,
           },
         });
-        console.log(new_purchase);
         return NextResponse.json({
           message: `Registration successful`,
           id: new_purchase.id,

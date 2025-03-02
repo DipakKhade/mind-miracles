@@ -7,7 +7,6 @@ import { PiSignOutBold } from 'react-icons/pi';
 
 export const SignInButton = () => {
   const session = useSession();
-  console.log(session);
   const [toggleMenu, SetToggleMenu] = useState<boolean>(false);
   return (
     <>
@@ -139,29 +138,3 @@ const UserSessionMenu = () => {
     </>
   );
 };
-
-// export const SignInButton = () => {
-//     const session = useSession();
-//     console.log(session);
-//     const [toggleMenu, SetToggleMenu] = useState<boolean>(false);
-//     return (
-//       <>
-//         {session && session.data?.user ? (
-//           <span>
-//             <Avatar onClick={()=>SetToggleMenu(!toggleMenu)}>
-//               <AvatarImage src={session.data.user.image as string} />
-//               {/* TODO destructure the user from session and use here */}
-//               <AvatarFallback>
-//                 {session.data.user.name?.split(' ')[0][0]?.toUpperCase()}{' '}
-//                 {session.data.user.name?.split(' ')[1][0]}
-//               </AvatarFallback>
-//             </Avatar>
-//           </span>
-//         ) : (
-//           <div classNameName="hover:text-green-600 md:mr-12">
-//             <button onClick={() => signIn('google')}>Sign In</button>
-//           </div>
-//         )}
-//       </>
-//     );
-//   };

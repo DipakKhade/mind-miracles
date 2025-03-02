@@ -21,10 +21,11 @@ export async function POST(req: NextRequest) {
     });
     return NextResponse.json({
       success: true,
+      id:new_register.id,
       message: 'register successfully',
     });
   } catch (e) {
-    console.log(e);
+    // console.log(e);
   }
 
   return NextResponse.json({
