@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
     });
     return NextResponse.json({
       success: true,
-      id:new_register.id,
+      id: new_register.id,
       message: 'register successfully',
     });
   } catch (e) {
