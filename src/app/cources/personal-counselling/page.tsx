@@ -12,7 +12,7 @@ export default function page() {
       <div className="min-h-screen bg-[#f5f7f5]">
         <Hero />
         {/* <ProgramInfo />*/}
-        <VideoPreview videolink="https://www.youtube.com/embed/v0cTo4eGAOM?si=ADoHRITZoxuHZAxK" />
+        <VideoPreview videolink="https://www.youtube.com/embed/4Aqc2ZIa-VI" />
         <FeeInfo feeAmount={499} />
         <ProgramRegistrationForm
           course_name={courses['personal-couselling']}
