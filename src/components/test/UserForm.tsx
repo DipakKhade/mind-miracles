@@ -23,7 +23,7 @@ export function UserForm({ score }: Props) {
     } else if (score >= 10) {
       return "You're experiencing moderate stress. Consider talking to someone you trust or a counselor.";
     } else {
-      return "Your stress levels appear to be manageable. Continue practicing self-care and maintaining your mental health.";
+      return 'Your stress levels appear to be manageable. Continue practicing self-care and maintaining your mental health.';
     }
   };
 
@@ -34,7 +34,7 @@ export function UserForm({ score }: Props) {
         method: 'POST',
         body: JSON.stringify({ ...data, score }),
       });
-      
+
       const result = await response.json();
       if (result.success) {
         toast.success('Thank you for completing the assessment');
@@ -62,7 +62,9 @@ export function UserForm({ score }: Props) {
 
       <Card>
         <CardHeader>
-          <CardTitle>If you want to manage your stress level, fill the form!!!</CardTitle>
+          <CardTitle>
+            If you want to manage your stress level, fill the form!!!
+          </CardTitle>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
