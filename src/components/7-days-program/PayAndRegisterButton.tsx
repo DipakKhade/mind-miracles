@@ -17,9 +17,8 @@ export const PayAndRegisterButton = ({
   course_name: courses;
   amount_to_pay: number;
 }) => {
-  // const [amount, setAmount] = useState<number>(1499);
   const form_values = useRecoilValue(registrationFormStateAtom);
-  const reaset_form_values = useResetRecoilState(registrationFormStateAtom);
+  const reset_form_values = useResetRecoilState(registrationFormStateAtom);
   const [loading, SetLoading] = useState<boolean>(false);
   const router = useRouter();
 
@@ -48,7 +47,7 @@ export const PayAndRegisterButton = ({
         });
         const data = await res.json();
         if (data.isOk) {
-          toast.success('Registration successfull');
+          toast.success('Registration successful');
           const response = await fetch(`/api/purchase`, {
             method: 'POST',
             body: JSON.stringify({
@@ -62,10 +61,10 @@ export const PayAndRegisterButton = ({
             SetLoading(false);
             router.push('/');
             toast.success('added to database');
-            reaset_form_values();
+            reset_form_values();
           } else {
             SetLoading(false);
-            toast.error(`Please Contact to Adminstrator`);
+            toast.error(`Please Contact to Administrator`);
           }
         } else {
           alert('Payment failed');
@@ -85,7 +84,6 @@ export const PayAndRegisterButton = ({
         src="https://checkout.razorpay.com/v1/checkout.js"
       />
       <Button
-        // disabled={!name || !email}
         onClick={createOrder}
         type="submit"
         className="w-full bg-green-700 hover:bg-[#3a5a40]"

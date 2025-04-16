@@ -3,7 +3,7 @@ import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import React from 'react';
 import Image from 'next/image';
-import weweare_logo from '../../public/who_we_are.png';
+import weweare_logo from '../../public/whoweare.png';
 
 export default function WhoWeAre() {
   const controls = useAnimation();

@@ -2,6 +2,7 @@ import db from '@/db';
 import { courses } from '@/types';
 import { NextRequest, NextResponse } from 'next/server';
 import { FormState } from '@/store';
+import { sendCounsellingConfirmation } from '@/mail';
 
 export async function POST(request: NextRequest) {
   const { form_values, course_name, amount_to_pay } =
@@ -13,8 +14,6 @@ export async function POST(request: NextRequest) {
 
   const { name, age, whatsapp, email } = form_values;
   try {
-    //FIX : amount_to_pay get it from razorpay payment response
-
     switch (course_name) {
       case courses['seven-day-program']:
         const newPurchase = await db.sevenDaysProgramUser.create({
@@ -38,9 +37,19 @@ export async function POST(request: NextRequest) {
             email,
             whatsapp: +whatsapp,
             age: +age,
-            amountPaid: 99,
+            amountPaid: amount_to_pay,
           },
         });
+
+        // Send confirmation emails
+        await sendCounsellingConfirmation({
+          name,
+          email,
+          whatsapp,
+          age,
+          amountPaid: amount_to_pay
+        });
+
         return NextResponse.json({
           message: `Registration successful`,
           id: new_purchase.id,
