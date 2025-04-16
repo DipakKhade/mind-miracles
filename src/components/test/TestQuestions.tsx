@@ -53,7 +53,7 @@ export function TestQuestions({ setShowForm, setScore }: Props) {
           <p className="mb-2 font-semibold text-green-800">English:</p>
           <p>Yes – I feel this often or daily</p>
           <p>Sometimes – I feel this occasionally</p>
-          <p>No – I haven't felt this</p>
+          <p>No – I haven&apos;t felt this</p>
         </div>
       </div>
 
@@ -72,7 +72,7 @@ export function TestQuestions({ setShowForm, setScore }: Props) {
               <p className="text-base text-gray-600">{q.english}</p>
             </div>
             <RadioGroup
-              onValueChange={(value) =>
+              onValueChange={(value:any) =>
                 setAnswers((prev) => ({ ...prev, [index]: value }))
               }
               value={answers[index]}
