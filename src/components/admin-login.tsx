@@ -129,7 +129,7 @@ export const AdminDashBoard = () => {
 
       SetLoading(false);
     })();
-  }, []);
+  },[]);
 
   return <>{data && !loading ? <UserDataTable data={data} /> : ''}</>;
 };
