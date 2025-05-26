@@ -10,7 +10,7 @@ export default function Page() {
 
   useEffect(() => {
     const fetchUrl = async () => {
-      const res = await fetch(`/api/video-url?videoId=${videoId}`);
+      const res = await fetch(`/api/signed-url?videoId=${videoId}`);
       if (res.ok) {
         const data = await res.json();
         setVideoUrl(data.url);
