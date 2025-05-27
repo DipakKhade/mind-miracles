@@ -13,9 +13,8 @@ export default function VideoPlayer() {
   const playerRef = useRef<any>(null);
 
   const onReady = (player: any) => {
-    console.log("player is ready");
-    
-    // Add error handling for the player
+    console.log('player is ready');
+
     player.on('error', () => {
       const error = player.error();
       console.error('Video.js error:', error);
@@ -23,7 +22,6 @@ export default function VideoPlayer() {
     });
   };
 
-  // Function to determine MIME type from file extension
   const getMimeType = (url: string) => {
     const extension = url.split('.').pop()?.toLowerCase();
     switch (extension) {
@@ -57,29 +55,24 @@ export default function VideoPlayer() {
         setError('Network error while fetching video URL');
       }
     };
-    
+
     if (videoId) {
       fetchUrl();
     }
   }, [videoId]);
 
   useEffect(() => {
-    // Only initialize player when we have a video URL
     if (!videoUrl) return;
-
-    // Clean up existing player if it exists
     if (playerRef.current && !playerRef.current.isDisposed()) {
       playerRef.current.dispose();
       playerRef.current = null;
     }
 
-    // Clear the container
     if (videoRef.current) {
       videoRef.current.innerHTML = '';
     }
 
-    // Create new video element
-    const videoElement = document.createElement("video-js");
+    const videoElement = document.createElement('video-js');
     videoElement.classList.add('vjs-big-play-centered');
     videoRef.current?.appendChild(videoElement);
 
@@ -98,22 +91,20 @@ export default function VideoPlayer() {
           type: 'video/mp4',
         },
       ],
-      // Remove VHS and native overrides for simple MP4 playback
       techOrder: ['html5'],
       html5: {
         vhs: {
-          overrideNative: false
-        }
-      }
+          overrideNative: false,
+        },
+      },
     };
 
     try {
-      const player = playerRef.current = videojs(videoElement, options, () => {
+      const player = (playerRef.current = videojs(videoElement, options, () => {
         videojs.log('player is ready');
         onReady && onReady(player);
-      });
+      }));
 
-      // Add additional error handling
       player.ready(() => {
         player.on('loadstart', () => console.log('Load start'));
         player.on('loadeddata', () => console.log('Loaded data'));
@@ -121,10 +112,11 @@ export default function VideoPlayer() {
         player.on('error', () => {
           const error = player.error();
           console.error('Player error:', error);
-          setError(`Playback error: ${error?.message || 'Unknown playback error'}`);
+          setError(
+            `Playback error: ${error?.message || 'Unknown playback error'}`,
+          );
         });
       });
-
     } catch (err) {
       console.error('Error initializing player:', err);
       setError('Failed to initialize video player');
@@ -144,16 +136,16 @@ export default function VideoPlayer() {
 
   if (error) {
     return (
-      <div className="p-4 bg-red-100 border border-red-400 text-red-700 rounded">
+      <div className="rounded border border-red-400 bg-red-100 p-4 text-red-700">
         <p>Error: {error}</p>
-        <button 
+        <button
           onClick={() => {
             setError(null);
             setVideoUrl(null);
             // Trigger refetch
-            setVideoId(prev => prev);
+            setVideoId((prev) => prev);
           }}
-          className="mt-2 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+          className="mt-2 rounded bg-red-500 px-4 py-2 text-white hover:bg-red-600"
         >
           Retry
         </button>
@@ -170,7 +162,6 @@ export default function VideoPlayer() {
       <div data-vjs-player>
         <div ref={videoRef} />
       </div>
-      {/* Debug info - remove in production */}
       <div className="mt-2 text-sm text-gray-600">
         <p>Video ID: {videoId}</p>
         <p>URL: {videoUrl}</p>
