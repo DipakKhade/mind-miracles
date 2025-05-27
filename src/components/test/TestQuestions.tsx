@@ -72,7 +72,7 @@ export function TestQuestions({ setShowForm, setScore }: Props) {
               <p className="text-base text-gray-600">{q.english}</p>
             </div>
             <RadioGroup
-              onValueChange={(value:any) =>
+              onValueChange={(value: any) =>
                 setAnswers((prev) => ({ ...prev, [index]: value }))
               }
               value={answers[index]}

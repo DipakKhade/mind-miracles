@@ -59,7 +59,7 @@ export function UserForm({ score }: Props) {
           <p className="text-gray-700">{getRemark(score)}</p>
         </CardContent>
       </Card>
- 
+
       <Card>
         <CardHeader>
           <CardTitle>
