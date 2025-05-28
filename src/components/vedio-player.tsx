@@ -4,13 +4,16 @@ import { useEffect, useState, useRef } from 'react';
 import videojs from 'video.js';
 import 'video.js/dist/video-js.css';
 
-export default function VideoPlayer() {
+export default function VideoPlayer({videoId}:{
+  videoId:string
+}) {
   const [videoUrl, setVideoUrl] = useState<string | null>(null);
-  const [videoId, setVideoId] = useState<string | null>('test.mp4');
   const [error, setError] = useState<string | null>(null);
+  const [manifestContent, setManifestContent] = useState<string | null>(null);
 
   const videoRef = useRef<HTMLDivElement | null>(null);
   const playerRef = useRef<any>(null);
+  const blobUrlRef = useRef<string | null>(null);
 
   const onReady = (player: any) => {
     console.log('player is ready');
@@ -22,7 +25,32 @@ export default function VideoPlayer() {
     });
   };
 
+  const isHLSManifest = (content: string) => {
+    return content.trim().startsWith('#EXTM3U') || content.trim().startsWith('#EXT-X-VERSION');
+  };
+
+  const isHLSUrl = (url: string) => {
+    return url.includes('.m3u8') || url.includes('application/vnd.apple.mpegurl') || url.startsWith('blob:');
+  };
+
+  const createManifestBlobUrl = (manifestContent: string) => {
+    if (blobUrlRef.current) {
+      URL.revokeObjectURL(blobUrlRef.current);
+    }
+    
+    const blob = new Blob([manifestContent], { 
+      type: 'application/vnd.apple.mpegurl' 
+    });
+    const blobUrl = URL.createObjectURL(blob);
+    blobUrlRef.current = blobUrl;
+    return blobUrl;
+  };
+
   const getMimeType = (url: string) => {
+    if (isHLSUrl(url)) {
+      return 'application/vnd.apple.mpegurl';
+    }
+    
     const extension = url.split('.').pop()?.toLowerCase();
     switch (extension) {
       case 'mp4':
@@ -42,11 +70,25 @@ export default function VideoPlayer() {
     const fetchUrl = async () => {
       try {
         setError(null);
-        const res = await fetch(`/api/signed-url?videoId=${videoId}`);
+        console.log('Fetching video data for ID:', videoId);
+        
+        const res = await fetch(`/api/signed-url?video=${videoId}`);
         if (res.ok) {
           const data = await res.json();
-          console.log('Fetched video URL:', data.url);
-          setVideoUrl(data.url);
+          console.log('Fetched video data:', data);
+          
+          if (typeof data.url === 'string') {
+            if (isHLSManifest(data.url)) {
+              setManifestContent(data.url);
+              const blobUrl = createManifestBlobUrl(data.url);
+              setVideoUrl(blobUrl);
+            } else {
+              setVideoUrl(data.url);
+              setManifestContent(null);
+            }
+          } else {
+            throw new Error('Invalid response format');
+          }
         } else {
           setError(`Failed to fetch video URL: ${res.status}`);
         }
@@ -63,6 +105,7 @@ export default function VideoPlayer() {
 
   useEffect(() => {
     if (!videoUrl) return;
+    
     if (playerRef.current && !playerRef.current.isDisposed()) {
       playerRef.current.dispose();
       playerRef.current = null;
@@ -88,15 +131,28 @@ export default function VideoPlayer() {
       sources: [
         {
           src: videoUrl,
-          type: 'video/mp4',
+          type: mimeType,
         },
       ],
       techOrder: ['html5'],
       html5: {
         vhs: {
-          overrideNative: false,
+          overrideNative: true,
+          withCredentials: false,
+          xhr: {
+            beforeRequest: (options: any) => {
+              if (options.uri && options.uri.startsWith('blob:')) {
+                return options;
+              }
+              return options;
+            }
+          }
         },
+        nativeVideoTracks: false,
+        nativeAudioTracks: false,
+        nativeTextTracks: false,
       },
+      debug: true,
     };
 
     try {
@@ -108,14 +164,51 @@ export default function VideoPlayer() {
       player.ready(() => {
         player.on('loadstart', () => console.log('Load start'));
         player.on('loadeddata', () => console.log('Loaded data'));
+        player.on('loadedmetadata', () => console.log('Loaded metadata'));
         player.on('canplay', () => console.log('Can play'));
+        player.on('canplaythrough', () => console.log('Can play through'));
+        
+        player.on('sourceopen', () => console.log('Source opened'));
+        player.on('waiting', () => console.log('Waiting for data'));
+        
         player.on('error', () => {
           const error = player.error();
           console.error('Player error:', error);
-          setError(
-            `Playback error: ${error?.message || 'Unknown playback error'}`,
-          );
+          
+          if (error && error.code === 4) {
+            setError('Media error: The video format is not supported or the file is corrupted');
+          } else if (error && error.code === 2) {
+            setError('Network error: Unable to load video segments. URLs may have expired.');
+          } else {
+            setError(`Playback error: ${error?.message || 'Unknown playback error'}`);
+          }
         });
+
+        //@ts-ignore
+        if (player.tech() && player.tech().vhs) {
+          console.log('VHS tech is active for HLS playback');
+          
+        //@ts-ignore
+          const vhs = player.tech().vhs;
+          
+          vhs.on('error', (event: any) => {
+            console.error('VHS error:', event);
+          });
+
+          vhs.on('loadedplaylist', () => {
+            console.log('HLS playlist loaded');
+          });
+
+          let segmentErrors = 0;
+          vhs.on('mediaerror', () => {
+            segmentErrors++;
+            console.warn(`HLS segment error #${segmentErrors}`);
+            
+            if (segmentErrors > 3) {
+              setError('Multiple segment loading errors. Video URLs may have expired.');
+            }
+          });
+        }
       });
     } catch (err) {
       console.error('Error initializing player:', err);
@@ -124,12 +217,16 @@ export default function VideoPlayer() {
   }, [videoUrl]);
 
   useEffect(() => {
-    // Cleanup function
     return () => {
       const player = playerRef.current;
       if (player && !player.isDisposed()) {
         player.dispose();
         playerRef.current = null;
+      }
+      
+      if (blobUrlRef.current) {
+        URL.revokeObjectURL(blobUrlRef.current);
+        blobUrlRef.current = null;
       }
     };
   }, []);
@@ -142,6 +239,12 @@ export default function VideoPlayer() {
           onClick={() => {
             setError(null);
             setVideoUrl(null);
+            setManifestContent(null);
+            // Clean up blob URL
+            if (blobUrlRef.current) {
+              URL.revokeObjectURL(blobUrlRef.current);
+              blobUrlRef.current = null;
+            }
             // Trigger refetch
             setVideoId((prev) => prev);
           }}
@@ -149,23 +252,37 @@ export default function VideoPlayer() {
         >
           Retry
         </button>
+        {manifestContent && (
+          <details className="mt-4">
+            <summary className="cursor-pointer font-semibold">Show Manifest Content</summary>
+            <pre className="mt-2 overflow-auto bg-gray-100 p-2 text-xs">
+              {manifestContent}
+            </pre>
+          </details>
+        )}
       </div>
     );
   }
 
   if (!videoUrl) {
-    return <p>Loading video...</p>;
+    return (
+      <div className="flex items-center justify-center p-8">
+        <div className="text-center">
+          <div className="mb-4 h-8 w-8 animate-spin rounded-full border-4 border-blue-500 border-t-transparent mx-auto"></div>
+          <p>Loading video...</p>
+        </div>
+      </div>
+    );
   }
 
   return (
     <div>
-      <div data-vjs-player>
-        <div ref={videoRef} />
-      </div>
-      <div className="mt-2 text-sm text-gray-600">
-        <p>Video ID: {videoId}</p>
-        <p>URL: {videoUrl}</p>
-      </div>
+      <div
+      data-vjs-player
+      style={{ maxWidth: '1350px', margin: '0 auto', width: '100%' }}
+      >
+      <div ref={videoRef} style={{ width: '100%', height: 'auto' }} />
+    </div>
     </div>
   );
 }
