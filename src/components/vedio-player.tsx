@@ -245,8 +245,6 @@ export default function VideoPlayer({videoId}:{
               URL.revokeObjectURL(blobUrlRef.current);
               blobUrlRef.current = null;
             }
-            // Trigger refetch
-            setVideoId((prev) => prev);
           }}
           className="mt-2 rounded bg-red-500 px-4 py-2 text-white hover:bg-red-600"
         >
