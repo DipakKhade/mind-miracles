@@ -5,13 +5,24 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from '../ui/card';
-import { Label } from '@radix-ui/react-label';
+} from '@/components/ui/card';
+import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
 import { useRecoilState } from 'recoil';
 import { registrationFormStateAtom } from '@/store';
 import { PayAndRegisterButton } from '../7-days-program/PayAndRegisterButton';
 import { courses } from '@/types';
+import { useState } from 'react';
+import { z } from 'zod';
+import { User, Mail, Phone, Calendar, AlertCircle, CheckCircle2 } from 'lucide-react';
+import { Alert, AlertDescription } from '@/components/ui/alert';
+import { registrationSchema } from '@/types/zod';
+
+
+type ValidationErrors = {
+  [key: string]: string;
+};
 
 export function ProgramRegistrationForm({
   course_name,
@@ -21,6 +32,43 @@ export function ProgramRegistrationForm({
   amount_to_pay: number;
 }) {
   const [formState, setFormState] = useRecoilState(registrationFormStateAtom);
+  const [errors, setErrors] = useState<ValidationErrors>({});
+  const [isValidated, setIsValidated] = useState(false);
+  const [touchedFields, setTouchedFields] = useState<Set<string>>(new Set());
+
+  const validateField = (name: string, value: string) => {
+    try {
+      registrationSchema.pick({ [name]: true } as any).parse({ [name]: value });
+      setErrors(prev => ({ ...prev, [name]: '' }));
+      return true;
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        setErrors(prev => ({ ...prev, [name]: error.errors[0].message }));
+      }
+      return false;
+    }
+  };
+
+  const validateForm = () => {
+    try {
+      registrationSchema.parse(formState);
+      setErrors({});
+      setIsValidated(true);
+      return true;
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        const newErrors: ValidationErrors = {};
+        error.errors.forEach((err) => {
+          if (err.path[0]) {
+            newErrors[err.path[0] as string] = err.message;
+          }
+        });
+        setErrors(newErrors);
+      }
+      setIsValidated(false);
+      return false;
+    }
+  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -28,73 +76,220 @@ export function ProgramRegistrationForm({
       ...prev,
       [name]: value,
     }));
+
+    if (touchedFields.has(name)) {
+      validateField(name, value);
+    }
   };
 
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setTouchedFields(prev => new Set(prev).add(name));
+    validateField(name, value);
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setTouchedFields(new Set(['name', 'email', 'whatsapp', 'age']));
+    validateForm();
+  };
+
+  const isFormValid = Object.keys(errors).length === 0 && formState.name && formState.email && formState.whatsapp && formState.age;
+    
   return (
-    <>
-      <section className="bg-white px-4 py-16">
-        <div className="container mx-auto max-w-2xl">
-          <Card>
-            <CardHeader>
-              <CardTitle>Register Now</CardTitle>
-              <CardDescription>
-                Fill in your details to join the program
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-6">
-                <div className="space-y-2">
-                  <Label htmlFor="name">Full Name</Label>
+    <section className="bg-gradient-to-br from-blue-50 via-white to-purple-50 px-4 py-16 min-h-screen">
+      <div className="container mx-auto max-w-2xl">
+        <div className="text-center mb-8">
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">
+            Join Our Program
+          </h1>
+          <p className="text-lg text-gray-600">
+            Take the first step towards your transformation
+          </p>
+        </div>
+
+        <Card className="shadow-2xl border-0 bg-white/80 backdrop-blur-sm">
+          <CardHeader className="text-center pb-8">
+            <CardTitle className="text-2xl font-semibold text-gray-800">
+              Registration Form
+            </CardTitle>
+            <CardDescription className="text-gray-600">
+              Fill in your details to secure your spot in the program
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="px-8 pb-8">
+            <form onSubmit={handleSubmit} className="space-y-6">
+              {/* Full Name Field */}
+              <div className="space-y-2">
+                <Label htmlFor="name" className="text-sm font-medium text-gray-700">
+                  Full Name *
+                </Label>
+                <div className="relative">
+                  <User className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
                   <Input
                     id="name"
                     name="name"
-                    required
+                    placeholder="Enter your full name"
+                    className={`pl-10 h-12 border-2 transition-all duration-200 ${
+                      errors.name && touchedFields.has('name')
+                        ? 'border-red-300 focus:border-red-500'
+                        : formState.name && !errors.name
+                        ? 'border-green-300 focus:border-green-500'
+                        : 'border-gray-200 focus:border-blue-500'
+                    }`}
                     value={formState.name}
                     onChange={handleInputChange}
+                    onBlur={handleBlur}
                   />
+                  {formState.name && !errors.name && (
+                    <CheckCircle2 className="absolute right-3 top-3 h-4 w-4 text-green-500" />
+                  )}
                 </div>
-                <div className="space-y-2">
-                  <Label htmlFor="email">Email Address</Label>
+                {errors.name && touchedFields.has('name') && (
+                  <div className="flex items-center gap-1 text-red-600 text-sm">
+                    <AlertCircle className="h-3 w-3" />
+                    {errors.name}
+                  </div>
+                )}
+              </div>
+
+              {/* Email Field */}
+              <div className="space-y-2">
+                <Label htmlFor="email" className="text-sm font-medium text-gray-700">
+                  Email Address *
+                </Label>
+                <div className="relative">
+                  <Mail className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
                   <Input
                     id="email"
                     type="email"
                     name="email"
-                    required
+                    placeholder="Enter your email address"
+                    className={`pl-10 h-12 border-2 transition-all duration-200 ${
+                      errors.email && touchedFields.has('email')
+                        ? 'border-red-300 focus:border-red-500'
+                        : formState.email && !errors.email
+                        ? 'border-green-300 focus:border-green-500'
+                        : 'border-gray-200 focus:border-blue-500'
+                    }`}
                     value={formState.email}
                     onChange={handleInputChange}
+                    onBlur={handleBlur}
                   />
+                  {formState.email && !errors.email && (
+                    <CheckCircle2 className="absolute right-3 top-3 h-4 w-4 text-green-500" />
+                  )}
                 </div>
-                <div className="space-y-2">
-                  <Label htmlFor="whatsapp">WhatsApp Number</Label>
+                {errors.email && touchedFields.has('email') && (
+                  <div className="flex items-center gap-1 text-red-600 text-sm">
+                    <AlertCircle className="h-3 w-3" />
+                    {errors.email}
+                  </div>
+                )}
+              </div>
+
+              {/* WhatsApp Field */}
+              <div className="space-y-2">
+                <Label htmlFor="whatsapp" className="text-sm font-medium text-gray-700">
+                  WhatsApp Number *
+                </Label>
+                <div className="relative">
+                  <Phone className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
                   <Input
                     id="whatsapp"
-                    type="number"
+                    type="tel"
                     name="whatsapp"
-                    required
+                    placeholder="+1234567890"
+                    className={`pl-10 h-12 border-2 transition-all duration-200 ${
+                      errors.whatsapp && touchedFields.has('whatsapp')
+                        ? 'border-red-300 focus:border-red-500'
+                        : formState.whatsapp && !errors.whatsapp
+                        ? 'border-green-300 focus:border-green-500'
+                        : 'border-gray-200 focus:border-blue-500'
+                    }`}
                     value={formState.whatsapp}
                     onChange={handleInputChange}
+                    onBlur={handleBlur}
                   />
+                  {formState.whatsapp && !errors.whatsapp && (
+                    <CheckCircle2 className="absolute right-3 top-3 h-4 w-4 text-green-500" />
+                  )}
                 </div>
-                <div className="space-y-2">
-                  <Label htmlFor="age">Age</Label>
+                {errors.whatsapp && touchedFields.has('whatsapp') && (
+                  <div className="flex items-center gap-1 text-red-600 text-sm">
+                    <AlertCircle className="h-3 w-3" />
+                    {errors.whatsapp}
+                  </div>
+                )}
+              </div>
+
+              {/* Age Field */}
+              <div className="space-y-2">
+                <Label htmlFor="age" className="text-sm font-medium text-gray-700">
+                  Age *
+                </Label>
+                <div className="relative">
+                  <Calendar className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
                   <Input
                     id="age"
                     type="number"
                     name="age"
-                    required
+                    placeholder="Enter your age"
+                    min="16"
+                    max="100"
+                    className={`pl-10 h-12 border-2 transition-all duration-200 ${
+                      errors.age && touchedFields.has('age')
+                        ? 'border-red-300 focus:border-red-500'
+                        : formState.age && !errors.age
+                        ? 'border-green-300 focus:border-green-500'
+                        : 'border-gray-200 focus:border-blue-500'
+                    }`}
                     value={formState.age}
                     onChange={handleInputChange}
+                    onBlur={handleBlur}
                   />
+                  {formState.age && !errors.age && (
+                    <CheckCircle2 className="absolute right-3 top-3 h-4 w-4 text-green-500" />
+                  )}
                 </div>
+                {errors.age && touchedFields.has('age') && (
+                  <div className="flex items-center gap-1 text-red-600 text-sm">
+                    <AlertCircle className="h-3 w-3" />
+                    {errors.age}
+                  </div>
+                )}
+              </div>
+
+              {/* Success Message */}
+              {isFormValid && (
+                <Alert className="border-green-200 bg-green-50">
+                  <CheckCircle2 className="h-4 w-4 text-green-600" />
+                  <AlertDescription className="text-green-700">
+                    Form is valid! You can proceed with registration.
+                  </AlertDescription>
+                </Alert>
+              )}
+
+              {/* Submit Button */}
+              <div className="pt-4">
                 <PayAndRegisterButton
                   course_name={course_name}
                   amount_to_pay={amount_to_pay}
+                  disabled={!isFormValid}
                 />
               </div>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-    </>
+            </form>
+
+            {/* Additional Info */}
+            <div className="mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+              <p className="text-sm text-blue-800">
+                <strong>Note:</strong> Your information is secure and will only be used for program communication. 
+                We respect your privacy and will never share your details with third parties.
+              </p>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </section>
   );
 }

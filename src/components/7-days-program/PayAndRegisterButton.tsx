@@ -13,9 +13,11 @@ import { Spinner } from '../spinner';
 export const PayAndRegisterButton = ({
   course_name,
   amount_to_pay,
+  disabled
 }: {
-  course_name: courses;
-  amount_to_pay: number;
+  course_name: courses,
+  amount_to_pay: number,
+  disabled: boolean
 }) => {
   // const [amount, setAmount] = useState<number>(1499);
   const form_values = useRecoilValue(registrationFormStateAtom);
@@ -85,7 +87,7 @@ export const PayAndRegisterButton = ({
         src="https://checkout.razorpay.com/v1/checkout.js"
       />
       <Button
-        // disabled={!name || !email}
+        disabled={disabled}
         onClick={createOrder}
         type="submit"
         className="w-full bg-green-700 hover:bg-[#3a5a40]"
