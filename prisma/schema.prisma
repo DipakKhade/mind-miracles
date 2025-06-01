@@ -1,5 +1,3 @@
-
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -9,66 +7,68 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User{
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  name String
-  email String @unique
-  image String
-  token String
-  courses Course[]
-}
-
-
-model Register {
- id           String @id @default(auto()) @map("_id") @db.ObjectId
- firstName    String
- lastName     String
- mobileNo     Int
- email        String
- age          Int
- place        String
- date         DateTime @default(now())
+model User {
+  id             String     @id @default(auto()) @map("_id") @db.ObjectId
+  name           String
+  email          String     @unique
+  password       String?
+  profileImage   String?
+  role           UserRole   @default(STUDENT)
+  createdAt      DateTime?   @default(now())
+  updatedAt      DateTime?   @updatedAt
+  token          String?
+  enrollments    Enrollment[]
 }
 
 model Course {
   id           String       @id @default(auto()) @map("_id") @db.ObjectId
-  name         String
-  from         DateTime
-  to           DateTime
-  by           String[]
-  createdate   DateTime     @default(now())
-  CourseUsers  CourseUsers? @relation(fields: [courseUsersId], references: [id])
-  courseUsersId String?     @db.ObjectId
-  user        User  @relation(fields: [userId],references: [id])
-  userId      String @db.ObjectId
+  title        String
+  description  String
+  price        Float
+  previewURL   String?
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+  enrollments  Enrollment[]
+  courseFeature CourseFeature[]
+  isActive     Boolean      @default(true)
+  isPaid       Boolean      @default(true)
 }
 
-model CourseUsers {
-  id       String    @id @default(auto()) @map("_id") @db.ObjectId
-  name     String
-  email    String
-  courses  Course[]
+model CourseFeature {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  course    Course   @relation(fields: [courseId], references: [id])
+  courseId  String   @db.ObjectId
+  feature   String
 }
 
-
-model SevenDaysProgramUser{
-  id            String @id @default(auto()) @map("_id") @db.ObjectId
-  name          String
-  email         String
-  whatsapp      Int
-  age           Int
-  amountPaid    Int
-  date          DateTime? @default(now())
+model Enrollment {
+  id           String     @id @default(auto()) @map("_id") @db.ObjectId
+  user         User       @relation(fields: [userId], references: [id])
+  userId       String     @db.ObjectId
+  course       Course     @relation(fields: [courseId], references: [id])
+  courseId     String     @db.ObjectId
+  enrolledAt   DateTime   @default(now())
+  payment      Payment?
 }
 
-model PersonalCounsellingUser{
-  id            String @id @default(auto()) @map("_id") @db.ObjectId
-  name          String
-  email         String
-  whatsapp      Int
-  age           Int
-  amountPaid    Int
-  date          DateTime? @default(now())
+model Payment {
+  id            String        @id @default(auto()) @map("_id") @db.ObjectId
+  enrollment    Enrollment    @relation(fields: [enrollmentId], references: [id])
+  enrollmentId  String        @db.ObjectId @unique
+  amount        Float
+  method        String
+  status        PaymentStatus @default(PENDING)
+  paidAt        DateTime      @default(now())
 }
 
+enum UserRole {
+  STUDENT
+  INSTRUCTOR
+  ADMIN
+}
 
+enum PaymentStatus {
+  PENDING
+  COMPLETED
+  FAILED
+}
