@@ -25,6 +25,7 @@ model Course {
   title        String
   description  String
   price        Float
+  thumbnailURL String?
   previewURL   String?
   createdAt    DateTime     @default(now())
   updatedAt    DateTime     @updatedAt
