@@ -51,7 +51,7 @@ export default async function Appbar() {
                 <a href="/#">Our Work</a>
               </li>
               <li className="hover:text-green-600 md:mr-12">
-                <Link href="/cources">Courses</Link>
+                <Link href="/courses">Courses</Link>
               </li>
 
               <li className="hover:text-green-600 md:mr-12">
