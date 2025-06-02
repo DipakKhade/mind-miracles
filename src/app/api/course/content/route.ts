@@ -13,20 +13,23 @@ const s3 = new S3Client({
 export async function GET() {
   try {
     const bucketName = BUCKET_NAME;
-    const prefix = '6837ced9a1711ec98dcc6fef/'; 
+    const prefix = '6837ced9a1711ec98dcc6fef/';
     const command = new ListObjectsV2Command({
       Bucket: bucketName,
       Prefix: prefix,
-      Delimiter: '/', 
+      Delimiter: '/',
     });
 
     const data = await s3.send(command);
 
-    const folders = (data.CommonPrefixes || []).map(p => p.Prefix);
+    const folders = (data.CommonPrefixes || []).map((p) => p.Prefix);
 
     return NextResponse.json({ folders });
   } catch (error) {
     console.error('S3 Error:', error);
-    return NextResponse.json({ error: 'Failed to list folders' }, { status: 500 });
+    return NextResponse.json(
+      { error: 'Failed to list folders' },
+      { status: 500 },
+    );
   }
 }
