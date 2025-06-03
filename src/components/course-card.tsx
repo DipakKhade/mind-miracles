@@ -52,7 +52,7 @@ export const CourseCard = ({
         />
         <div className="absolute right-4 top-4">
           <Badge className="bg-green-600 hover:bg-green-700">
-            {course.price}
+            ₹ {course.price}
           </Badge>
         </div>
       </div>
