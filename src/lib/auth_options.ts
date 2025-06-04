@@ -1,5 +1,6 @@
 import GoogleProvider from 'next-auth/providers/google';
 import db from '@/db';
+import { AdminMails } from '.';
 
 const clinet_id = process.env.GOOGLE_CLIENT_ID || '';
 const client_secret = process.env.GOOGLE_CLIENT_SECRET || '';
@@ -34,10 +35,12 @@ export const authOptions = {
             token: account?.access_token,
           },
           create: {
-            name: user.name!,
             email: user.email!,
-            image: user.image!,
+            name: user.name!,
+            role: AdminMails.includes(user.email!) ? 'ADMIN' : 'STUDENT',
+            password: 'random',
             token: account?.access_token,
+            profileImage: user.image,
           },
         });
       }

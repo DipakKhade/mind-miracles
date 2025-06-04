@@ -5,3 +5,4 @@ export const AdminMails: string[] = [
 
 export const BUCKET_NAME = 'mindmiracles';
 export const BUCKET_COURSE_DIR = 'test-cource';
+export const AWS_REGION = 'eu-north-1';
