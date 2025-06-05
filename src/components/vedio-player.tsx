@@ -4,9 +4,7 @@ import { useEffect, useState, useRef } from 'react';
 import videojs from 'video.js';
 import 'video.js/dist/video-js.css';
 
-export default function VideoPlayer({videoId}:{
-  videoId:string
-}) {
+export default function VideoPlayer({ videoId }: { videoId: string }) {
   const [videoUrl, setVideoUrl] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [manifestContent, setManifestContent] = useState<string | null>(null);
@@ -26,20 +24,27 @@ export default function VideoPlayer({videoId}:{
   };
 
   const isHLSManifest = (content: string) => {
-    return content.trim().startsWith('#EXTM3U') || content.trim().startsWith('#EXT-X-VERSION');
+    return (
+      content.trim().startsWith('#EXTM3U') ||
+      content.trim().startsWith('#EXT-X-VERSION')
+    );
   };
 
   const isHLSUrl = (url: string) => {
-    return url.includes('.m3u8') || url.includes('application/vnd.apple.mpegurl') || url.startsWith('blob:');
+    return (
+      url.includes('.m3u8') ||
+      url.includes('application/vnd.apple.mpegurl') ||
+      url.startsWith('blob:')
+    );
   };
 
   const createManifestBlobUrl = (manifestContent: string) => {
     if (blobUrlRef.current) {
       URL.revokeObjectURL(blobUrlRef.current);
     }
-    
-    const blob = new Blob([manifestContent], { 
-      type: 'application/vnd.apple.mpegurl' 
+
+    const blob = new Blob([manifestContent], {
+      type: 'application/vnd.apple.mpegurl',
     });
     const blobUrl = URL.createObjectURL(blob);
     blobUrlRef.current = blobUrl;
@@ -50,7 +55,7 @@ export default function VideoPlayer({videoId}:{
     if (isHLSUrl(url)) {
       return 'application/vnd.apple.mpegurl';
     }
-    
+
     const extension = url.split('.').pop()?.toLowerCase();
     switch (extension) {
       case 'mp4':
@@ -71,12 +76,12 @@ export default function VideoPlayer({videoId}:{
       try {
         setError(null);
         console.log('Fetching video data for ID:', videoId);
-        
-        const res = await fetch(`/api/signed-url?video=${videoId}`);
+
+        const res = await fetch(`/api/course/view?video=${videoId}`);
         if (res.ok) {
           const data = await res.json();
           console.log('Fetched video data:', data);
-          
+
           if (typeof data.url === 'string') {
             if (isHLSManifest(data.url)) {
               setManifestContent(data.url);
@@ -105,7 +110,7 @@ export default function VideoPlayer({videoId}:{
 
   useEffect(() => {
     if (!videoUrl) return;
-    
+
     if (playerRef.current && !playerRef.current.isDisposed()) {
       playerRef.current.dispose();
       playerRef.current = null;
@@ -145,8 +150,8 @@ export default function VideoPlayer({videoId}:{
                 return options;
               }
               return options;
-            }
-          }
+            },
+          },
         },
         nativeVideoTracks: false,
         nativeAudioTracks: false,
@@ -167,30 +172,36 @@ export default function VideoPlayer({videoId}:{
         player.on('loadedmetadata', () => console.log('Loaded metadata'));
         player.on('canplay', () => console.log('Can play'));
         player.on('canplaythrough', () => console.log('Can play through'));
-        
+
         player.on('sourceopen', () => console.log('Source opened'));
         player.on('waiting', () => console.log('Waiting for data'));
-        
+
         player.on('error', () => {
           const error = player.error();
           console.error('Player error:', error);
-          
+
           if (error && error.code === 4) {
-            setError('Media error: The video format is not supported or the file is corrupted');
+            setError(
+              'Media error: The video format is not supported or the file is corrupted',
+            );
           } else if (error && error.code === 2) {
-            setError('Network error: Unable to load video segments. URLs may have expired.');
+            setError(
+              'Network error: Unable to load video segments. URLs may have expired.',
+            );
           } else {
-            setError(`Playback error: ${error?.message || 'Unknown playback error'}`);
+            setError(
+              `Playback error: ${error?.message || 'Unknown playback error'}`,
+            );
           }
         });
 
         //@ts-ignore
         if (player.tech() && player.tech().vhs) {
           console.log('VHS tech is active for HLS playback');
-          
-        //@ts-ignore
+
+          //@ts-ignore
           const vhs = player.tech().vhs;
-          
+
           vhs.on('error', (event: any) => {
             console.error('VHS error:', event);
           });
@@ -203,9 +214,11 @@ export default function VideoPlayer({videoId}:{
           vhs.on('mediaerror', () => {
             segmentErrors++;
             console.warn(`HLS segment error #${segmentErrors}`);
-            
+
             if (segmentErrors > 3) {
-              setError('Multiple segment loading errors. Video URLs may have expired.');
+              setError(
+                'Multiple segment loading errors. Video URLs may have expired.',
+              );
             }
           });
         }
@@ -223,7 +236,7 @@ export default function VideoPlayer({videoId}:{
         player.dispose();
         playerRef.current = null;
       }
-      
+
       if (blobUrlRef.current) {
         URL.revokeObjectURL(blobUrlRef.current);
         blobUrlRef.current = null;
@@ -252,7 +265,9 @@ export default function VideoPlayer({videoId}:{
         </button>
         {manifestContent && (
           <details className="mt-4">
-            <summary className="cursor-pointer font-semibold">Show Manifest Content</summary>
+            <summary className="cursor-pointer font-semibold">
+              Show Manifest Content
+            </summary>
             <pre className="mt-2 overflow-auto bg-gray-100 p-2 text-xs">
               {manifestContent}
             </pre>
@@ -266,7 +281,7 @@ export default function VideoPlayer({videoId}:{
     return (
       <div className="flex items-center justify-center p-8">
         <div className="text-center">
-          <div className="mb-4 h-8 w-8 animate-spin rounded-full border-4 border-blue-500 border-t-transparent mx-auto"></div>
+          <div className="mx-auto mb-4 h-8 w-8 animate-spin rounded-full border-4 border-blue-500 border-t-transparent"></div>
           <p>Loading video...</p>
         </div>
       </div>
@@ -276,11 +291,11 @@ export default function VideoPlayer({videoId}:{
   return (
     <div>
       <div
-      data-vjs-player
-      style={{ maxWidth: '1350px', margin: '0 auto', width: '100%' }}
+        data-vjs-player
+        style={{ maxWidth: '1350px', margin: '0 auto', width: '100%' }}
       >
-      <div ref={videoRef} style={{ width: '100%', height: 'auto' }} />
-    </div>
+        <div ref={videoRef} style={{ width: '100%', height: 'auto' }} />
+      </div>
     </div>
   );
 }
