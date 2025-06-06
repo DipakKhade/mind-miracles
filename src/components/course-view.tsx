@@ -2,13 +2,14 @@
 
 import { getCourseById } from '@/actions/courses';
 import { useEffect, useState } from 'react';
-import { ProgramInfo } from '@/components/7-days-program/ProgramInfo';
+import { ProgramInfo } from '@/components/ProgramInfo';
 import { TermsAndConditions } from '@/components/7-days-program/TermsAndConditions';
 import { VideoPreview } from '@/components/7-days-program/VideoPreview';
 import { FeeInfo } from '@/components/common/fee-info';
 import { ProgramRegistrationForm } from '@/components/common/program-registration';
 import Hero from '@/components/Hero';
 import { courses } from '@/types';
+import CourseTitle from './course-title';
 
 type CourseViewProps =
   | ({
@@ -41,6 +42,9 @@ export function CourseView({ courseId }: { courseId: string }) {
   return (
     <>
       <div>
+        <div className="flex items-center justify-between">
+          <CourseTitle courseTitle={courseData?.title ?? ''} />
+        </div>
         <ProgramInfo
           courseDescription={courseData?.description ?? ''}
           courseFeatures={courseData?.courseFeature ?? []}
