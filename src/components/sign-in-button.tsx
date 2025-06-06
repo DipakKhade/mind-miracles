@@ -2,21 +2,29 @@
 import { signIn, signOut } from 'next-auth/react';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BiSolidPurchaseTagAlt } from 'react-icons/bi';
 import { PiSignOutBold } from 'react-icons/pi';
 
 export const SignInButton = () => {
+  const [imageURl, setImageURl] = useState<string>('');
   const session = useSession();
   const [toggleMenu, SetToggleMenu] = useState<boolean>(false);
+  useEffect(() => {
+    setImageURl(session.data?.user?.image ?? '');
+  }, []);
   return (
     <>
       {session && session.data?.user ? (
         <span className="z-[10]">
           <button onClick={() => SetToggleMenu(!toggleMenu)}>
             <img
-              alt="tania andrew"
-              src={session.data.user.image || ''}
+              alt=""
+              src={
+                imageURl
+                  ? imageURl
+                  : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxH2CteA3O6uK6JmgQfdzDg4IHMtZyzpbx2w&s'
+              }
               className="relative inline-block h-10 w-10 cursor-pointer rounded-full object-cover object-center"
               data-popover-target="profile-menu"
             />
