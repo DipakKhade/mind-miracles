@@ -18,6 +18,10 @@ export default function Register() {
   async function submitForm(data: any) {
     SetLoading(true);
     try {
+      if(!data.firstName || data.lastName || data.mobileNo || data.email || data.age){
+        toast.warning(`Please fill the form`)
+        return
+      }
       const r = await fetch('/api/register', {
         method: 'POST',
         body: JSON.stringify(data),
