@@ -11,24 +11,30 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { useRecoilState } from 'recoil';
 import { registrationFormStateAtom } from '@/store';
-import { PayAndRegisterButton } from '../7-days-program/PayAndRegisterButton';
+import { PayAndRegisterButton } from '../PayAndRegisterButton';
 import { courses } from '@/types';
 import { useState } from 'react';
 import { z } from 'zod';
-import { User, Mail, Phone, Calendar, AlertCircle, CheckCircle2 } from 'lucide-react';
+import {
+  User,
+  Mail,
+  Phone,
+  Calendar,
+  AlertCircle,
+  CheckCircle2,
+} from 'lucide-react';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { registrationSchema } from '@/types/zod';
-
 
 type ValidationErrors = {
   [key: string]: string;
 };
 
 export function ProgramRegistrationForm({
-  course_name,
+  course_id,
   amount_to_pay,
 }: {
-  course_name: courses;
+  course_id: string;
   amount_to_pay: number;
 }) {
   const [formState, setFormState] = useRecoilState(registrationFormStateAtom);
@@ -39,11 +45,11 @@ export function ProgramRegistrationForm({
   const validateField = (name: string, value: string) => {
     try {
       registrationSchema.pick({ [name]: true } as any).parse({ [name]: value });
-      setErrors(prev => ({ ...prev, [name]: '' }));
+      setErrors((prev) => ({ ...prev, [name]: '' }));
       return true;
     } catch (error) {
       if (error instanceof z.ZodError) {
-        setErrors(prev => ({ ...prev, [name]: error.errors[0].message }));
+        setErrors((prev) => ({ ...prev, [name]: error.errors[0].message }));
       }
       return false;
     }
@@ -84,7 +90,7 @@ export function ProgramRegistrationForm({
 
   const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setTouchedFields(prev => new Set(prev).add(name));
+    setTouchedFields((prev) => new Set(prev).add(name));
     validateField(name, value);
   };
 
@@ -94,13 +100,18 @@ export function ProgramRegistrationForm({
     validateForm();
   };
 
-  const isFormValid = Object.keys(errors).length === 0 && formState.name && formState.email && formState.whatsapp && formState.age;
-    
+  const isFormValid =
+    Object.keys(errors).length === 0 &&
+    formState.name &&
+    formState.email &&
+    formState.whatsapp &&
+    formState.age;
+
   return (
-    <section className="bg-gradient-to-br from-blue-50 via-white to-purple-50 px-4 py-16 min-h-screen">
+    <section className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 px-4 py-16">
       <div className="container mx-auto max-w-2xl">
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
+        <div className="mb-8 text-center">
+          <h1 className="mb-4 text-4xl font-bold text-gray-900">
             Join Our Program
           </h1>
           <p className="text-lg text-gray-600">
@@ -108,8 +119,8 @@ export function ProgramRegistrationForm({
           </p>
         </div>
 
-        <Card className="shadow-2xl border-0 bg-white/80 backdrop-blur-sm">
-          <CardHeader className="text-center pb-8">
+        <Card className="border-0 bg-white/80 shadow-2xl backdrop-blur-sm">
+          <CardHeader className="pb-8 text-center">
             <CardTitle className="text-2xl font-semibold text-gray-800">
               Registration Form
             </CardTitle>
@@ -121,7 +132,10 @@ export function ProgramRegistrationForm({
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Full Name Field */}
               <div className="space-y-2">
-                <Label htmlFor="name" className="text-sm font-medium text-gray-700">
+                <Label
+                  htmlFor="name"
+                  className="text-sm font-medium text-gray-700"
+                >
                   Full Name *
                 </Label>
                 <div className="relative">
@@ -130,12 +144,12 @@ export function ProgramRegistrationForm({
                     id="name"
                     name="name"
                     placeholder="Enter your full name"
-                    className={`pl-10 h-12 border-2 transition-all duration-200 ${
+                    className={`h-12 border-2 pl-10 transition-all duration-200 ${
                       errors.name && touchedFields.has('name')
                         ? 'border-red-300 focus:border-red-500'
                         : formState.name && !errors.name
-                        ? 'border-green-300 focus:border-green-500'
-                        : 'border-gray-200 focus:border-blue-500'
+                          ? 'border-green-300 focus:border-green-500'
+                          : 'border-gray-200 focus:border-blue-500'
                     }`}
                     value={formState.name}
                     onChange={handleInputChange}
@@ -146,7 +160,7 @@ export function ProgramRegistrationForm({
                   )}
                 </div>
                 {errors.name && touchedFields.has('name') && (
-                  <div className="flex items-center gap-1 text-red-600 text-sm">
+                  <div className="flex items-center gap-1 text-sm text-red-600">
                     <AlertCircle className="h-3 w-3" />
                     {errors.name}
                   </div>
@@ -155,7 +169,10 @@ export function ProgramRegistrationForm({
 
               {/* Email Field */}
               <div className="space-y-2">
-                <Label htmlFor="email" className="text-sm font-medium text-gray-700">
+                <Label
+                  htmlFor="email"
+                  className="text-sm font-medium text-gray-700"
+                >
                   Email Address *
                 </Label>
                 <div className="relative">
@@ -165,12 +182,12 @@ export function ProgramRegistrationForm({
                     type="email"
                     name="email"
                     placeholder="Enter your email address"
-                    className={`pl-10 h-12 border-2 transition-all duration-200 ${
+                    className={`h-12 border-2 pl-10 transition-all duration-200 ${
                       errors.email && touchedFields.has('email')
                         ? 'border-red-300 focus:border-red-500'
                         : formState.email && !errors.email
-                        ? 'border-green-300 focus:border-green-500'
-                        : 'border-gray-200 focus:border-blue-500'
+                          ? 'border-green-300 focus:border-green-500'
+                          : 'border-gray-200 focus:border-blue-500'
                     }`}
                     value={formState.email}
                     onChange={handleInputChange}
@@ -181,7 +198,7 @@ export function ProgramRegistrationForm({
                   )}
                 </div>
                 {errors.email && touchedFields.has('email') && (
-                  <div className="flex items-center gap-1 text-red-600 text-sm">
+                  <div className="flex items-center gap-1 text-sm text-red-600">
                     <AlertCircle className="h-3 w-3" />
                     {errors.email}
                   </div>
@@ -190,7 +207,10 @@ export function ProgramRegistrationForm({
 
               {/* WhatsApp Field */}
               <div className="space-y-2">
-                <Label htmlFor="whatsapp" className="text-sm font-medium text-gray-700">
+                <Label
+                  htmlFor="whatsapp"
+                  className="text-sm font-medium text-gray-700"
+                >
                   WhatsApp Number *
                 </Label>
                 <div className="relative">
@@ -200,12 +220,12 @@ export function ProgramRegistrationForm({
                     type="tel"
                     name="whatsapp"
                     placeholder="+1234567890"
-                    className={`pl-10 h-12 border-2 transition-all duration-200 ${
+                    className={`h-12 border-2 pl-10 transition-all duration-200 ${
                       errors.whatsapp && touchedFields.has('whatsapp')
                         ? 'border-red-300 focus:border-red-500'
                         : formState.whatsapp && !errors.whatsapp
-                        ? 'border-green-300 focus:border-green-500'
-                        : 'border-gray-200 focus:border-blue-500'
+                          ? 'border-green-300 focus:border-green-500'
+                          : 'border-gray-200 focus:border-blue-500'
                     }`}
                     value={formState.whatsapp}
                     onChange={handleInputChange}
@@ -216,7 +236,7 @@ export function ProgramRegistrationForm({
                   )}
                 </div>
                 {errors.whatsapp && touchedFields.has('whatsapp') && (
-                  <div className="flex items-center gap-1 text-red-600 text-sm">
+                  <div className="flex items-center gap-1 text-sm text-red-600">
                     <AlertCircle className="h-3 w-3" />
                     {errors.whatsapp}
                   </div>
@@ -225,7 +245,10 @@ export function ProgramRegistrationForm({
 
               {/* Age Field */}
               <div className="space-y-2">
-                <Label htmlFor="age" className="text-sm font-medium text-gray-700">
+                <Label
+                  htmlFor="age"
+                  className="text-sm font-medium text-gray-700"
+                >
                   Age *
                 </Label>
                 <div className="relative">
@@ -237,12 +260,12 @@ export function ProgramRegistrationForm({
                     placeholder="Enter your age"
                     min="16"
                     max="100"
-                    className={`pl-10 h-12 border-2 transition-all duration-200 ${
+                    className={`h-12 border-2 pl-10 transition-all duration-200 ${
                       errors.age && touchedFields.has('age')
                         ? 'border-red-300 focus:border-red-500'
                         : formState.age && !errors.age
-                        ? 'border-green-300 focus:border-green-500'
-                        : 'border-gray-200 focus:border-blue-500'
+                          ? 'border-green-300 focus:border-green-500'
+                          : 'border-gray-200 focus:border-blue-500'
                     }`}
                     value={formState.age}
                     onChange={handleInputChange}
@@ -253,7 +276,7 @@ export function ProgramRegistrationForm({
                   )}
                 </div>
                 {errors.age && touchedFields.has('age') && (
-                  <div className="flex items-center gap-1 text-red-600 text-sm">
+                  <div className="flex items-center gap-1 text-sm text-red-600">
                     <AlertCircle className="h-3 w-3" />
                     {errors.age}
                   </div>
@@ -273,7 +296,7 @@ export function ProgramRegistrationForm({
               {/* Submit Button */}
               <div className="pt-4">
                 <PayAndRegisterButton
-                  course_name={course_name}
+                  course_id={course_id}
                   amount_to_pay={amount_to_pay}
                   disabled={!isFormValid}
                 />
@@ -281,10 +304,11 @@ export function ProgramRegistrationForm({
             </form>
 
             {/* Additional Info */}
-            <div className="mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+            <div className="mt-8 rounded-lg border border-blue-200 bg-blue-50 p-4">
               <p className="text-sm text-blue-800">
-                <strong>Note:</strong> Your information is secure and will only be used for program communication. 
-                We respect your privacy and will never share your details with third parties.
+                <strong>Note:</strong> Your information is secure and will only
+                be used for program communication. We respect your privacy and
+                will never share your details with third parties.
               </p>
             </div>
           </CardContent>
