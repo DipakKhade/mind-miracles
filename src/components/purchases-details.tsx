@@ -47,20 +47,6 @@ export const PurchasesDetails = ({
               </div>
             </CardContent>
           </Card>
-
-          <Card className="border-green-200">
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm font-medium text-gray-600">
-                    Certificates
-                  </p>
-                  <p className="text-3xl font-bold text-green-600">1</p>
-                </div>
-                <Star className="h-8 w-8 text-green-600" />
-              </div>
-            </CardContent>
-          </Card>
         </div>
       </main>
     </div>
