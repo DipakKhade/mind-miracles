@@ -30,7 +30,7 @@ export function VideoList({ courseId }: VideoListProps) {
         const response = await fetch(`/api/courses/${courseId}/videos`);
         const data = await response.json();
         setVideos(data.videos);
-        
+
         // Select first unlocked video if none selected
         if (!selectedVideo && data.videos.some((v: Video) => v.unlocked)) {
           setSelectedVideo(data.videos.find((v: Video) => v.unlocked).id);
@@ -44,15 +44,19 @@ export function VideoList({ courseId }: VideoListProps) {
   }, [courseId]);
 
   const handleVideoProgress = async (videoId: string, progress: number) => {
-    setVideos(videos.map(video => 
-      video.id === videoId ? { ...video, progress } : video
-    ));
+    setVideos(
+      videos.map((video) =>
+        video.id === videoId ? { ...video, progress } : video,
+      ),
+    );
   };
 
   const handleVideoComplete = async (videoId: string) => {
-    setVideos(videos.map(video => 
-      video.id === videoId ? { ...video, completed: true } : video
-    ));
+    setVideos(
+      videos.map((video) =>
+        video.id === videoId ? { ...video, completed: true } : video,
+      ),
+    );
   };
 
   return (
@@ -61,7 +65,9 @@ export function VideoList({ courseId }: VideoListProps) {
         <div className="mb-8">
           <VideoPlayer
             videoId={selectedVideo}
-            onProgress={(progress) => handleVideoProgress(selectedVideo, progress)}
+            onProgress={(progress) =>
+              handleVideoProgress(selectedVideo, progress)
+            }
             onComplete={() => handleVideoComplete(selectedVideo)}
           />
         </div>
@@ -69,7 +75,7 @@ export function VideoList({ courseId }: VideoListProps) {
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {videos.map((video) => (
-          <Card 
+          <Card
             key={video.id}
             className={`cursor-pointer transition-all hover:shadow-lg ${
               video.id === selectedVideo ? 'ring-2 ring-green-500' : ''

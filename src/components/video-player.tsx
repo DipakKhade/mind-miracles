@@ -10,7 +10,11 @@ interface VideoPlayerProps {
   onComplete?: () => void;
 }
 
-export function VideoPlayer({ videoId, onProgress, onComplete }: VideoPlayerProps) {
+export function VideoPlayer({
+  videoId,
+  onProgress,
+  onComplete,
+}: VideoPlayerProps) {
   const [videoUrl, setVideoUrl] = useState<string | null>(null);
   const [playing, setPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -78,7 +82,8 @@ export function VideoPlayer({ videoId, onProgress, onComplete }: VideoPlayerProp
         onPause={() => setPlaying(false)}
         onProgress={handleProgress as any}
         progressInterval={1000}
-      />k
+      />
+      k
     </div>
   );
 }
