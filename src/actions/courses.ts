@@ -12,7 +12,6 @@ export async function getCourses() {
       },
     },
   });
-  console.log('data at server', data);
   return data;
 }
 

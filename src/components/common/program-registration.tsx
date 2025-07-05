@@ -299,6 +299,7 @@ export function ProgramRegistrationForm({
                   course_id={course_id}
                   amount_to_pay={amount_to_pay}
                   disabled={!isFormValid}
+                  isFormValid={isFormValid as boolean}
                 />
               </div>
             </form>

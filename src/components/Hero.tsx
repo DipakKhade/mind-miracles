@@ -38,21 +38,26 @@ export default function Hero() {
             </div> */}
 
             <p className="mt-6 text-lg leading-8 text-gray-600">
-            Expert psychological healing and hypnotherapy services to help you achieve mental wellness and personal growth.
-          </p>
-          <div className="mt-10 flex items-center gap-x-6 justify-center">
-            <Link
-              href="/cources"
-              className="rounded-md bg-green-600 px-5 py-3 text-sm font-semibold text-white shadow-lg hover:bg-green-500 hover:scale-105 transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
-            >
-              Explore Our Programs
-            </Link>
-            <Link href="/test" className="text-sm font-semibold leading-6 text-gray-900 hover:text-green-600 transition-colors duration-300">
-              Take Mental Health Test <span aria-hidden="true" className="ml-1">→</span>
-            </Link>
-          </div>
-
-          
+              Expert psychological healing and hypnotherapy services to help you
+              achieve mental wellness and personal growth.
+            </p>
+            <div className="mt-10 flex items-center justify-center gap-x-6">
+              <Link
+                href="/courses"
+                className="rounded-md bg-green-600 px-5 py-3 text-sm font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
+              >
+                Explore Our Programs
+              </Link>
+              <Link
+                href="/test"
+                className="text-sm font-semibold leading-6 text-gray-900 transition-colors duration-300 hover:text-green-600"
+              >
+                Take Mental Health Test{' '}
+                <span aria-hidden="true" className="ml-1">
+                  →
+                </span>
+              </Link>
+            </div>
           </div>
         </main>
       </motion.div>

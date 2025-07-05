@@ -13,10 +13,12 @@ export const PayAndRegisterButton = ({
   course_id,
   amount_to_pay,
   disabled,
+  isFormValid,
 }: {
   course_id: string;
   amount_to_pay: number;
   disabled: boolean;
+  isFormValid: boolean;
 }) => {
   // const [amount, setAmount] = useState<number>(1499);
   const form_values = useRecoilValue(registrationFormStateAtom);
@@ -85,7 +87,7 @@ export const PayAndRegisterButton = ({
         src="https://checkout.razorpay.com/v1/checkout.js"
       />
       <Button
-        disabled={!disabled}
+        disabled={isFormValid}
         onClick={createOrder}
         type="submit"
         className="w-full bg-green-700 hover:bg-[#3a5a40]"

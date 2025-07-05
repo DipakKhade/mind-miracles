@@ -17,7 +17,6 @@ export default function CoursesList() {
   useEffect(() => {
     async function getCoursesData() {
       const data = await getCourses();
-      console.log(data);
       //@ts-ignore
       setCourses(data);
     }
