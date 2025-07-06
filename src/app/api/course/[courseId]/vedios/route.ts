@@ -32,7 +32,10 @@ export async function GET(
     });
 
     if (!isUserEnrolled) {
-      return NextResponse.json({ error: 'User not enrolled in this course' }, { status: 404 });
+      return NextResponse.json(
+        { error: 'User not enrolled in this course' },
+        { status: 404 },
+      );
     }
 
     const course = await db.course.findUnique({
@@ -42,17 +45,16 @@ export async function GET(
       include: {
         video: {
           orderBy: { dayNumber: 'asc' },
-          include:{
-            progress:{
-                where:{
-                    userId:user.id
-                }
-            }
-          }
+          include: {
+            progress: {
+              where: {
+                userId: user.id,
+              },
+            },
+          },
         },
       },
     });
-
 
     if (!course) {
       return NextResponse.json(
@@ -72,7 +74,7 @@ export async function GET(
       dayNumber: video.dayNumber,
       progress: video.progress[0]?.progress || 0,
       completed: video.progress[0]?.completed || false,
-    //   unlocked: video.dayNumber <= daysSincePurchase + 1,
+      //   unlocked: video.dayNumber <= daysSincePurchase + 1,
     }));
 
     return NextResponse.json({ videos });

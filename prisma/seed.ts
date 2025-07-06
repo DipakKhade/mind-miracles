@@ -3,6 +3,7 @@ import { PrismaClient } from '@prisma/client';
 const db = new PrismaClient();
 
 async function main() {
+  console.log('asaldaljk')
   // Users
   const user1 = await db.user.create({
     data: {
@@ -57,7 +58,8 @@ async function main() {
   const course2 = await db.course.create({
     data: {
       title: 'Mindfulness Basics',
-      description: 'Learn the core of mindfulness in this beginner-friendly course.',
+      description:
+        'Learn the core of mindfulness in this beginner-friendly course.',
       price: 999,
       thumbnailURL: 'https://via.placeholder.com/150',
       previewURL: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
