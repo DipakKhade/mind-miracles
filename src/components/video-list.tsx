@@ -27,7 +27,7 @@ export function VideoList({ courseId }: VideoListProps) {
   useEffect(() => {
     const fetchVideos = async () => {
       try {
-        const response = await fetch(`/api/courses/${courseId}/videos`);
+        const response = await fetch(`/api/course/${courseId}/vedios`);
         const data = await response.json();
         setVideos(data.videos);
 

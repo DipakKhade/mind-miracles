@@ -74,7 +74,7 @@ export async function GET(
       dayNumber: video.dayNumber,
       progress: video.progress[0]?.progress || 0,
       completed: video.progress[0]?.completed || false,
-      //   unlocked: video.dayNumber <= daysSincePurchase + 1,
+      unlocked: true,
     }));
 
     return NextResponse.json({ videos });
