@@ -139,9 +139,13 @@
 //   );
 // }
 
-
 export default function Page() {
-    return <>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Culpa laboriosam aperiam hic repellendus tenetur aliquid deserunt eligendi sunt expedita, recusandae ipsa eum natus, iste quisquam maiores placeat eius facere vitae.
+  return (
+    <>
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Culpa laboriosam
+      aperiam hic repellendus tenetur aliquid deserunt eligendi sunt expedita,
+      recusandae ipsa eum natus, iste quisquam maiores placeat eius facere
+      vitae.
     </>
+  );
 }

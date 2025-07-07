@@ -111,18 +111,20 @@ export const CourseCard = ({
       </CardContent>
 
       <CardFooter className="flex gap-2">
-        <Link href={`/courses/view/${course.id}`}>
-        <Button className="flex-1 bg-green-600 hover:bg-green-700">
-          <Play className="mr-2 h-4 w-4" />
-          Continue Learning
-        </Button>
+        <Link href={`/courses/watch/${course.id}`}>
+          <Button className="flex-1 bg-green-600 hover:bg-green-700">
+            <Play className="mr-2 h-4 w-4" />
+            Continue Learning
+          </Button>
         </Link>
+        <Link href={`/courses/view/${course.id}`}>
         <Button
           variant="outline"
           className="border-green-200 text-green-700 hover:bg-green-50"
         >
           View Details
         </Button>
+        </Link>
       </CardFooter>
     </Card>
   );

@@ -67,17 +67,17 @@ export async function GET(
     //   (Date.now() - course.from.getTime()) / (1000 * 60 * 60 * 24),
     // );
 
-    const videos = course.video.map((video) => ({
-      id: video.id,
-      title: video.title,
-      description: video.description,
-      dayNumber: video.dayNumber,
-      progress: video.progress[0]?.progress || 0,
-      completed: video.progress[0]?.completed || false,
-      unlocked: true,
-    }));
+    // const videos = course.video.map((video) => ({
+    //   id: video.id,
+    //   title: video.title,
+    //   description: video.description,
+    //   dayNumber: video.dayNumber,
+    //   progress: video.progress[0]?.progress || 0,
+    //   completed: video.progress[0]?.completed || false,
+    //   unlocked: true,
+    // }));
 
-    return NextResponse.json({ videos });
+    return NextResponse.json({ ...course, completedVideos: 1, totalVideos:3 });
   } catch (error) {
     console.error('Error fetching videos:', error);
     return NextResponse.json(

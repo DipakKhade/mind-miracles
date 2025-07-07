@@ -1,12 +1,17 @@
-import { VideoList } from "@/components/video-list"
+import CourseVideos from '@/components/course-videos';
+import { VideoList } from '@/components/video-list';
 
-export default function Page({params}:{
-    params:{
-        courseId:string
-    }
+export default function Page({
+  params,
+}: {
+  params: {
+    courseId: string;
+  };
 }) {
-    console.log(params)
-    return <>
-    <VideoList courseId={params.courseId}/>
+  return (
+    <>
+      {/* <VideoList courseId={params.courseId} /> */}
+      <CourseVideos courseId={params.courseId}/>
     </>
+  );
 }

@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Lock, PlayCircle, CheckCircle } from 'lucide-react';
-import { VideoPlayer } from './video-player';
+import { VideoPlayer } from './vedio-player';
 
 interface Video {
   id: string;
@@ -65,7 +65,7 @@ export function VideoList({ courseId }: VideoListProps) {
         <div className="mb-8">
           <VideoPlayer
             videoId={selectedVideo}
-            onProgress={(progress) =>
+            onProgress={(progress:any) =>
               handleVideoProgress(selectedVideo, progress)
             }
             onComplete={() => handleVideoComplete(selectedVideo)}

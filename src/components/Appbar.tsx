@@ -6,10 +6,10 @@ import { authOptions } from '@/lib/auth_options';
 
 const navLinks = [
   { name: 'Home', href: '/' },
-  { name: 'About', href: '/about' },
-  { name: 'Our Work', href: '/our-work' },
+  { name: 'About', href: '/#about' },
+  // { name: 'Our Work', href: '/#our-work' },
   { name: 'Courses', href: '/courses' },
-  { name: 'Contact Us', href: '/contact' },
+  { name: 'Contact Us', href: '/#contact' },
 ];
 export default async function Appbar() {
   const session = await getServerSession(authOptions);

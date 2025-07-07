@@ -1,30 +1,18 @@
-import { AWS_REGION, BUCKET_NAME } from '@/lib';
-import { S3Client, ListObjectsV2Command } from '@aws-sdk/client-s3';
-import { NextResponse } from 'next/server';
+import { authOptions } from "@/lib/auth_options";
+import { getServerSession } from "next-auth";
+import { NextRequest, NextResponse } from "next/server";
 
-const s3 = new S3Client({
-  region: AWS_REGION,
-  credentials: {
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID!,
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY!,
-  },
-});
-
-export async function GET() {
+export async function GET(req: NextRequest) {
   try {
-    const bucketName = BUCKET_NAME;
-    const prefix = '6837ced9a1711ec98dcc6fef/';
-    const command = new ListObjectsV2Command({
-      Bucket: bucketName,
-      Prefix: prefix,
-      Delimiter: '/',
-    });
+    const session = await getServerSession(authOptions);
 
-    const data = await s3.send(command);
+    if (!session?.user?.email) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
 
-    const folders = (data.CommonPrefixes || []).map((p) => p.Prefix);
 
-    return NextResponse.json({ folders });
+
+   
   } catch (error) {
     console.error('S3 Error:', error);
     return NextResponse.json(
