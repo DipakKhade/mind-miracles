@@ -35,23 +35,23 @@ export async function getCourseById(id: string) {
   return data;
 }
 
-export async function validateUserForVideo(email:string, courseId:string) {
+export async function validateUserForVideo(email: string, courseId: string) {
   try {
-    const user_course = await db.enrollment.findFirst(({
-      where:{ 
-        user:{
-          email
+    const user_course = await db.enrollment.findFirst({
+      where: {
+        user: {
+          email,
         },
-        courseId
-      }
-    }))
+        courseId,
+      },
+    });
 
-    if(user_course) {
+    if (user_course) {
       return true;
     }
 
     return false;
-  } catch (e){
-    return false
+  } catch (e) {
+    return false;
   }
 }

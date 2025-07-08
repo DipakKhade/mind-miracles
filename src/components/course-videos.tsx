@@ -28,21 +28,24 @@ export default function CourseVideos({ courseId }: { courseId: string }) {
 
   const router = useRouter();
 
-  useEffect(()=>{
-    (async()=>{
-        const session = await getSession();
-        if(!session) {
-            router.push('/')
-            toast.warning('sign to your account')
-        }else if(session && session.user?.email){
-            const validateUser = await validateUserForVideo(session.user?.email, courseId)
-            if(!validateUser) {
-                toast.warning('/unAuthenticated user');
-                router.push(`/courses/view/${courseId}`)
-            }
+  useEffect(() => {
+    (async () => {
+      const session = await getSession();
+      if (!session) {
+        router.push('/');
+        toast.warning('sign to your account');
+      } else if (session && session.user?.email) {
+        const validateUser = await validateUserForVideo(
+          session.user?.email,
+          courseId,
+        );
+        if (!validateUser) {
+          toast.warning('/unAuthenticated user');
+          router.push(`/courses/view/${courseId}`);
         }
+      }
     })();
-}, [courseId])
+  }, [courseId]);
 
   useEffect(() => {
     (async () => {

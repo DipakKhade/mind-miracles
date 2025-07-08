@@ -6,6 +6,7 @@ import WhoWeAre from '@/components/WhoAreWe';
 import MissionVision from '@/components/MissionVision';
 import Founder from '@/components/Founder';
 import { Footer } from '@/components/Footer';
+import { Features } from '@/components/features';
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       />
       <div className="md:p-8">
         <Hero />
+        <Features />
         <WhoWeAre />
         <div>{/* <ServicesCards /> */}</div>
         <div className="flex min-h-screen items-center justify-center">

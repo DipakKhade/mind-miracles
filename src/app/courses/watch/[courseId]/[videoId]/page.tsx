@@ -16,30 +16,32 @@ interface PageProps {
 }
 
 export default function Page({ params }: PageProps) {
-    const router = useRouter();
-    const searchParams = useSearchParams();
-    const vimeoId = searchParams.get('vid')
-    if(!vimeoId){
-        router.back();
-    }
-    useEffect(()=>{
-        (async()=>{
-            const session = await getSession();
-            if(!session) {
-                router.push('/')
-                toast.warning('sign to your account')
-            }else if(session && session.user?.email){
-                const validateUser = await validateUserForVideo(session.user?.email, params.courseId)
-                if(!validateUser) {
-                    toast.warning('/unAuthenticated user');
-                    router.push(`/courses/view/${params.courseId}`)
-                }
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const vimeoId = searchParams.get('vid');
+  if (!vimeoId) {
+    router.back();
+  }
+  useEffect(() => {
+    (async () => {
+      const session = await getSession();
+      if (!session) {
+        router.push('/');
+        toast.warning('sign to your account');
+      } else if (session && session.user?.email) {
+        const validateUser = await validateUserForVideo(
+          session.user?.email,
+          params.courseId,
+        );
+        if (!validateUser) {
+          toast.warning('/unAuthenticated user');
+          router.push(`/courses/view/${params.courseId}`);
+        }
+      }
+    })();
+  }, [params]);
 
-            }
-        })();
-    }, [params])
-
-    console.log('params are thissss--', params)
+  console.log('params are thissss--', params);
   return (
     <main className="min-h-screen bg-background p-4">
       <div className="mx-auto max-w-4xl">
