@@ -5,7 +5,7 @@ import db from '@/db';
 
 export async function POST(
   req: Request,
-  { params }: { params: { videoId: string } }
+  { params }: { params: { videoId: string } },
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -55,7 +55,7 @@ export async function POST(
 
 export async function GET(
   req: Request,
-  { params }: { params: { videoId: string } }
+  { params }: { params: { videoId: string } },
 ) {
   try {
     const session = await getServerSession(authOptions);

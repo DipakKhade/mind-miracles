@@ -1,8 +1,8 @@
-import { NextRequest, NextResponse } from "next/server";
-import { getServerSession } from "next-auth";
-import { AdminMails } from "@/lib";
-import { authOptions } from "@/lib/auth";
-import db from "@/db";
+import { NextRequest, NextResponse } from 'next/server';
+import { getServerSession } from 'next-auth';
+import { AdminMails } from '@/lib';
+import { authOptions } from '@/lib/auth';
+import db from '@/db';
 
 export async function POST(req: Request) {
   try {
@@ -11,7 +11,8 @@ export async function POST(req: Request) {
       return new NextResponse('Unauthorized', { status: 401 });
     }
 
-    const { courseId, title, description, dayNumber, vimeoId } = await req.json();
+    const { courseId, title, description, dayNumber, vimeoId } =
+      await req.json();
 
     if (!courseId || !title || !description || !dayNumber || !vimeoId) {
       return new NextResponse('Missing required fields', { status: 400 });

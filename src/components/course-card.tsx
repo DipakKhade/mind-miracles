@@ -118,12 +118,12 @@ export const CourseCard = ({
           </Button>
         </Link>
         <Link href={`/courses/view/${course.id}`}>
-        <Button
-          variant="outline"
-          className="border-green-200 text-green-700 hover:bg-green-50"
-        >
-          View Details
-        </Button>
+          <Button
+            variant="outline"
+            className="border-green-200 text-green-700 hover:bg-green-50"
+          >
+            View Details
+          </Button>
         </Link>
       </CardFooter>
     </Card>

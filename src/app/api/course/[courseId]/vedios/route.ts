@@ -77,7 +77,7 @@ export async function GET(
     //   unlocked: true,
     // }));
 
-    return NextResponse.json({ ...course, completedVideos: 1, totalVideos:3 });
+    return NextResponse.json({ ...course, completedVideos: 1, totalVideos: 3 });
   } catch (error) {
     console.error('Error fetching videos:', error);
     return NextResponse.json(
