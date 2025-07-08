@@ -15,104 +15,9 @@ import {
 } from 'lucide-react';
 import { Progress } from './progress';
 import { useRouter } from 'next/navigation';
-
-// Mock data based on your schema structure
-const courseData = {
-  id: 'course-1',
-  title: 'Personal Counselling',
-  description:
-    'Transform your life with our comprehensive program designed to help you achieve your full potential',
-  price: 99,
-  thumbnailURL: '/placeholder.svg?height=200&width=400',
-  enrolledAt: 'June 21, 2025',
-  overallProgress: 65,
-  totalVideos: 8,
-  completedVideos: 5,
-};
-
-const videosData = [
-  {
-    id: 'video-1',
-    title: 'Introduction to Personal Development',
-    description:
-      'Learn the fundamentals of personal growth and self-improvement',
-    dayNumber: 1,
-    progress: 100,
-    completed: true,
-    lastWatched: '2025-06-22T10:30:00Z',
-    duration: '15:30',
-  },
-  {
-    id: 'video-2',
-    title: 'Understanding Your Mindset',
-    description: 'Explore the power of mindset and how it shapes your reality',
-    dayNumber: 2,
-    progress: 100,
-    completed: true,
-    lastWatched: '2025-06-23T14:15:00Z',
-    duration: '22:45',
-  },
-  {
-    id: 'video-3',
-    title: 'Goal Setting Strategies',
-    description: 'Master the art of setting and achieving meaningful goals',
-    dayNumber: 3,
-    progress: 100,
-    completed: true,
-    lastWatched: '2025-06-24T09:20:00Z',
-    duration: '18:20',
-  },
-  {
-    id: 'video-4',
-    title: 'Overcoming Limiting Beliefs',
-    description: 'Identify and break through the beliefs that hold you back',
-    dayNumber: 4,
-    progress: 75,
-    completed: false,
-    lastWatched: '2025-06-25T16:45:00Z',
-    duration: '25:10',
-  },
-  {
-    id: 'video-5',
-    title: 'Building Confidence',
-    description: 'Develop unshakeable confidence in all areas of your life',
-    dayNumber: 5,
-    progress: 45,
-    completed: false,
-    lastWatched: '2025-06-26T11:30:00Z',
-    duration: '20:15',
-  },
-  {
-    id: 'video-6',
-    title: 'Emotional Intelligence',
-    description: 'Master your emotions and improve your relationships',
-    dayNumber: 6,
-    progress: 0,
-    completed: false,
-    lastWatched: null,
-    duration: '28:30',
-  },
-  {
-    id: 'video-7',
-    title: 'Creating Positive Habits',
-    description: 'Build lasting habits that support your personal growth',
-    dayNumber: 7,
-    progress: 0,
-    completed: false,
-    lastWatched: null,
-    duration: '19:45',
-  },
-  {
-    id: 'video-8',
-    title: 'Maintaining Your Progress',
-    description: 'Learn how to sustain your growth and continue improving',
-    dayNumber: 8,
-    progress: 0,
-    completed: false,
-    lastWatched: null,
-    duration: '16:20',
-  },
-];
+import { getSession } from 'next-auth/react';
+import { toast } from 'sonner';
+import { validateUserForVideo } from '@/actions/courses';
 
 export default function CourseVideos({ courseId }: { courseId: string }) {
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
@@ -122,6 +27,22 @@ export default function CourseVideos({ courseId }: { courseId: string }) {
   const [courseData, setCourseData] = useState<any>();
 
   const router = useRouter();
+
+  useEffect(()=>{
+    (async()=>{
+        const session = await getSession();
+        if(!session) {
+            router.push('/')
+            toast.warning('sign to your account')
+        }else if(session && session.user?.email){
+            const validateUser = await validateUserForVideo(session.user?.email, courseId)
+            if(!validateUser) {
+                toast.warning('/unAuthenticated user');
+                router.push(`/courses/view/${courseId}`)
+            }
+        }
+    })();
+}, [courseId])
 
   useEffect(() => {
     (async () => {
@@ -141,7 +62,7 @@ export default function CourseVideos({ courseId }: { courseId: string }) {
     });
   };
 
-  const getVideoStatus = (video: (typeof videosData)[0]) => {
+  const getVideoStatus = (video: any) => {
     if (video.completed) return 'completed';
     if (video.progress > 0) return 'in-progress';
     return 'not-started';
@@ -343,7 +264,7 @@ export default function CourseVideos({ courseId }: { courseId: string }) {
                               onClick={() => {
                                 setSelectedVideo(video.id);
                                 router.push(
-                                  `/courses/watch/${courseId}/${video.vimeoId}`,
+                                  `/courses/watch/${courseId}/${video.id}?vid=${video.vimeoId}`,
                                 );
                               }}
                             >
