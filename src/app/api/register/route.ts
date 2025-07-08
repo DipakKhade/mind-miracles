@@ -9,19 +9,19 @@ export async function POST(req: NextRequest) {
     const data = { firstName, lastName, mobileNo, email, age, place };
     getMailonRegister(data);
 
-    const new_register = await db.contactus.create({
-      data: {
-        firstName,
-        lastName,
-        mobileNo: Number(mobileNo),
-        email,
-        age: Number(age),
-        place,
-      },
-    });
+    // const new_register = await db.contactus.create({
+    //   data: {
+    //     firstName,
+    //     lastName,
+    //     mobileNo: Number(mobileNo),
+    //     email,
+    //     age: Number(age),
+    //     place,
+    //   },
+    // });
     return NextResponse.json({
       success: true,
-      id: new_register.id,
+      // id: new_register.id,
       message: 'register successfully',
     });
   } catch (e) {
