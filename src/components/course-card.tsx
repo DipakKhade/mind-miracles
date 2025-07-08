@@ -12,6 +12,8 @@ import { Progress } from './progress';
 import Image from 'next/image';
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
+import { getCourseProgress } from '@/actions/progress';
+import { useEffect, useState } from 'react';
 
 interface Course {
   id: string;
@@ -33,6 +35,22 @@ export const CourseCard = ({
   enrolledAt: string;
 }) => {
   console.log('course-----from course-card-------', course);
+  const [progress, setProgress] = useState<any>(null)
+
+  useEffect(() => {
+    const fetchProgress = async () => {
+      try {
+        const result = await getCourseProgress(course.id)
+        setProgress(result)
+      } catch (err) {
+        console.error("Failed to fetch course progress", err)
+        setProgress(0) // fallback if error
+      }
+    }
+
+    fetchProgress()
+  }, [course.id])
+  
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('en-US', {
       year: 'numeric',
@@ -40,6 +58,10 @@ export const CourseCard = ({
       day: 'numeric',
     });
   };
+
+  const getCourceProgress = async(courseId:string) =>{
+    return getCourseProgress(courseId)
+  }
 
   return (
     <Card className="overflow-hidden border-green-100 transition-shadow duration-300 hover:shadow-lg">
@@ -70,12 +92,14 @@ export const CourseCard = ({
       <CardContent className="space-y-4">
         {/* Progress Bar */}
         <div className="space-y-2">
-          <div className="flex justify-between text-sm">
-            <span className="text-gray-600">Progress</span>
-            <span className="font-medium text-green-600">65%</span>
-          </div>
-          <Progress value={65} className="h-2" />
-        </div>
+      <div className="flex justify-between text-sm">
+        <span className="text-gray-600">Progress</span>
+        <span className="font-medium text-green-600">
+          {progress !== null ? `${progress}%` : "Loading..."}
+        </span>
+      </div>
+      <Progress value={progress ?? 0} className="h-2" />
+    </div>
 
         {/* Course Features */}
         <div className="space-y-2">

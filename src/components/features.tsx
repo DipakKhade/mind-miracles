@@ -6,7 +6,8 @@ import { BrainCircuit, Heart, Sparkles, Target } from 'lucide-react';
 const features = [
   {
     name: 'Expert Guidance',
-    description: 'Professional support from experienced psychologists and therapists',
+    description:
+      'Professional support from experienced psychologists and therapists',
     icon: BrainCircuit,
   },
   {
@@ -21,14 +22,15 @@ const features = [
   },
   {
     name: 'Goal-Oriented',
-    description: 'Focused strategies to help you achieve your personal objectives',
+    description:
+      'Focused strategies to help you achieve your personal objectives',
     icon: Target,
   },
 ];
 
 export function Features() {
   return (
-    <div className="py-24 sm:py-32 pt-8">
+    <div className="py-24 pt-8 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-base font-semibold leading-7 text-green-600">
@@ -50,8 +52,11 @@ export function Features() {
                 className="flex flex-col"
               >
                 <dt className="text-center">
-                  <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-lg bg-green-600 mx-auto">
-                    <feature.icon className="h-8 w-8 text-white" aria-hidden="true" />
+                  <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-lg bg-green-600">
+                    <feature.icon
+                      className="h-8 w-8 text-white"
+                      aria-hidden="true"
+                    />
                   </div>
                   <span className="text-lg font-semibold leading-7 text-gray-900">
                     {feature.name}

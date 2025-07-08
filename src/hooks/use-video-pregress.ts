@@ -47,7 +47,7 @@ export function useVideoProgress({
         } catch (error) {
           console.error('Failed to save video progress:', error);
         }
-      }, 1000); 
+      }, 1000);
     },
     [videoId, onProgressUpdate],
   );

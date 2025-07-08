@@ -99,3 +99,46 @@ export async function getVideoProgress({ videoId }: { videoId: string }) {
     return { success: false, error: 'Failed to get progress' };
   }
 }
+
+
+export async function getCourseProgress(courseId: string) {
+    const session = await getServerSession(authOptions);
+    if (!session?.user) {
+      return { success: false, error: 'User not authenticated' };
+    }
+
+    const user = await db.user.findFirst({
+      where: {
+        email: session.user.email,
+      },
+      select: {
+        id: true,
+      },
+    });
+
+    if (!user?.id) {
+      return { success: false, error: 'User not authenticated' };
+    }
+
+  const videos = await db.video.findMany({
+    where: { courseId },
+    select: { id: true },
+  });
+
+  const videoIds = videos.map((v) => v.id);
+
+  const progresses = await db.videoProgress.findMany({
+    where: {
+      userId:user.id,
+      videoId: { in: videoIds },
+    },
+    select: { progress: true },
+  });
+
+  const totalVideos = videos.length;
+  const totalProgress = progresses.reduce((sum, p) => sum + p.progress, 0);
+
+  const avgProgress = totalVideos > 0 ? (totalProgress / totalVideos) : 0;
+
+  return Math.round(avgProgress);
+}
