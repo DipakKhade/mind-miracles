@@ -341,8 +341,10 @@ export default function CourseVideos({ courseId }: { courseId: string }) {
                               size="sm"
                               className="bg-green-600 hover:bg-green-700"
                               onClick={() => {
-                                setSelectedVideo(video.id)
-                                router.push(`/courses/watch/${courseId}/${video.vimeoId}`)
+                                setSelectedVideo(video.id);
+                                router.push(
+                                  `/courses/watch/${courseId}/${video.vimeoId}`,
+                                );
                               }}
                             >
                               <Play className="mr-2 h-4 w-4" />
