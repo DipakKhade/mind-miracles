@@ -9,7 +9,7 @@ export async function POST(req: NextRequest) {
     const data = { firstName, lastName, mobileNo, email, age, place };
     getMailonRegister(data);
 
-    const new_register = await db.register.create({
+    const new_register = await db.contactus.create({
       data: {
         firstName,
         lastName,

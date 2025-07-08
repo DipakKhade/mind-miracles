@@ -94,6 +94,16 @@ model Payment {
   paidAt       DateTime      @default(now())
 }
 
+model ContactUs {
+  id        String @id @default(auto()) @map("_id") @db.ObjectId
+  firstName String
+  lastName  String
+  mobileNo  Int
+  email     String
+  age       Int
+  place     String
+}
+
 enum UserRole {
   STUDENT
   INSTRUCTOR

@@ -9,10 +9,9 @@ export async function POST(req: NextRequest) {
 
   try {
     if (AdminMails.includes(session?.user?.email!)) {
-
       return NextResponse.json({
         success: true,
-        data:[]
+        data: [],
       });
     } else {
       return NextResponse.json({
