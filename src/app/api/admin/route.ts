@@ -9,15 +9,10 @@ export async function POST(req: NextRequest) {
 
   try {
     if (AdminMails.includes(session?.user?.email!)) {
-      const register = await db.register.findMany({});
-      const sevendayprogram = await db.sevenDaysProgramUser.findMany({});
-      const personalcounselling = await db.personalCounsellingUser.findMany({});
 
       return NextResponse.json({
         success: true,
-        register,
-        sevendayprogram,
-        personalcounselling,
+        data:[]
       });
     } else {
       return NextResponse.json({
