@@ -34,7 +34,6 @@ export function CourseView({ courseId }: { courseId: string }) {
   useEffect(() => {
     async function getCourseData() {
       const data = await getCourseById(courseId);
-      console.log(data);
       setCourseData(data);
     }
     getCourseData();

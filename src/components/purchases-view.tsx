@@ -13,7 +13,6 @@ export default function PurchasesView() {
     fetch('/api/purchase/courses')
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setEnrolledCourses(data);
       });
   }, []);

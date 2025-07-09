@@ -53,7 +53,6 @@ export async function getTestResultMail(data: any) {
        }</span></p>
      </div>`,
     });
-    console.log('Email sent successfully');
   } catch (error) {
     console.error('Error sending email:', error);
   }

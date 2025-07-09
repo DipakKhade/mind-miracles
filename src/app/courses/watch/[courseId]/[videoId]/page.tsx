@@ -41,7 +41,6 @@ export default function Page({ params }: PageProps) {
     })();
   }, [params]);
 
-  console.log('params are thissss--', params);
   return (
     <main className="min-h-screen bg-background p-4">
       <div className="mx-auto max-w-4xl">

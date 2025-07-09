@@ -14,7 +14,6 @@ export async function GET(
   }
 
   try {
-    // Get user from database
     const user = await db.user.findUnique({
       where: { email: session.user.email },
       select: { id: true },
@@ -33,7 +32,6 @@ export async function GET(
       return NextResponse.json({ error: 'Video not found' }, { status: 404 });
     }
 
-    // Check if user has access to the course
     const userCourse = await db.enrollment.findFirst({
       where: {
         userId: user.id,
@@ -45,16 +43,6 @@ export async function GET(
       return NextResponse.json({ error: 'Access denied' }, { status: 403 });
     }
 
-    // Check if video should be unlocked based on purchase date
-    // const daysSincePurchase = Math.floor(
-    //   (Date.now() - userCourse.from.getTime()) / (1000 * 60 * 60 * 24)
-    // );
-
-    // if (daysSincePurchase < video.dayNumber - 1) {
-    //   return NextResponse.json({ error: "Video not yet unlocked" }, { status: 403 });
-    // }
-
-    // Return video data with Vimeo ID
     return NextResponse.json({
       video: {
         id: video.id,
