@@ -100,25 +100,24 @@ export async function getVideoProgress({ videoId }: { videoId: string }) {
   }
 }
 
-
 export async function getCourseProgress(courseId: string) {
-    const session = await getServerSession(authOptions);
-    if (!session?.user) {
-      return { success: false, error: 'User not authenticated' };
-    }
+  const session = await getServerSession(authOptions);
+  if (!session?.user) {
+    return { success: false, error: 'User not authenticated' };
+  }
 
-    const user = await db.user.findFirst({
-      where: {
-        email: session.user.email,
-      },
-      select: {
-        id: true,
-      },
-    });
+  const user = await db.user.findFirst({
+    where: {
+      email: session.user.email,
+    },
+    select: {
+      id: true,
+    },
+  });
 
-    if (!user?.id) {
-      return { success: false, error: 'User not authenticated' };
-    }
+  if (!user?.id) {
+    return { success: false, error: 'User not authenticated' };
+  }
 
   const videos = await db.video.findMany({
     where: { courseId },
@@ -129,7 +128,7 @@ export async function getCourseProgress(courseId: string) {
 
   const progresses = await db.videoProgress.findMany({
     where: {
-      userId:user.id,
+      userId: user.id,
       videoId: { in: videoIds },
     },
     select: { progress: true },
@@ -138,7 +137,7 @@ export async function getCourseProgress(courseId: string) {
   const totalVideos = videos.length;
   const totalProgress = progresses.reduce((sum, p) => sum + p.progress, 0);
 
-  const avgProgress = totalVideos > 0 ? (totalProgress / totalVideos) : 0;
+  const avgProgress = totalVideos > 0 ? totalProgress / totalVideos : 0;
 
   return Math.round(avgProgress);
 }
