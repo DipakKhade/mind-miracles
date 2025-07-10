@@ -20,7 +20,7 @@ export default function PurchasesView() {
     setIsLoading(false);
   }, []);
 
-  if (isLoading) return <Loading />
+  if (isLoading) return <Loading />;
 
   return (
     <>

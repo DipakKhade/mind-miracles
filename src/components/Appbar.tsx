@@ -42,30 +42,20 @@ export default async function Appbar() {
           >
             <ul className="flex flex-col items-center space-y-2 font-medium md:ml-auto md:flex-row md:space-y-0">
               <li className="hover:text-green-600 md:mr-12">
-              <Link href={'/'}>
-                Home
-              </Link>
+                <Link href={'/'}>Home</Link>
               </li>
               <li className="hover:text-green-600 md:mr-12">
-                <Link href={'/#about'}>
-                  About
-                </Link>
+                <Link href={'/#about'}>About</Link>
               </li>
               <li className="hover:text-green-600 md:mr-12">
-                <Link href={'/#our-work'}>
-                  Our Work
-                </Link>
+                <Link href={'/#our-work'}>Our Work</Link>
               </li>
               <li className="hover:text-green-600 md:mr-12">
-                <Link href={'/courses'}>
-                  Courses
-                </Link>
+                <Link href={'/courses'}>Courses</Link>
               </li>
 
               <li className="hover:text-green-600 md:mr-12">
-                <Link href={'/#contact'}> 
-                  Contact Us
-                </Link>
+                <Link href={'/#contact'}>Contact Us</Link>
               </li>
 
               {session && AdminMails.includes(session.user?.email!) ? (

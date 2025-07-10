@@ -61,17 +61,17 @@ export const CourseCard = ({
     <Card className="overflow-hidden border-green-100 transition-shadow duration-300 hover:shadow-lg">
       <div className="relative">
         <video
-                    className="h-full w-full object-cover"
-                    width="100%"
-                    height="auto"
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                  >
-                    <source src={course.thumbnailURL} type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
+          className="h-full w-full object-cover"
+          width="100%"
+          height="auto"
+          autoPlay
+          loop
+          muted
+          playsInline
+        >
+          <source src={course.thumbnailURL} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
         <div className="absolute right-4 top-4">
           <Badge className="bg-green-600 hover:bg-green-700">
             ₹ {course.price}

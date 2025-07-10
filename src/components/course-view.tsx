@@ -11,35 +11,14 @@ import { ArrowLeft } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import Loading from '@/app/purchases/loading';
 
-type CourseViewProps =
-  | ({
-      courseFeature: {
-        id: string;
-        feature: string;
-        featureDesc: string;
-      }[];
-    } & {
-      id: string;
-      title: string;
-      description: string;
-      price: number;
-      previewURL: string | null;
-      createdAt: Date;
-      updatedAt: Date;
-      isActive: boolean;
-      isPaid: boolean;
-    })
-  | null;
-
 export function CourseView({ courseId }: { courseId: string }) {
-  const [courseData, setCourseData] = useState<CourseViewProps | null>(null);
+  const [courseData, setCourseData] = useState<any | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
   useEffect(() => {
     setIsLoading(true);
     async function getCourseData() {
       const data = await getCourseById(courseId);
-      console.log(data);
       setCourseData(data);
     }
     getCourseData();
