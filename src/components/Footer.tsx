@@ -1,76 +1,81 @@
-import { Button } from "@/components/ui/button"
-import { Separator } from "@/components/ui/separator"
-import { FaLinkedinIn, FaInstagram, FaYoutube, FaWhatsapp, FaPhone, FaEnvelope } from "react-icons/fa"
-import { IoLogoFacebook } from "react-icons/io5"
-import Link from "next/link"
+import { Button } from '@/components/ui/button';
+import { Separator } from '@/components/ui/separator';
+import {
+  FaLinkedinIn,
+  FaInstagram,
+  FaYoutube,
+  FaWhatsapp,
+  FaPhone,
+  FaEnvelope,
+} from 'react-icons/fa';
+import { IoLogoFacebook } from 'react-icons/io5';
+import Link from 'next/link';
 
 export function Footer() {
-  const currentYear = new Date().getFullYear()
+  const currentYear = new Date().getFullYear();
 
   const socialLinks = [
     {
-      name: "LinkedIn",
-      href: "https://www.linkedin.com/in/ms-sonali-khade-79b674331?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
+      name: 'LinkedIn',
+      href: 'https://www.linkedin.com/in/ms-sonali-khade-79b674331?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app',
       icon: FaLinkedinIn,
-      color: "hover:text-blue-600",
+      color: 'hover:text-blue-600',
     },
     {
-      name: "Facebook",
-      href: "https://www.facebook.com/share/1DZRPYsPws/?mibextid=LQQJ4d",
+      name: 'Facebook',
+      href: 'https://www.facebook.com/share/1DZRPYsPws/?mibextid=LQQJ4d',
       icon: IoLogoFacebook,
-      color: "hover:text-blue-500",
+      color: 'hover:text-blue-500',
     },
     {
-      name: "Instagram",
-      href: "https://www.instagram.com/mind_miracles_/profilecard/?igsh=bXNxMjRrcnF2ZnMw",
+      name: 'Instagram',
+      href: 'https://www.instagram.com/mind_miracles_/profilecard/?igsh=bXNxMjRrcnF2ZnMw',
       icon: FaInstagram,
-      color: "hover:text-pink-500",
+      color: 'hover:text-pink-500',
     },
     {
-      name: "YouTube",
-      href: "https://youtube.com/@ms.sonaleepsychologist?si=S3x_G2-Z0zvzcx9n",
+      name: 'YouTube',
+      href: 'https://youtube.com/@ms.sonaleepsychologist?si=S3x_G2-Z0zvzcx9n',
       icon: FaYoutube,
-      color: "hover:text-red-500",
+      color: 'hover:text-red-500',
     },
     {
-      name: "WhatsApp",
-      href: "https://api.whatsapp.com/send/?phone=917798082219&text&type=phone_number&app_absent=0",
+      name: 'WhatsApp',
+      href: 'https://api.whatsapp.com/send/?phone=917798082219&text&type=phone_number&app_absent=0',
       icon: FaWhatsapp,
-      color: "hover:text-green-500",
+      color: 'hover:text-green-500',
     },
-  ]
+  ];
 
-  const quickLinks = [
-    { name: "Courses", href: "/courses" }
-  ]
+  const quickLinks = [{ name: 'Courses', href: '/courses' }];
 
   const services = [
-    { name: "Psychology Consultation", href: "/services/consultation" },
-    { name: "Online Therapy", href: "/services/therapy" },
-    { name: "Group Sessions", href: "/services/group" },
-    { name: "Workshops", href: "/services/workshops" },
-  ]
+    { name: 'Psychology Consultation', href: '/services/consultation' },
+    { name: 'Online Therapy', href: '/services/therapy' },
+    { name: 'Group Sessions', href: '/services/group' },
+    { name: 'Workshops', href: '/services/workshops' },
+  ];
 
   return (
     <footer className="bg-gray-900 text-white">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
           {/* Company Info */}
           <div className="space-y-4">
             <div>
-              <h3 className="text-2xl font-bold mb-4">Mind Miracles</h3>
-              <p className="text-gray-300 leading-relaxed">
-                Transforming lives through professional psychology services and mental health support. Your journey to
-                wellness starts here.
+              <h3 className="mb-4 text-2xl font-bold">Mind Miracles</h3>
+              <p className="leading-relaxed text-gray-300">
+                Transforming lives through professional psychology services and
+                mental health support. Your journey to wellness starts here.
               </p>
             </div>
 
             {/* Social Media Links */}
             <div>
-              <h4 className="text-lg font-semibold mb-3">Follow Us</h4>
+              <h4 className="mb-3 text-lg font-semibold">Follow Us</h4>
               <div className="flex space-x-4">
                 {socialLinks.map((social) => {
-                  const IconComponent = social.icon
+                  const IconComponent = social.icon;
                   return (
                     <Link
                       key={social.name}
@@ -82,7 +87,7 @@ export function Footer() {
                     >
                       <IconComponent className="h-6 w-6" />
                     </Link>
-                  )
+                  );
                 })}
               </div>
             </div>
@@ -90,11 +95,14 @@ export function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
+            <h4 className="mb-4 text-lg font-semibold">Quick Links</h4>
             <ul className="space-y-2">
               {quickLinks.map((link) => (
                 <li key={link.name}>
-                  <Link href={link.href} className="text-gray-300 hover:text-white transition-colors duration-200">
+                  <Link
+                    href={link.href}
+                    className="text-gray-300 transition-colors duration-200 hover:text-white"
+                  >
                     {link.name}
                   </Link>
                 </li>
@@ -104,11 +112,14 @@ export function Footer() {
 
           {/* Services */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Our Services</h4>
+            <h4 className="mb-4 text-lg font-semibold">Our Services</h4>
             <ul className="space-y-2">
               {services.map((service) => (
                 <li key={service.name}>
-                  <Link href={service.href} className="text-gray-300 hover:text-white transition-colors duration-200">
+                  <Link
+                    href={service.href}
+                    className="text-gray-300 transition-colors duration-200 hover:text-white"
+                  >
                     {service.name}
                   </Link>
                 </li>
@@ -118,15 +129,15 @@ export function Footer() {
 
           {/* Contact Information */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Contact Us</h4>
+            <h4 className="mb-4 text-lg font-semibold">Contact Us</h4>
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
-                <FaPhone className="h-4 w-4 text-green-400 flex-shrink-0" />
+                <FaPhone className="h-4 w-4 flex-shrink-0 text-green-400" />
                 <div>
                   <p className="text-sm text-gray-400">Phone</p>
                   <a
                     href="tel:+917798082219"
-                    className="text-white hover:text-green-400 transition-colors duration-200"
+                    className="text-white transition-colors duration-200 hover:text-green-400"
                   >
                     +91-779-808-2219
                   </a>
@@ -134,12 +145,12 @@ export function Footer() {
               </div>
 
               <div className="flex items-center space-x-3">
-                <FaEnvelope className="h-4 w-4 text-blue-400 flex-shrink-0" />
+                <FaEnvelope className="h-4 w-4 flex-shrink-0 text-blue-400" />
                 <div>
                   <p className="text-sm text-gray-400">Email</p>
                   <a
                     href="mailto:mindmiracles1707@gmail.com"
-                    className="text-white hover:text-blue-400 transition-colors duration-200 break-all"
+                    className="break-all text-white transition-colors duration-200 hover:text-blue-400"
                   >
                     mindmiracles1707@gmail.com
                   </a>
@@ -147,7 +158,10 @@ export function Footer() {
               </div>
 
               <div className="pt-4">
-                <Button asChild className="bg-green-600 hover:bg-green-700 text-white">
+                <Button
+                  asChild
+                  className="bg-green-600 text-white hover:bg-green-700"
+                >
                   <Link
                     href="https://api.whatsapp.com/send/?phone=917798082219&text&type=phone_number&app_absent=0"
                     target="_blank"
@@ -165,8 +179,8 @@ export function Footer() {
         <Separator className="my-8 bg-gray-700" />
 
         {/* Bottom Section */}
-        <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-          <div className="text-gray-400 text-sm">
+        <div className="flex flex-col items-center justify-between space-y-4 md:flex-row md:space-y-0">
+          <div className="text-sm text-gray-400">
             <p>&copy; {currentYear} Mind Miracles. All rights reserved.</p>
           </div>
 
@@ -184,5 +198,5 @@ export function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }

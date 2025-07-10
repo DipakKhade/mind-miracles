@@ -47,11 +47,13 @@ export default async function Appbar() {
               <li className="hover:text-green-600 md:mr-12">
                 <Link href={'/#about'}>About</Link>
               </li>
-              <li className="hover:text-green-600 md:mr-12">
-                <Link href={'/#our-work'}>Our Work</Link>
-              </li>
+
               <li className="hover:text-green-600 md:mr-12">
                 <Link href={'/courses'}>Courses</Link>
+              </li>
+
+              <li className="hover:text-green-600 md:mr-12">
+                <Link href={'/purchases'}>Purchases</Link>
               </li>
 
               <li className="hover:text-green-600 md:mr-12">
