@@ -19,15 +19,16 @@ import { getSession } from 'next-auth/react';
 import { toast } from 'sonner';
 import { validateUserForVideo } from '@/actions/courses';
 import { VideoCard } from './video-card';
+import Loading from '@/app/purchases/loading';
 
 export default function CourseVideos({ courseId }: { courseId: string }) {
   const [videos, setVedios] = useState<any[]>();
-
   const [courseData, setCourseData] = useState<any>();
-
+  const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
 
   useEffect(() => {
+    setIsLoading(true);
     (async () => {
       const session = await getSession();
       if (!session) {
@@ -44,15 +45,18 @@ export default function CourseVideos({ courseId }: { courseId: string }) {
         }
       }
     })();
+    setIsLoading(false);
   }, [courseId]);
 
   useEffect(() => {
+    setIsLoading(true);
     (async () => {
       const res = await fetch(`/api/course/${courseId}/vedios`);
       const response = await res.json();
       setCourseData(response);
       setVedios(response?.video);
     })();
+    setIsLoading(false);
   }, [courseId]);
 
   const formatDate = (dateString: string | null) => {
@@ -70,27 +74,7 @@ export default function CourseVideos({ courseId }: { courseId: string }) {
     return 'not-started';
   };
 
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'completed':
-        return 'bg-green-100 text-green-800 border-green-200';
-      case 'in-progress':
-        return 'bg-blue-100 text-blue-800 border-blue-200';
-      default:
-        return 'bg-gray-100 text-gray-600 border-gray-200';
-    }
-  };
-
-  const getStatusText = (status: string) => {
-    switch (status) {
-      case 'completed':
-        return 'Completed';
-      case 'in-progress':
-        return 'In Progress';
-      default:
-        return 'Not Started';
-    }
-  };
+  if(isLoading) return <Loading />
 
   return (
     <div className="min-h-screen bg-gray-50">

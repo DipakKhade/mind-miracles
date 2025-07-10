@@ -6,6 +6,7 @@ import { CourseCard } from './course-card';
 import { PurchasesDetails } from './purchases-details';
 import { useEffect, useState } from 'react';
 import Loading from '@/app/purchases/loading';
+import { GoBack } from './go-back';
 
 export default function PurchasesView() {
   const [enrolledCourses, setEnrolledCourses] = useState<any[]>([]);
@@ -24,7 +25,8 @@ export default function PurchasesView() {
 
   return (
     <>
-      <PurchasesDetails enrolledCourseslength={enrolledCourses.length} />
+      {/* <PurchasesDetails enrolledCourseslength={enrolledCourses.length} /> */}
+      <GoBack backTo='Courses' backToRoute='courses' />
       <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {enrolledCourses.map((enrollment) => (
