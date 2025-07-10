@@ -61,6 +61,7 @@ model Video {
   id          String          @id @default(auto()) @map("_id") @db.ObjectId
   title       String
   description String
+  thumbnailURL String?
   vimeoId     String          @unique
   dayNumber   Int
   course      Course          @relation(fields: [courseId], references: [id])

@@ -18,6 +18,7 @@ import { useRouter } from 'next/navigation';
 import { getSession } from 'next-auth/react';
 import { toast } from 'sonner';
 import { validateUserForVideo } from '@/actions/courses';
+import { VideoCard } from './video-card';
 
 export default function CourseVideos({ courseId }: { courseId: string }) {
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
@@ -208,94 +209,7 @@ export default function CourseVideos({ courseId }: { courseId: string }) {
             {videos &&
               videos.map((video) => {
                 const status = getVideoStatus(video);
-                return (
-                  <Card
-                    key={video.id}
-                    className="transition-shadow hover:shadow-md"
-                  >
-                    <CardContent className="p-6">
-                      <div className="flex items-start gap-4">
-                        {/* Day Number */}
-                        <div className="flex-shrink-0">
-                          <Avatar className="h-12 w-12">
-                            <AvatarFallback className="bg-green-100 font-semibold text-green-800">
-                              {video.dayNumber}
-                            </AvatarFallback>
-                          </Avatar>
-                        </div>
-
-                        {/* Video Info */}
-                        <div className="min-w-0 flex-1">
-                          <div className="mb-2 flex items-start justify-between">
-                            <div>
-                              <h3 className="mb-1 text-lg font-medium text-gray-900">
-                                Day {video.dayNumber}: {video.title}
-                              </h3>
-                              <p className="mb-2 text-sm text-gray-600">
-                                {video.description}
-                              </p>
-                            </div>
-                            <Badge
-                              variant="outline"
-                              className={getStatusColor(status)}
-                            >
-                              {getStatusText(status)}
-                            </Badge>
-                          </div>
-
-                          <div className="mb-3 flex items-center gap-4 text-sm text-gray-500">
-                            <div className="flex items-center">
-                              <Clock className="mr-1 h-4 w-4" />
-                              {video.duration}
-                            </div>
-                            {video.lastWatched && (
-                              <div>
-                                Last watched: {formatDate(video.lastWatched)}
-                              </div>
-                            )}
-                          </div>
-
-                          {/* Progress Bar */}
-                          {video.progress > 0 && (
-                            <div className="mb-4 space-y-1">
-                              <div className="flex items-center justify-between text-xs">
-                                <span className="text-gray-500">Progress</span>
-                                <span className="font-medium text-gray-700">
-                                  {video.progress}%
-                                </span>
-                              </div>
-                              <Progress
-                                value={video.progress}
-                                className="h-1.5"
-                              />
-                            </div>
-                          )}
-
-                          {/* Action Button */}
-                          <div className="flex items-center gap-2">
-                            <Button
-                              size="sm"
-                              className="bg-green-600 hover:bg-green-700"
-                              onClick={() => {
-                                setSelectedVideo(video.id);
-                                router.push(
-                                  `/courses/watch/${courseId}/${video.id}?vid=${video.vimeoId}`,
-                                );
-                              }}
-                            >
-                              <Play className="mr-2 h-4 w-4" />
-                              {video.progress > 0 ? 'Continue' : 'Start'}{' '}
-                              Watching
-                            </Button>
-                            {video.completed && (
-                              <CheckCircle className="h-5 w-5 text-green-600" />
-                            )}
-                          </div>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                );
+                return <VideoCard courseId={courseId} video={video} key={video.id} />
               })}
           </div>
         </div>
