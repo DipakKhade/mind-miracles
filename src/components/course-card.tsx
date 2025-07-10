@@ -57,16 +57,12 @@ export const CourseCard = ({
     });
   };
 
-  const getCourceProgress = async (courseId: string) => {
-    return getCourseProgress(courseId);
-  };
-
   return (
     <Card className="overflow-hidden border-green-100 transition-shadow duration-300 hover:shadow-lg">
       <div className="relative">
-        <img
-          src={course.thumbnailURL || '/placeholder.svg?height=200&width=300'}
-          alt={course.title}
+        <video
+          src={course.thumbnailURL}
+          // alt={course.title}
           width={300}
           height={200}
           className="h-48 w-full object-cover"

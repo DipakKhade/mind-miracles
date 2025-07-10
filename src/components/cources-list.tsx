@@ -26,7 +26,7 @@ export default function CoursesList() {
     <div className="min-h-screen bg-white px-4 py-12 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <div className="mb-12 text-center">
-          <h1 className="mb-4 text-4xl font-bold text-gray-900">Our Courses</h1>
+          <h1 className="mb-4 text-4xl font-bold text-gray-900">Our Programs</h1>
           <p className="text-xl text-gray-600">
             Choose the right program for your journey
           </p>
@@ -36,12 +36,25 @@ export default function CoursesList() {
           {courses &&
             courses.map((course, index) => (
               <Card key={index} className="overflow-hidden border-0 shadow-lg">
-                <div className="flex h-48 items-center justify-center bg-green-700">
-                  <img
+                <div className="flex h-78 items-center justify-center bg-green-700">
+                  {/* <video
                     src={course.thumbnailURL}
-                    alt=""
                     className="h-full w-full object-cover"
-                  />
+                    autoPlay={true}
+                    loop={true}
+                  /> */}
+              <video
+                className="h-full w-full object-cover"
+                width="100%"
+                height="auto"
+                autoPlay
+                loop
+                muted
+                playsInline
+              >
+                <source src={course.thumbnailURL} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
                 </div>
 
                 <CardHeader>
@@ -56,26 +69,13 @@ export default function CoursesList() {
                 <CardContent>
                   <div className="space-y-4">
                     <h3 className="text-xl font-semibold text-gray-900">
-                      What you&apos;ll learn:
+                    What This 7-Day Program Can Do for You
                     </h3>
                     <ul className="space-y-2">
                       {course?.courseFeature &&
                         course?.courseFeature.length &&
                         course.courseFeature.map((feature, idx) => (
                           <li key={idx} className="flex items-start">
-                            <svg
-                              className="mr-2 h-6 w-6 text-[#407A45]"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                d="M5 13l4 4L19 7"
-                              />
-                            </svg>
                             <span className="text-gray-700">
                               {feature.feature}
                             </span>

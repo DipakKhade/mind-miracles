@@ -20,6 +20,6 @@ export const registrationSchema = z.object({
     .min(1, 'Age is required')
     .refine((val) => {
       const num = parseInt(val);
-      return num >= 1 && num <= 100;
-    }, 'Age must be between 16 and 100'),
+      return num >= 6 && num <= 100;
+    }, 'Age must be between 6 and 100'),
 });
