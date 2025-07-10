@@ -21,8 +21,6 @@ import { validateUserForVideo } from '@/actions/courses';
 import { VideoCard } from './video-card';
 
 export default function CourseVideos({ courseId }: { courseId: string }) {
-  const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
-  const [course, setCourse] = useState();
   const [videos, setVedios] = useState<any[]>();
 
   const [courseData, setCourseData] = useState<any>();
@@ -55,7 +53,7 @@ export default function CourseVideos({ courseId }: { courseId: string }) {
       setCourseData(response);
       setVedios(response?.video);
     })();
-  }, []);
+  }, [courseId]);
 
   const formatDate = (dateString: string | null) => {
     if (!dateString) return 'Not started';
@@ -162,7 +160,7 @@ export default function CourseVideos({ courseId }: { courseId: string }) {
                   <div className="mb-4 grid grid-cols-1 gap-4 md:grid-cols-3">
                     <div className="flex items-center text-sm text-gray-600">
                       <Calendar className="mr-2 h-4 w-4" />
-                      Enrolled: {courseData.enrolledAt}
+                      Enrolled: {formatDate(courseData.enrolledAt)}
                     </div>
                     <div className="flex items-center text-sm text-gray-600">
                       <Users className="mr-2 h-4 w-4" />
@@ -209,7 +207,9 @@ export default function CourseVideos({ courseId }: { courseId: string }) {
             {videos &&
               videos.map((video) => {
                 const status = getVideoStatus(video);
-                return <VideoCard courseId={courseId} video={video} key={video.id} />
+                return (
+                  <VideoCard courseId={courseId} video={video} key={video.id} />
+                );
               })}
           </div>
         </div>
