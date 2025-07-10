@@ -13,9 +13,9 @@ import { useRouter } from 'next/navigation';
 type CourseViewProps =
   | ({
       courseFeature: {
-        id:string,
+        id: string;
         feature: string;
-        featureDesc: string
+        featureDesc: string;
       }[];
     } & {
       id: string;
@@ -36,7 +36,7 @@ export function CourseView({ courseId }: { courseId: string }) {
   useEffect(() => {
     async function getCourseData() {
       const data = await getCourseById(courseId);
-      console.log(data)
+      console.log(data);
       setCourseData(data);
     }
     getCourseData();

@@ -36,7 +36,7 @@ export default function Register() {
 
       const response = await r.json();
       SetLoading(false);
-      if(response.success === true){
+      if (response.success === true) {
         toast.success(response.message, {
           description: 'thanks for connecting',
         });

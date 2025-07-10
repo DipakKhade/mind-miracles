@@ -29,6 +29,10 @@ export const PayAndRegisterButton = ({
   const amountToPay = amount_to_pay * 100; //for precision
 
   const createOrder = async () => {
+    if (!isFormValid) {
+      toast.warning('Please fill valid details...');
+      return;
+    }
     SetLoading(true);
     const res = await fetch('/api/createOrder', {
       method: 'POST',
@@ -87,7 +91,7 @@ export const PayAndRegisterButton = ({
         src="https://checkout.razorpay.com/v1/checkout.js"
       />
       <Button
-        disabled={isFormValid}
+        disabled={!isFormValid}
         onClick={createOrder}
         type="submit"
         className="w-full bg-green-700 hover:bg-[#3a5a40]"

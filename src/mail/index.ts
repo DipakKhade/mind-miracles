@@ -28,7 +28,7 @@ export async function getMailonRegister(data: any) {
       </div>`,
     });
   } catch (e) {
-    console.log(e)
+    console.log(e);
   }
 }
 

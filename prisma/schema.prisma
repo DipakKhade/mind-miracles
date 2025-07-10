@@ -38,10 +38,11 @@ model Course {
 }
 
 model CourseFeature {
-  id       String @id @default(auto()) @map("_id") @db.ObjectId
-  course   Course @relation(fields: [courseId], references: [id])
-  courseId String @db.ObjectId
-  feature  String
+  id          String @id @default(auto()) @map("_id") @db.ObjectId
+  course      Course @relation(fields: [courseId], references: [id])
+  courseId    String @db.ObjectId
+  feature     String
+  featureDesc String?
 }
 
 model Enrollment {

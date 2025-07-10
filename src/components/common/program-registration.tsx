@@ -70,6 +70,7 @@ export function ProgramRegistrationForm({
           }
         });
         setErrors(newErrors);
+        console.log(errors);
       }
       setIsValidated(false);
       return false;
@@ -101,11 +102,9 @@ export function ProgramRegistrationForm({
   };
 
   const isFormValid =
-    Object.keys(errors).length === 0 &&
-    formState.name &&
-    formState.email &&
-    formState.whatsapp &&
-    formState.age;
+    formState.name && formState.email && formState.whatsapp && formState.age
+      ? true
+      : false;
 
   return (
     <section className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 px-4 py-16">
@@ -283,23 +282,19 @@ export function ProgramRegistrationForm({
                 )}
               </div>
 
-              {/* Success Message */}
-              {isFormValid && (
-                <Alert className="border-green-200 bg-green-50">
-                  <CheckCircle2 className="h-4 w-4 text-green-600" />
-                  <AlertDescription className="text-green-700">
-                    Form is valid! You can proceed with registration.
-                  </AlertDescription>
-                </Alert>
-              )}
-
               {/* Submit Button */}
               <div className="pt-4">
                 <PayAndRegisterButton
                   course_id={course_id}
                   amount_to_pay={amount_to_pay}
                   disabled={!isFormValid}
-                  isFormValid={isFormValid as boolean}
+                  isFormValid={
+                    (isFormValid as boolean) &&
+                    !errors.name &&
+                    !errors.email &&
+                    !errors.whatsapp &&
+                    !errors.age
+                  }
                 />
               </div>
             </form>

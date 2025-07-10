@@ -24,7 +24,7 @@ export async function getCourseById(id: string) {
       courseFeature: {
         select: {
           feature: true,
-          featureDesc: true
+          featureDesc: true,
         },
       },
     },
