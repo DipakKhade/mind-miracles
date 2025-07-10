@@ -13,7 +13,7 @@ import { FaYoutube } from 'react-icons/fa';
 import { FaWhatsapp } from 'react-icons/fa';
 
 export default function Register() {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
   const [loading, SetLoading] = useState<boolean>(false);
   async function submitForm(data: any) {
     SetLoading(true);
@@ -25,6 +25,7 @@ export default function Register() {
         !data.email ||
         !data.age
       ) {
+        SetLoading(false);
         toast.warning(`Please fill the form`);
         return;
       }
@@ -35,9 +36,12 @@ export default function Register() {
 
       const response = await r.json();
       SetLoading(false);
-      toast.success(response.message, {
-        description: 'thanks for connecting',
-      });
+      if(response.success === true){
+        toast.success(response.message, {
+          description: 'thanks for connecting',
+        });
+        reset();
+      }
     } catch (e) {
       SetLoading(false);
       toast.warning('try again');

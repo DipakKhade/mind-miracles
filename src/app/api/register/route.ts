@@ -7,7 +7,7 @@ export async function POST(req: NextRequest) {
 
   try {
     const data = { firstName, lastName, mobileNo, email, age, place };
-    getMailonRegister(data);
+    // getMailonRegister(data);
 
     const new_register = await db.contactUs.create({
       data: {
@@ -19,16 +19,14 @@ export async function POST(req: NextRequest) {
         place,
       },
     });
+
     return NextResponse.json({
       success: true,
       id: new_register.id,
       message: 'register successfully',
     });
+
   } catch (e) {
     console.log(e);
   }
-
-  return NextResponse.json({
-    message: false,
-  });
 }

@@ -12,20 +12,24 @@ const Transporter = nodemailer.createTransport({
 
 export async function getMailonRegister(data: any) {
   const { firstName, lastName, mobileNo, email, age, place } = data;
-  await Transporter.sendMail({
-    from: 'carrers.dp@gmail.com',
-    // sender: 'dipakhade214@gmail.com',
-    to: 'mindmiracles1707@gmail.com',
-    subject: 'new registration',
-    html: `<div>
-      <h1>New Registration</h1>
-      <p><b>Name:</b> <span>${firstName} ${lastName}</span></p>
-      <p><b>Mobile No:</b> <span>${mobileNo}</span></p>
-      <p><b>Email:</b> <span>${email}</span></p>
-      <p><b>Age:</b> <span>${age}</span></p>
-      <p><b>Place:</b> <span>${place}</span></p>
-    </div>`,
-  });
+  try {
+    await Transporter.sendMail({
+      from: 'carrers.dp@gmail.com',
+      // sender: 'dipakhade214@gmail.com',
+      to: 'mindmiracles1707@gmail.com',
+      subject: 'new registration',
+      html: `<div>
+        <h1>New Registration</h1>
+        <p><b>Name:</b> <span>${firstName} ${lastName}</span></p>
+        <p><b>Mobile No:</b> <span>${mobileNo}</span></p>
+        <p><b>Email:</b> <span>${email}</span></p>
+        <p><b>Age:</b> <span>${age}</span></p>
+        <p><b>Place:</b> <span>${place}</span></p>
+      </div>`,
+    });
+  } catch (e) {
+    console.log(e)
+  }
 }
 
 export async function getTestResultMail(data: any) {
