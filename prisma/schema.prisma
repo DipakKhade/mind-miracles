@@ -17,6 +17,8 @@ model User {
   createdAt     DateTime?       @default(now())
   updatedAt     DateTime?       @updatedAt
   token         String?
+  whatsAppNo    String?
+  age           Int?
   enrollments   Enrollment[]
   videoProgress VideoProgress[]
 }
@@ -38,18 +40,18 @@ model Course {
 }
 
 model CourseFeature {
-  id          String @id @default(auto()) @map("_id") @db.ObjectId
-  course      Course @relation(fields: [courseId], references: [id])
-  courseId    String @db.ObjectId
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  course      Course  @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  courseId    String  @db.ObjectId
   feature     String
   featureDesc String?
 }
 
 model Enrollment {
   id         String   @id @default(auto()) @map("_id") @db.ObjectId
-  user       User     @relation(fields: [userId], references: [id])
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId     String   @db.ObjectId
-  course     Course   @relation(fields: [courseId], references: [id])
+  course     Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
   courseId   String   @db.ObjectId
   enrolledAt DateTime @default(now())
   payment    Payment?
@@ -58,24 +60,24 @@ model Enrollment {
 }
 
 model Video {
-  id          String          @id @default(auto()) @map("_id") @db.ObjectId
-  title       String
-  description String
+  id           String          @id @default(auto()) @map("_id") @db.ObjectId
+  title        String
+  description  String
   thumbnailURL String?
-  vimeoId     String          @unique
-  dayNumber   Int
-  course      Course          @relation(fields: [courseId], references: [id])
-  courseId    String          @db.ObjectId
-  progress    VideoProgress[]
-  createdAt   DateTime        @default(now())
-  updatedAt   DateTime        @updatedAt
+  vimeoId      String          @unique
+  dayNumber    Int
+  course       Course          @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  courseId     String          @db.ObjectId
+  progress     VideoProgress[]
+  createdAt    DateTime        @default(now())
+  updatedAt    DateTime        @updatedAt
 }
 
 model VideoProgress {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  user        User     @relation(fields: [userId], references: [id])
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId      String   @db.ObjectId
-  video       Video    @relation(fields: [videoId], references: [id])
+  video       Video    @relation(fields: [videoId], references: [id], onDelete: Cascade)
   videoId     String   @db.ObjectId
   progress    Float    @default(0)
   completed   Boolean  @default(false)
@@ -87,13 +89,16 @@ model VideoProgress {
 }
 
 model Payment {
-  id           String        @id @default(auto()) @map("_id") @db.ObjectId
-  enrollment   Enrollment    @relation(fields: [enrollmentId], references: [id])
-  enrollmentId String        @unique @db.ObjectId
-  amount       Float
-  method       String
-  status       PaymentStatus @default(PENDING)
-  paidAt       DateTime      @default(now())
+  id                String        @id @default(auto()) @map("_id") @db.ObjectId
+  enrollment        Enrollment    @relation(fields: [enrollmentId], references: [id], onDelete: Cascade)
+  enrollmentId      String        @unique @db.ObjectId
+  amount            Float
+  method            String
+  razorpayPaymentId String
+  razorpayOrderId   String
+  razorpaySignature String
+  status            PaymentStatus @default(PENDING)
+  paidAt            DateTime      @default(now())
 }
 
 model ContactUs {

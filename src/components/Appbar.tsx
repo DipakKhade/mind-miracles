@@ -10,7 +10,7 @@ import { getSession } from 'next-auth/react';
 export default function Appbar() {
   // const session = await getServerSession(authOptions);
   const [toggleMenu, SetToggleMenu] = useState<boolean>(false);
-  const [session , setSession] = useState<any>(null);
+  const [session, setSession] = useState<any>(null);
   const btnRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -52,7 +52,12 @@ export default function Appbar() {
             <span className="text-xl text-black">Mindmiracles</span>
           </Link>
 
-          <input type="checkbox" className="peer hidden" id="navbar-open" ref={btnRef}  />
+          <input
+            type="checkbox"
+            className="peer hidden"
+            id="navbar-open"
+            ref={btnRef}
+          />
           <label
             className="absolute right-7 top-5 cursor-pointer md:hidden"
             htmlFor="navbar-open"
@@ -78,22 +83,37 @@ export default function Appbar() {
             className="flex max-h-0 w-full flex-col items-center justify-between overflow-hidden transition-all peer-checked:mt-8 peer-checked:max-h-56 md:ml-24 md:max-h-full md:flex-row md:items-start"
           >
             <ul className="flex flex-col items-center space-y-2 font-medium md:ml-auto md:flex-row md:space-y-0">
-              <li className="hover:text-green-600 md:mr-12" onClick={handleMenuToggle}>
+              <li
+                className="hover:text-green-600 md:mr-12"
+                onClick={handleMenuToggle}
+              >
                 <Link href={'/'}>Home</Link>
               </li>
-              <li className="hover:text-green-600 md:mr-12" onClick={handleMenuToggle}>
+              <li
+                className="hover:text-green-600 md:mr-12"
+                onClick={handleMenuToggle}
+              >
                 <Link href={'/#about'}>About</Link>
               </li>
 
-              <li className="hover:text-green-600 md:mr-12" onClick={handleMenuToggle}>
+              <li
+                className="hover:text-green-600 md:mr-12"
+                onClick={handleMenuToggle}
+              >
                 <Link href={'/courses'}>Courses</Link>
               </li>
 
-              <li className="hover:text-green-600 md:mr-12" onClick={handleMenuToggle}>
+              <li
+                className="hover:text-green-600 md:mr-12"
+                onClick={handleMenuToggle}
+              >
                 <Link href={'/purchases'}>Purchases</Link>
               </li>
 
-              <li className="hover:text-green-600 md:mr-12" onClick={handleMenuToggle}>
+              <li
+                className="hover:text-green-600 md:mr-12"
+                onClick={handleMenuToggle}
+              >
                 <Link href={'/#contact'}>Contact Us</Link>
               </li>
 

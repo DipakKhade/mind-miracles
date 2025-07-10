@@ -44,7 +44,6 @@ export const PayAndRegisterButton = ({
       key: 'rzp_test_Hbcvz6QTucu6XP', //process.env.key_id,
       order_id: data.id,
       handler: async function (response: any) {
-        // verify payment
         const res = await fetch('/api/verify', {
           method: 'POST',
           body: JSON.stringify({
@@ -56,15 +55,18 @@ export const PayAndRegisterButton = ({
         const data = await res.json();
         if (data.isOk) {
           toast.success('Registration successfull');
-          const response = await fetch(`/api/purchase`, {
+          const resp = await fetch(`/api/purchase`, {
             method: 'POST',
             body: JSON.stringify({
               form_values,
               course_id,
               amountToPay: amountToPay,
+              orderId: response.razorpay_order_id,
+              razorpayPaymentId: response.razorpay_payment_id,
+              razorpaySignature: response.razorpay_signature,
             }),
           });
-          const res = await response.json();
+          const res = await resp.json();
           if (res.id) {
             SetLoading(false);
             router.push('/purchases');

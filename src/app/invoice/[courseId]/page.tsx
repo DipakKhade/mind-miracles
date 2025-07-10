@@ -1,7 +1,9 @@
-import { Invoice } from "@/components/invoice";
+import { Invoice } from '@/components/invoice';
 
 export default function Page() {
-  return <>
-    <Invoice/>
-  </>
+  return (
+    <>
+      <Invoice />
+    </>
+  );
 }

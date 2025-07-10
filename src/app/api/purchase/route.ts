@@ -19,33 +19,59 @@ export async function POST(request: NextRequest) {
   if (!user) {
     return NextResponse.json({ message: 'Not authenticated' }, { status: 401 });
   }
-  const { form_values, course_id, amountToPay } = (await request.json()) as {
+  const {
+    form_values,
+    course_id,
+    amountToPay,
+    orderId,
+    razorpayPaymentId,
+    razorpaySignature,
+  } = (await request.json()) as {
     form_values: FormState;
     course_id: string;
     amountToPay: number;
+    orderId: string;
+    razorpayPaymentId: string;
+    razorpaySignature: string;
   };
   const { name, age, whatsapp, email } = form_values;
   try {
-    //FIX : amount_to_pay get it from razorpay payment response
-    const newPurchase = await db.enrollment.create({
-      data: {
-        courseId: course_id,
-        userId: user.id,
-        enrolledAt: new Date(),
-        payment: {
-          create: {
-            amount: amountToPay,
-            method: 'razorpay',
-            status: 'COMPLETED',
-            paidAt: new Date(),
+    const txn = await db.$transaction(async (tx) => {
+      await tx.user.update({
+        where: {
+          id: user.id,
+        },
+        data: {
+          age: +age,
+          whatsAppNo: whatsapp,
+          name,
+        },
+      });
+
+      //FIX : amount_to_pay get it from razorpay payment response
+      const newPurchase = await db.enrollment.create({
+        data: {
+          courseId: course_id,
+          userId: user.id,
+          enrolledAt: new Date(),
+          payment: {
+            create: {
+              amount: amountToPay,
+              method: 'razorpay',
+              status: 'COMPLETED',
+              paidAt: new Date(),
+              razorpayPaymentId,
+              razorpayOrderId: orderId,
+              razorpaySignature,
+            },
           },
         },
-      },
+      });
     });
 
     return NextResponse.json({
       message: `Registration successful`,
-      id: newPurchase.id,
+      id: 'newPurchase.id',
     });
   } catch (error) {
     return NextResponse.json({
