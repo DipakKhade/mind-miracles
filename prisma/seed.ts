@@ -89,33 +89,33 @@ async function main() {
   });
 
   // Enrollments and Payments
-  const enrollment1 = await db.enrollment.create({
-    data: {
-      userId: user1.id,
-      courseId: course1.id,
-      payment: {
-        create: {
-          amount: 1499,
-          method: 'UPI',
-          status: 'COMPLETED',
-        },
-      },
-    },
-  });
+  // const enrollment1 = await db.enrollment.create({
+  //   data: {
+  //     userId: user1.id,
+  //     courseId: course1.id,
+  //     payment: {
+  //       create: {
+  //         amount: 1499,
+  //         method: 'UPI',
+  //         status: 'COMPLETED',
+  //       },
+  //     },
+  //   },
+  // });
 
-  const enrollment2 = await db.enrollment.create({
-    data: {
-      userId: user2.id,
-      courseId: course2.id,
-      payment: {
-        create: {
-          amount: 999,
-          method: 'Credit Card',
-          status: 'PENDING',
-        },
-      },
-    },
-  });
+  // const enrollment2 = await db.enrollment.create({
+  //   data: {
+  //     userId: user2.id,
+  //     courseId: course2.id,
+  //     payment: {
+  //       create: {
+  //         amount: 999,
+  //         method: 'Credit Card',
+  //         status: 'PENDING',
+  //       },
+  //     },
+  //   },
+  // });
 
   // Video Progress
   const videos = await db.video.findMany();
