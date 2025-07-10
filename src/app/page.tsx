@@ -29,7 +29,7 @@ export default function Home() {
         {/* <Payment/> */}
       </div>
       <Register />
-      <Footer />
+      {/* <Footer /> */}
     </main>
   );
 }

@@ -5,6 +5,7 @@ import Appbar from '@/components/Appbar';
 import { Toaster } from 'sonner';
 import NextTopLoader from 'nextjs-toploader';
 import { Providers } from './Providers';
+import { Footer } from '@/components/Footer';
 
 const merriweather = Merriweather({ subsets: ['latin'], weight: '300' });
 
@@ -30,6 +31,7 @@ export default function RootLayout({
           <Toaster richColors position="top-right" />
           {children}
         </body>
+        <Footer />
       </Providers>
     </html>
   );

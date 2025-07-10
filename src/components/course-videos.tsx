@@ -74,7 +74,7 @@ export default function CourseVideos({ courseId }: { courseId: string }) {
     return 'not-started';
   };
 
-  if(isLoading) return <Loading />
+  if (isLoading) return <Loading />;
 
   return (
     <div className="min-h-screen bg-gray-50">
