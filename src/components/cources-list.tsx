@@ -11,17 +11,25 @@ import Link from 'next/link';
 import { use, useEffect, useState } from 'react';
 import { getCourses } from '@/actions/courses';
 import { Course } from '@/types';
+import Loading from '@/app/purchases/loading';
 
 export default function CoursesList() {
   const [courses, setCourses] = useState<Course[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
   useEffect(() => {
+    setLoading(true)
     async function getCoursesData() {
       const data = await getCourses();
       //@ts-ignore
       setCourses(data);
     }
     getCoursesData();
+    setLoading(false)
   }, []);
+
+  if(loading) return <Loading/>
+
+
   return (
     <div className="min-h-screen bg-white px-4 py-12 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">

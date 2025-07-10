@@ -124,7 +124,7 @@ export async function getCourseProgress(courseId: string) {
     select: { id: true },
   });
 
-  const videoIds = videos.map((v) => v.id);
+  const videoIds = videos.map((v:any) => v.id);
 
   const progresses = await db.videoProgress.findMany({
     where: {
@@ -135,7 +135,7 @@ export async function getCourseProgress(courseId: string) {
   });
 
   const totalVideos = videos.length;
-  const totalProgress = progresses.reduce((sum, p) => sum + p.progress, 0);
+  const totalProgress = progresses.reduce((sum:any, p:any) => sum + p.progress, 0);
 
   const avgProgress = totalVideos > 0 ? totalProgress / totalVideos : 0;
 

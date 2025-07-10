@@ -5,17 +5,22 @@ import { Button } from './ui/button';
 import { CourseCard } from './course-card';
 import { PurchasesDetails } from './purchases-details';
 import { useEffect, useState } from 'react';
+import Loading from '@/app/purchases/loading';
 
 export default function PurchasesView() {
   const [enrolledCourses, setEnrolledCourses] = useState<any[]>([]);
-
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
+    setIsLoading(true);
     fetch('/api/purchase/courses')
       .then((res) => res.json())
       .then((data) => {
         setEnrolledCourses(data);
       });
+    setIsLoading(false);
   }, []);
+
+  if (isLoading) return <Loading />
 
   return (
     <>

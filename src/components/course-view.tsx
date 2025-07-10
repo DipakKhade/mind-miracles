@@ -9,6 +9,7 @@ import { ProgramRegistrationForm } from '@/components/common/program-registratio
 import { Button } from './ui/button';
 import { ArrowLeft } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import Loading from '@/app/purchases/loading';
 
 type CourseViewProps =
   | ({
@@ -32,15 +33,21 @@ type CourseViewProps =
 
 export function CourseView({ courseId }: { courseId: string }) {
   const [courseData, setCourseData] = useState<CourseViewProps | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
   useEffect(() => {
+    setIsLoading(true);
     async function getCourseData() {
       const data = await getCourseById(courseId);
       console.log(data);
       setCourseData(data);
     }
     getCourseData();
+    setIsLoading(false);
   }, []);
+
+  if (isLoading) return <Loading />;
+
   return (
     <>
       <div>

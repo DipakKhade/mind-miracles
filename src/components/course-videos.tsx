@@ -122,11 +122,23 @@ export default function CourseVideos({ courseId }: { courseId: string }) {
             <div className="p-6">
               <div className="flex flex-col gap-6 lg:flex-row">
                 <div className="flex-shrink-0">
-                  <img
+                  {/* <img
                     src={courseData.thumbnailURL || '/placeholder.svg'}
                     alt={courseData.title}
                     className="h-40 w-full rounded-lg object-cover lg:w-64"
-                  />
+                  /> */}
+                  <video
+                    className="h-40 w-full rounded-lg object-cover lg:w-64"
+                    width="100%"
+                    height="auto"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                  >
+                    <source src={courseData.thumbnailURL} type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
                 </div>
                 <div className="flex-1">
                   <div className="mb-4 flex items-start justify-between">
@@ -138,12 +150,12 @@ export default function CourseVideos({ courseId }: { courseId: string }) {
                         {courseData.description}
                       </p>
                     </div>
-                    <Badge
+                    {/* <Badge
                       variant="secondary"
                       className="bg-green-100 text-green-800"
                     >
                       ₹{courseData.price}
-                    </Badge>
+                    </Badge> */}
                   </div>
 
                   <div className="mb-4 grid grid-cols-1 gap-4 md:grid-cols-3">
