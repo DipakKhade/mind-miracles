@@ -63,7 +63,12 @@ export async function GET(
       );
     }
 
-    return NextResponse.json({ ...course, completedVideos: 0, totalVideos: course?.video.length, enrolledAt: isUserEnrolled.enrolledAt });
+    return NextResponse.json({
+      ...course,
+      completedVideos: 0,
+      totalVideos: course?.video.length,
+      enrolledAt: isUserEnrolled.enrolledAt,
+    });
   } catch (error) {
     console.error('Error fetching videos:', error);
     return NextResponse.json(
