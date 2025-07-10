@@ -38,7 +38,7 @@ export default async function Appbar() {
           </label>
           <nav
             aria-label="Header Navigation"
-            className="flex max-h-0 w-full flex-col items-center justify-between overflow-hidden transition-all peer-checked:mt-8 peer-checked:max-h-56 md:ml-24 md:max-h-full md:flex-row md:items-start"
+            className="flex max-h-0 w-full flex-col items-center justify-between transition-all peer-checked:mt-8 peer-checked:max-h-56 md:ml-24 md:max-h-full md:flex-row md:items-start"
           >
             <ul className="flex flex-col items-center space-y-2 font-medium md:ml-auto md:flex-row md:space-y-0">
               <li className="hover:text-green-600 md:mr-12">
