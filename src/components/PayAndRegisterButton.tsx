@@ -61,7 +61,7 @@ export const PayAndRegisterButton = ({
         });
         const data = await res.json();
         if (data.isOk) {
-          toast.success('Registration successfull');
+          toast.success('Registration successful...');
           const resp = await fetch(`/api/purchase`, {
             method: 'POST',
             body: JSON.stringify({
