@@ -114,8 +114,8 @@ export const SignInButton = () => {
         //   )}
         // </span>
         <div className="hover:text-green-600 md:mr-12">
-        <button onClick={() => signOut()}>Sign Out</button>
-      </div>
+          <button onClick={() => signOut()}>Sign Out</button>
+        </div>
       ) : (
         <div className="hover:text-green-600 md:mr-12">
           <button onClick={() => signIn('google')}>Sign In</button>
