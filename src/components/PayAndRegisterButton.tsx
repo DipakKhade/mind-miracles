@@ -8,6 +8,7 @@ import { useState } from 'react';
 import { useRecoilValue, useResetRecoilState } from 'recoil';
 import { registrationFormStateAtom } from '@/store';
 import { Spinner } from './spinner';
+import { getSession } from 'next-auth/react';
 
 export const PayAndRegisterButton = ({
   course_id,
@@ -29,6 +30,11 @@ export const PayAndRegisterButton = ({
   const amountToPay = amount_to_pay * 100; //for precision
 
   const createOrder = async () => {
+    const session = await getSession();
+    if (!session) {
+      toast.warning('Please login first');
+      return;
+    }
     if (!isFormValid) {
       toast.warning('Please fill valid details...');
       return;
@@ -42,7 +48,7 @@ export const PayAndRegisterButton = ({
 
     const paymentData = {
       // key: 'rzp_test_Hbcvz6QTucu6XP', //process.env.key_id,
-      key:process.env.key_id,
+      key: process.env.key_id,
       order_id: data.id,
       handler: async function (response: any) {
         const res = await fetch('/api/verify', {
