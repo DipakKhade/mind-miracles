@@ -41,7 +41,8 @@ export const PayAndRegisterButton = ({
     const data = await res.json();
 
     const paymentData = {
-      key: 'rzp_test_Hbcvz6QTucu6XP', //process.env.key_id,
+      // key: 'rzp_test_Hbcvz6QTucu6XP', //process.env.key_id,
+      key:process.env.key_id,
       order_id: data.id,
       handler: async function (response: any) {
         const res = await fetch('/api/verify', {
