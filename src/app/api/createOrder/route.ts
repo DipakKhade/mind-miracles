@@ -7,6 +7,10 @@ const razorpay = new Razorpay({
 });
 
 export async function POST(req: Request) {
+  console.log('----------------------------------------------------------------')
+  console.log('process.env.key_id----------', process.env.key_id)
+  console.log('process.env.key_secret---------', process.env.key_secret)
+  console.log('----------------------------------------------------------------')
   const { amount } = await req.json();
   const order = await razorpay.orders.create({
     amount,
