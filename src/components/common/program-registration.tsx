@@ -107,8 +107,8 @@ export function ProgramRegistrationForm({
       : false;
 
   return (
-    <section className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 px-4 py-16">
-      <div className="container mx-auto max-w-2xl">
+    <section className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 py-16">
+      <div className="container max-w-2xl">
         <div className="mb-8 text-center">
           <h1 className="mb-4 text-4xl font-bold text-gray-900">
             Join Our Program
