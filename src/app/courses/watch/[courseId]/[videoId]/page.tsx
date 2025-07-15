@@ -59,7 +59,7 @@ export default function Page({ params }: PageProps) {
 
   return (
     <main className="min-h-screen bg-background p-4">
-       <GoBack backTo='' backToRoute={`courses/watch/${params.courseId}`} />
+      <GoBack backTo="" backToRoute={`courses/watch/${params.courseId}`} />
       <div className="mx-auto max-w-4xl space-y-6 pt-4">
         {/* Video Player Card */}
         <Card className="overflow-hidden">
