@@ -20,6 +20,7 @@ import { toast } from 'sonner';
 import { validateUserForVideo } from '@/actions/courses';
 import { VideoCard } from './video-card';
 import Loading from '@/app/purchases/loading';
+import { GoBack } from './go-back';
 
 export default function CourseVideos({ courseId }: { courseId: string }) {
   const [videos, setVedios] = useState<any[]>();

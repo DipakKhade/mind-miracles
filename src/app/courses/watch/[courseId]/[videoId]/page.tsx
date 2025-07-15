@@ -8,6 +8,7 @@ import { toast } from 'sonner';
 import { getVideoMetaData, validateUserForVideo } from '@/actions/courses';
 import { useSearchParams } from 'next/navigation';
 import { Skeleton } from '@/components/ui/skeleton';
+import { GoBack } from '@/components/go-back';
 
 interface PageProps {
   params: {
@@ -51,18 +52,19 @@ export default function Page({ params }: PageProps) {
   }, [params]);
 
   const formatDuration = (seconds: number) => {
-    const minutes = Math.floor(seconds / 60)
-    const remainingSeconds = seconds % 60
-    return `${minutes}:${remainingSeconds.toString().padStart(2, "0")}`
-  }
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
+  };
 
   return (
     <main className="min-h-screen bg-background p-4">
-      <div className="mx-auto max-w-4xl space-y-6">
+       <GoBack backTo='' backToRoute={`courses/watch/${params.courseId}`} />
+      <div className="mx-auto max-w-4xl space-y-6 pt-4">
         {/* Video Player Card */}
         <Card className="overflow-hidden">
           <Suspense fallback={<VideoPlayerSkeleton />}>
-            <VimeoPlayer vimeoId={vimeoId || ""} videoId={params.videoId} />
+            <VimeoPlayer vimeoId={vimeoId || ''} videoId={params.videoId} />
           </Suspense>
         </Card>
 
@@ -76,9 +78,13 @@ export default function Page({ params }: PageProps) {
               </div>
             ) : (
               <div className="space-y-2">
-                <h1 className="text-2xl font-bold leading-tight text-green-500">{videoMetadata?.title}</h1>
+                <h1 className="text-2xl font-bold leading-tight text-green-500">
+                  {videoMetadata?.title}
+                </h1>
                 {videoMetadata?.duration && (
-                  <p className="text-sm text-muted-foreground">Duration: {formatDuration(100)}</p>
+                  <p className="text-sm text-muted-foreground">
+                    Duration: {formatDuration(100)}
+                  </p>
                 )}
               </div>
             )}
@@ -93,8 +99,8 @@ export default function Page({ params }: PageProps) {
             ) : (
               <div className="space-y-4">
                 <div>
-                  <h3 className="text-lg font-semibold mb-2">Description</h3>
-                  <p className="text-muted-foreground leading-relaxed whitespace-pre-wrap">
+                  <h3 className="mb-2 text-lg font-semibold">Description</h3>
+                  <p className="whitespace-pre-wrap leading-relaxed text-muted-foreground">
                     {videoMetadata?.description}
                   </p>
                 </div>

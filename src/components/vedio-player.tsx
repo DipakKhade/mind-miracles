@@ -55,7 +55,7 @@ export default function VimeoPlayer({
     script.onload = async () => {
       if (iframeRef.current && window.Vimeo) {
         const player = new window.Vimeo.Player(iframeRef.current);
-        
+
         try {
           const progressResult = await getVideoProgress({ videoId });
           if (progressResult.success && progressResult.data) {
