@@ -56,3 +56,21 @@ export async function validateUserForVideo(email: string, courseId: string) {
     return false;
   }
 }
+
+export async function getVideoMetaData(vid:string) {
+  try {
+    const metadata = await db.video.findFirst({
+      where:{
+        id:vid
+      },
+      select :{
+        title:true,
+        description:true
+      }
+    })
+
+    return metadata;
+  } catch(e) {
+    console.log('error at getVideoMetaData ', e)
+  }
+}
