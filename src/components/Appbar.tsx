@@ -49,7 +49,7 @@ export default function Appbar() {
       <nav>
         <div className="relative flex max-w-screen-xl flex-col px-4 py-4 md:mx-auto md:flex-row md:items-center">
           <Link href={'/'}>
-            <span className="text-xl text-black">Mindmiracles</span>
+            <span onClick={handleMenuToggle} className="text-xl text-black">Mindmiracles</span>
           </Link>
 
           <input
