@@ -1,9 +1,7 @@
 'use client';
 import Link from 'next/link';
-import { getServerSession } from 'next-auth/next';
 import { SignInButton } from './sign-in-button';
 import { AdminMails } from '@/lib';
-import { authOptions } from '@/lib/auth_options';
 import { useEffect, useRef, useState } from 'react';
 import { getSession } from 'next-auth/react';
 
@@ -49,7 +47,9 @@ export default function Appbar() {
       <nav>
         <div className="relative flex max-w-screen-xl flex-col px-4 py-4 md:mx-auto md:flex-row md:items-center">
           <Link href={'/'}>
-            <span onClick={handleMenuToggle} className="text-xl text-black">Mindmiracles</span>
+            <span onClick={handleMenuToggle} className="text-xl text-black">
+              Mindmiracles
+            </span>
           </Link>
 
           <input
