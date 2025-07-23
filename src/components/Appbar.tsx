@@ -18,7 +18,7 @@ export default function Appbar() {
         SetToggleMenu(false);
       }
     })();
-  }, []);
+  }, [session]);
 
   const handleClickOutside = (event: MouseEvent) => {
     if (btnRef.current && !btnRef.current.contains(event.target as Node)) {
