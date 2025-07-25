@@ -103,12 +103,14 @@ export default function Appbar() {
                 <Link href={'/courses'}>Courses</Link>
               </li>
 
-              {session && <li
-                className="hover:text-green-600 md:mr-12"
-                onClick={handleMenuToggle}
-              >
-                <Link href={'/purchases'}>Purchases</Link>
-              </li>}
+              {session && (
+                <li
+                  className="hover:text-green-600 md:mr-12"
+                  onClick={handleMenuToggle}
+                >
+                  <Link href={'/purchases'}>Purchases</Link>
+                </li>
+              )}
 
               <li
                 className="hover:text-green-600 md:mr-12"
