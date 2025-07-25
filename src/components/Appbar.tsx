@@ -18,7 +18,7 @@ export default function Appbar() {
         SetToggleMenu(false);
       }
     })();
-  }, [session]);
+  }, []);
 
   const handleClickOutside = (event: MouseEvent) => {
     if (btnRef.current && !btnRef.current.contains(event.target as Node)) {
@@ -103,12 +103,12 @@ export default function Appbar() {
                 <Link href={'/courses'}>Courses</Link>
               </li>
 
-              <li
+              {session && <li
                 className="hover:text-green-600 md:mr-12"
                 onClick={handleMenuToggle}
               >
                 <Link href={'/purchases'}>Purchases</Link>
-              </li>
+              </li>}
 
               <li
                 className="hover:text-green-600 md:mr-12"
