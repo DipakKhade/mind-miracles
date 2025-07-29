@@ -10,12 +10,14 @@ import { toast } from 'sonner';
 import { validateUserForVideo } from '@/actions/courses';
 import { VideoCard } from './video-card';
 import Loading from '@/app/purchases/loading';
+import { getCourseProgress } from '@/actions/progress';
 
 export default function CourseVideos({ courseId }: { courseId: string }) {
   const [videos, setVideos] = useState<any[]>([]);
   const [courseData, setCourseData] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [progress, setProgress] = useState<any>(null);
   const router = useRouter();
 
   useEffect(() => {
@@ -52,6 +54,9 @@ export default function CourseVideos({ courseId }: { courseId: string }) {
         const data = await response.json();
         setCourseData(data);
         setVideos(data?.video || []);
+
+        const currentCourceProgress = await getCourseProgress(courseId);
+        setProgress(currentCourceProgress);
       } catch (err) {
         const errorMessage =
           err instanceof Error ? err.message : 'An error occurred';
@@ -197,13 +202,10 @@ export default function CourseVideos({ courseId }: { courseId: string }) {
                     <div className="flex items-center justify-between text-sm">
                       <span className="text-gray-600">Overall Progress</span>
                       <span className="font-medium text-gray-900">
-                        {courseData.overallProgress}%
+                        {progress ?? 0}%
                       </span>
                     </div>
-                    <Progress
-                      value={courseData.overallProgress}
-                      className="h-2"
-                    />
+                    <Progress value={progress ?? 0} className="h-2" />
                   </div>
                 </div>
               </div>
