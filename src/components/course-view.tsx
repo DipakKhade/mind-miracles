@@ -25,46 +25,47 @@ export function CourseView({ courseId }: { courseId: string }) {
     setIsLoading(false);
   }, []);
 
-  if (isLoading) return <Loading />;
-
   return (
     <>
-      <div>
-        <header className="border-b border-gray-200 bg-white">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="flex h-16 items-center justify-between">
-              <div className="flex items-center space-x-4">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="text-gray-600 hover:text-gray-900"
-                  onClick={() => router.back()}
-                >
-                  <ArrowLeft className="mr-2 h-4 w-4" />
-                  Back to courses
-                </Button>
-              </div>
-              <div className="text-sm text-gray-500">Mindmiracles</div>
+    {
+      isLoading ? <Loading /> : <div>
+      <header className="border-b border-gray-200 bg-white">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="flex h-16 items-center justify-between">
+            <div className="flex items-center space-x-4">
+              <Button
+                variant="ghost"
+                size="sm"
+                className="text-gray-600 hover:text-gray-900"
+                onClick={() => router.back()}
+              >
+                <ArrowLeft className="mr-2 h-4 w-4" />
+                Back to courses
+              </Button>
             </div>
+            <div className="text-sm text-gray-500">Mindmiracles</div>
           </div>
-        </header>
-        {/* <div className="flex items-center justify-between">
-          <CourseTitle courseTitle={courseData?.title ?? ''} />
-        </div> */}
-        <ProgramInfo
-          courseDescription={courseData?.description ?? ''}
-          courseFeatures={courseData?.courseFeature ?? []}
-        />
-        {courseData?.previewURL && (
-          <VideoPreview videolink={courseData?.previewURL ?? ''} />
-        )}
-        {courseData?.price && <FeeInfo feeAmount={courseData?.price ?? 0} />}
+        </div>
+      </header>
+      {/* <div className="flex items-center justify-between">
+        <CourseTitle courseTitle={courseData?.title ?? ''} />
+      </div> */}
+      <ProgramInfo
+        courseDescription={courseData?.description ?? ''}
+        courseFeatures={courseData?.courseFeature ?? []}
+      />
+      {courseData?.previewURL && (
+        <VideoPreview videolink={courseData?.previewURL ?? ''} />
+      )}
+      {courseData?.price && <FeeInfo feeAmount={courseData?.price ?? 0} />}
 
-        <ProgramRegistrationForm
-          course_id={courseId}
-          amount_to_pay={courseData?.price ?? 0}
-        />
-      </div>
+      <ProgramRegistrationForm
+        course_id={courseId}
+        amount_to_pay={courseData?.price ?? 0}
+      />
+    </div>
+    }
+      
     </>
   );
 }
