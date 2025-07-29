@@ -1,5 +1,9 @@
+'use client';
+import { getInvoiceDetails } from '@/actions/invoice';
 import { Card, CardContent } from '@/components/ui/card';
+import { formatDate } from '@/lib/common-functions';
 import { Phone, Mail } from 'lucide-react';
+import { useEffect, useState } from 'react';
 
 interface InvoiceItem {
   description: string;
@@ -37,10 +41,7 @@ interface InvoiceProps {
 }
 
 export function Invoice({
-  companyName = 'Mind Miracles',
-  companyPhone = '+91-779-808-2219',
-  companyEmail = 'mindmiracles1707@gmail.com',
-  companyLogo = '/mind_miracles_logo.png',
+  
   invoiceNumber = '38894',
   invoiceDate = '28 Jul 2024',
   recipientName = 'Dipak Khade',
@@ -57,30 +58,45 @@ export function Invoice({
   paymentMethod = 'Online',
   transactionId = 'pay_OdvNA2yvyZwZto_COHORT2-HALF',
   gstin = '03ASDPK6910E1Z8',
-  amountInWords = 'Four Thousand Two Hundred And Sixty Six Rupees',
+
 }: InvoiceProps) {
   const subtotal = items.reduce((sum, item) => sum + item.price, 0);
   const taxAmount = (subtotal * taxRate) / 100;
   const total = subtotal + taxAmount;
+  const [invoiceData, setInvoiceData] = useState<any>();
+
+  useEffect(()=>{
+    (async() =>{
+      const res = await getInvoiceDetails('6837ced9a1711ec98dcc6fef')
+      const data = {
+        ...res,
+        companyName : 'Mind Miracles',
+        companyPhone : '+91-779-808-2219',
+        companyEmail : 'mindmiracles1707@gmail.com',
+        companyLogo : '/mind_miracles_logo.png',
+      }
+      setInvoiceData(data)
+    })();
+  }, [])
 
   return (
     <div className="mx-auto max-w-2xl p-6">
-      <Card className="bg-white shadow-lg">
+      {invoiceData && <Card className="bg-white shadow-lg">
         <CardContent className="p-8">
           {/* Header Section */}
-          <div className="mb-12 flex items-start justify-between">
+          <div className="mb-12 md:flex items-start justify-between">
             <div className="space-y-3">
               <h1 className="text-3xl font-bold text-green-600">
-                {companyName}
+                {invoiceData.companyName}
               </h1>
               <div className="space-y-2 text-gray-600">
                 <div className="flex items-center space-x-2">
                   <Phone className="h-4 w-4 text-green-600" />
-                  <span>{companyPhone}</span>
+                  <span>{invoiceData.companyPhone}</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <Mail className="h-4 w-4 text-green-600" />
-                  <span>{companyEmail}</span>
+                  <span>{invoiceData.companyEmail}</span>
                 </div>
               </div>
             </div>
@@ -88,13 +104,13 @@ export function Invoice({
             <div className="space-y-4 text-right">
               <div className="flex h-20 w-20 items-center justify-center overflow-hidden rounded-full">
                 <img
-                  src={companyLogo || '/placeholder.svg'}
+                  src={invoiceData.companyLogo || '/placeholder.svg'}
                   alt="Company Logo"
-                  className="h-full w-full object-cover"
+                  className="h-[43px] w-[40px] md:h-full md:w-full object-cover"
                 />
               </div>
               <div>
-                <h2 className="text-3xl font-bold text-gray-800">Invoice</h2>
+                <h2 className="md:text-3xl font-bold text-gray-800">Invoice</h2>
               </div>
             </div>
           </div>
@@ -107,15 +123,15 @@ export function Invoice({
               </h3>
               <div className="space-y-2">
                 <h4 className="text-xl font-semibold text-gray-800">
-                  {recipientName}
+                  {invoiceData.user.name}
                 </h4>
                 <div className="flex items-center space-x-2 text-gray-600">
                   <Phone className="h-4 w-4 text-green-600" />
-                  <span>{recipientPhone}</span>
+                  <span>{invoiceData.user.whatsAppNo}</span>
                 </div>
                 <div className="flex items-center space-x-2 text-gray-600">
                   <Mail className="h-4 w-4 text-green-600" />
-                  <span>{recipientEmail}</span>
+                  <span>{invoiceData.user.email}</span>
                 </div>
               </div>
             </div>
@@ -127,7 +143,7 @@ export function Invoice({
                     INVOICE NO.
                   </p>
                   <p className="text-xl font-bold text-gray-800">
-                    {invoiceNumber}
+                    {invoiceData?.userEnrollment?.id}
                   </p>
                 </div>
                 <div>
@@ -135,7 +151,7 @@ export function Invoice({
                     INVOICE DATE
                   </p>
                   <p className="text-lg font-semibold text-gray-800">
-                    {invoiceDate}
+                    {formatDate(invoiceData.enrolledAtDate.enrolledAt)}
                   </p>
                 </div>
               </div>
@@ -157,39 +173,39 @@ export function Invoice({
               </div>
             </div>
 
-            {items.map((item, index) => (
+            {/* {items.map((item, index) => ( */}
               <div
-                key={index}
+                // key={index}
                 className="grid grid-cols-2 gap-4 border-b border-gray-100 py-4"
               >
                 <div>
                   <p className="font-medium text-gray-800">
-                    {item.description}
+                    {invoiceData.courseData.title}
                   </p>
                 </div>
                 <div className="text-right">
                   <p className="text-gray-800">
                     Rs.{' '}
-                    {item.price.toLocaleString('en-IN', {
+                    {invoiceData.courseData.price.toLocaleString('en-IN', {
                       minimumFractionDigits: 2,
                     })}
                   </p>
                 </div>
               </div>
-            ))}
+            {/* ))} */}
 
             <div className="grid grid-cols-2 gap-4 border-b border-gray-100 py-4">
               <div>
                 <p className="text-gray-800">
-                  {taxLabel} ({taxRate} %)
+                  {/* {taxLabel} ({taxRate} %) */}
                 </p>
               </div>
               <div className="text-right">
                 <p className="text-gray-800">
-                  Rs.{' '}
+                  {/* Rs.{' '}
                   {taxAmount.toLocaleString('en-IN', {
                     minimumFractionDigits: 2,
-                  })}
+                  })} */}
                 </p>
               </div>
             </div>
@@ -201,7 +217,9 @@ export function Invoice({
               <div className="text-right">
                 <p className="text-2xl font-bold text-green-600">
                   Rs.{' '}
-                  {total.toLocaleString('en-IN', { minimumFractionDigits: 2 })}
+                  {invoiceData.courseData.price.toLocaleString('en-IN', {
+                      minimumFractionDigits: 2,
+                    })}
                 </p>
               </div>
             </div>
@@ -209,34 +227,27 @@ export function Invoice({
 
           {/* Additional Details */}
           <div className="mb-8 space-y-6">
-            <div>
-              <p className="mb-1 text-sm text-gray-500">Amount in Words</p>
-              <p className="text-lg font-semibold text-gray-800">
-                {amountInWords}
-              </p>
-            </div>
-
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
               <div>
                 <p className="mb-1 text-sm uppercase tracking-wide text-gray-500">
                   PAYMENT METHOD
                 </p>
-                <p className="font-medium text-gray-800">{paymentMethod}</p>
+                <p className="font-medium text-gray-800">{invoiceData.userEnrollment.payment.method}</p>
               </div>
 
-              <div>
+              {/* <div>
                 <p className="mb-1 text-sm uppercase tracking-wide text-gray-500">
                   GSTIN
                 </p>
                 <p className="font-medium text-gray-800">{gstin}</p>
-              </div>
+              </div> */}
             </div>
 
             <div>
               <p className="mb-1 text-sm uppercase tracking-wide text-gray-500">
                 TRANSACTION ID
               </p>
-              <p className="font-mono text-sm text-gray-800">{transactionId}</p>
+              <p className="font-mono text-sm text-gray-800">{invoiceData.userEnrollment.payment.razorpayPaymentId}</p>
             </div>
           </div>
 
@@ -254,7 +265,7 @@ export function Invoice({
             This is a computer generated invoice. No signature required.
           </p>
         </div>
-      </Card>
+      </Card>}
     </div>
   );
 }
