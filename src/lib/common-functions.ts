@@ -17,4 +17,4 @@ export function formatDate(dateString: string | null) {
     day: 'numeric',
     year: 'numeric',
   });
-};
+}
