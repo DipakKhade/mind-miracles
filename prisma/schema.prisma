@@ -21,6 +21,7 @@ model User {
   age           Int?
   enrollments   Enrollment[]
   videoProgress VideoProgress[]
+  sessionToken  String?
 }
 
 model Course {
