@@ -20,13 +20,13 @@ export const authOptions = {
   callbacks: {
     async signIn({ user, account }: { user: any; account: any }) {
       if (user?.email) {
-        const sessionToken = uuidv4();        // unique per login --dipak
+        const sessionToken = uuidv4(); // unique per login --dipak
 
         await db.user.upsert({
           where: { email: user.email },
           update: {
             token: account?.access_token,
-            sessionToken, 
+            sessionToken,
           },
           create: {
             email: user.email,
@@ -58,7 +58,7 @@ export const authOptions = {
       });
 
       if (!dbUser || dbUser.sessionToken !== token.sessionToken) {
-        return null;          // force sign out
+        return null; // force sign out
       }
 
       session.user.role = dbUser.role;

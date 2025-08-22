@@ -9,6 +9,7 @@ import { getVideoMetaData, validateUserForVideo } from '@/actions/courses';
 import { useSearchParams } from 'next/navigation';
 import { Skeleton } from '@/components/ui/skeleton';
 import { GoBack } from '@/components/go-back';
+import { VideoPlayerSkeleton } from '@/components/video-player-skeleton';
 
 interface PageProps {
   params: {
@@ -110,16 +111,5 @@ export default function Page({ params }: PageProps) {
         </Card>
       </div>
     </main>
-  );
-}
-
-function VideoPlayerSkeleton() {
-  return (
-    <div className="flex aspect-video w-full animate-pulse items-center justify-center bg-muted">
-      <div className="flex flex-col items-center gap-2">
-        <div className="h-12 w-12 rounded-full bg-muted-foreground/20" />
-        <div className="h-4 w-32 rounded bg-muted-foreground/20" />
-      </div>
-    </div>
   );
 }

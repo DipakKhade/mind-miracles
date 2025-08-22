@@ -1,7 +1,7 @@
 'use client';
 
 import { getCourseById } from '@/actions/courses';
-import { use, useEffect, useState } from 'react';
+import { Suspense, use, useEffect, useState } from 'react';
 import { ProgramInfo } from '@/components/ProgramInfo';
 import { VideoPreview } from '@/components/7-days-program/VideoPreview';
 import { FeeInfo } from '@/components/common/fee-info';
@@ -10,6 +10,9 @@ import { Button } from './ui/button';
 import { ArrowLeft } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import Loading from '@/app/purchases/loading';
+import { Card } from './ui/card';
+import VimeoPlayer from './vedio-player';
+import { VideoPlayerSkeleton } from './video-player-skeleton';
 
 export function CourseView({ courseId }: { courseId: string }) {
   const [courseData, setCourseData] = useState<any | null>(null);
