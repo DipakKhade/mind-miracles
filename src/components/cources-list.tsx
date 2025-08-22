@@ -30,7 +30,8 @@ export default function CoursesList() {
   if (loading) return <Loading />;
 
   return (
-    <div className="min-h-screen bg-white px-4 py-12 sm:px-6 lg:px-8">
+    <>
+    {loading ? <Loading/> : <div className="min-h-screen bg-white px-4 py-12 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <div className="mb-12 text-center">
           <h1 className="mb-4 text-4xl font-bold text-gray-900">
@@ -102,6 +103,7 @@ export default function CoursesList() {
             ))}
         </div>
       </div>
-    </div>
+    </div>}
+    </>
   );
 }
