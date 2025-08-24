@@ -2,7 +2,7 @@
 
 import db from '@/db';
 
-export async function getCourses() {
+export async function getCourses(email: string) {
   const data = await db.course.findMany({
     include: {
       courseFeature: {
@@ -10,8 +10,16 @@ export async function getCourses() {
           feature: true,
         },
       },
+      enrollments: {
+        where: {
+          user: {
+            email: email
+          }
+        }
+      }
     },
   });
+  console.log(JSON.stringify(data, null, 2));
   return data;
 }
 
