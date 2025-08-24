@@ -4,12 +4,14 @@ import { SignInButton } from './sign-in-button';
 import { AdminMails } from '@/lib';
 import { useEffect, useRef, useState } from 'react';
 import { getSession } from 'next-auth/react';
+import { usePathname } from 'next/navigation';
 
 export default function Appbar() {
   // const session = await getServerSession(authOptions);
   const [toggleMenu, SetToggleMenu] = useState<boolean>(false);
   const [session, setSession] = useState<any>(null);
   const btnRef = useRef<HTMLInputElement>(null);
+  const pathname = usePathname()
 
   useEffect(() => {
     (async () => {
@@ -84,7 +86,7 @@ export default function Appbar() {
           >
             <ul className="flex flex-col items-center space-y-2 font-medium md:ml-auto md:flex-row md:space-y-0">
               <li
-                className="hover:text-green-600 md:mr-12"
+                className= {`hover:text-green-600 md:mr-12 ${pathname === '/' && 'text-green-600'}`}
                 onClick={handleMenuToggle}
               >
                 <Link href={'/'}>Home</Link>
@@ -97,7 +99,7 @@ export default function Appbar() {
               </li>
 
               <li
-                className="hover:text-green-600 md:mr-12"
+                className= {`hover:text-green-600 md:mr-12 ${pathname === '/courses' && 'text-green-600'}`}
                 onClick={handleMenuToggle}
               >
                 <Link href={'/courses'}>Courses</Link>
@@ -105,7 +107,7 @@ export default function Appbar() {
 
               {session && (
                 <li
-                  className="hover:text-green-600 md:mr-12"
+                  className= {`hover:text-green-600 md:mr-12 ${pathname === '/purchases' && 'text-green-600'}`}
                   onClick={handleMenuToggle}
                 >
                   <Link href={'/purchases'}>Purchases</Link>
