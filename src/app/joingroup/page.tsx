@@ -9,6 +9,7 @@ import { Input } from '@/components/ui/input';
 export default function PayPage() {
   const router = useRouter();
   const [phone, setPhone] = useState('');
+  const [name, setName] = useState('');
   const [loading, setLoading] = useState(false);
 
   const startPayment = async () => {
@@ -20,7 +21,7 @@ export default function PayPage() {
     setLoading(true);
     const res = await fetch('/api/createOrder', {
       method: 'POST',
-      body: JSON.stringify({ amount: 100 }),
+      body: JSON.stringify({ amount: 9900 }),
     });
     const data = await res.json();
     const options = {
@@ -48,7 +49,8 @@ export default function PayPage() {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
               phone,
-              razorpay_payment_id: response.razorpay_payment_id
+              razorpay_payment_id: response.razorpay_payment_id,
+              name
             }),
           });
           setPhone('');
@@ -72,7 +74,7 @@ export default function PayPage() {
         type="text/javascript"
         src="https://checkout.razorpay.com/v1/checkout.js"
       />
-      <div className="flex min-h-screen flex-col items-center justify-center space-y-6 p-6">
+      <div className="flex items-center flex-col pt-6 md:pt-16 space-y-6 p-6">
         <div className="flex flex-col items-center space-y-4 text-center">
           <div className="flex items-center space-x-3">
             <div className="flex h-12 w-12 items-center justify-center rounded-full bg-green-500">
@@ -104,11 +106,26 @@ export default function PayPage() {
 
         <div className="w-full max-w-md space-y-4">
           <div>
-            <label
-              htmlFor="phone"
+          <label
+              htmlFor="name"
               className="mb-2 block text-sm font-medium text-gray-700"
             >
-              Phone Number
+              Enter your name
+            </label>
+            <Input
+              type="text"
+              id="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Enter your name"
+              className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:border-transparent focus:ring-2 focus:ring-green-500"
+              required
+            />
+            <label
+              htmlFor="phone"
+              className="mb-2 block text-sm font-medium text-gray-700 pt-2"
+            >
+              Enter Phone number
             </label>
             <Input
               type="tel"
@@ -131,7 +148,7 @@ export default function PayPage() {
             <button
               className="w-full rounded-lg bg-green-600 px-6 py-3 text-white transition-colors hover:bg-green-700 disabled:cursor-not-allowed disabled:opacity-50"
               onClick={startPayment}
-              disabled={loading || !phone}
+              disabled={loading || !phone || !name}
             >
               {loading ? 'Processing...' : 'Pay ₹99 & Join Group'}
             </button>
