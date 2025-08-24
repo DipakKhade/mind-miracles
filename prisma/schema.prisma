@@ -72,6 +72,8 @@ model Video {
   progress     VideoProgress[]
   createdAt    DateTime        @default(now())
   updatedAt    DateTime        @updatedAt
+
+  @@index([courseId])
 }
 
 model VideoProgress {
@@ -110,6 +112,13 @@ model ContactUs {
   email     String
   age       Int
   place     String
+}
+
+model WpGroupMembers {
+  id                String @id @default(auto()) @map("_id") @db.ObjectId
+  name              String
+  wpNumber          String
+  razorpayPaymentId String
 }
 
 enum UserRole {
