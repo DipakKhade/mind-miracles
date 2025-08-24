@@ -50,7 +50,7 @@ export default function PayPage() {
             body: JSON.stringify({
               phone,
               razorpay_payment_id: response.razorpay_payment_id,
-              name
+              name,
             }),
           });
           setPhone('');
@@ -74,7 +74,7 @@ export default function PayPage() {
         type="text/javascript"
         src="https://checkout.razorpay.com/v1/checkout.js"
       />
-      <div className="flex items-center flex-col pt-6 md:pt-16 space-y-6 p-6">
+      <div className="flex flex-col items-center space-y-6 p-6 pt-6 md:pt-16">
         <div className="flex flex-col items-center space-y-4 text-center">
           <div className="flex items-center space-x-3">
             <div className="flex h-12 w-12 items-center justify-center rounded-full bg-green-500">
@@ -106,7 +106,7 @@ export default function PayPage() {
 
         <div className="w-full max-w-md space-y-4">
           <div>
-          <label
+            <label
               htmlFor="name"
               className="mb-2 block text-sm font-medium text-gray-700"
             >
@@ -123,7 +123,7 @@ export default function PayPage() {
             />
             <label
               htmlFor="phone"
-              className="mb-2 block text-sm font-medium text-gray-700 pt-2"
+              className="mb-2 block pt-2 text-sm font-medium text-gray-700"
             >
               Enter Phone number
             </label>
