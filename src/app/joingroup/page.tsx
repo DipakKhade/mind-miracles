@@ -88,18 +88,21 @@ export default function PayPage() {
             </div>
             <div>
               <h2 className="text-2xl font-bold text-gray-800">
-                Mind Miracles Premium
+                Mind Miracles
               </h2>
-              <p className="text-gray-600">Exclusive WhatsApp Group</p>
+              <p className="text-gray-600">Mind and body Trance Therapy</p>
+              <div className="mb-4 flex items-center justify-center gap-2">
+                    <h2 className="text-xl font-semibold text-foreground">1-Hour Session</h2>
+                  </div>
             </div>
           </div>
           <div className="max-w-md rounded-lg border border-green-200 bg-green-50 p-4">
             <p className="text-sm text-green-800">
-              🎯 Get exclusive tips, strategies, and daily motivation
+            😇Heal your mental,emotional and educational issues 
               <br />
-              💡 Connect with like-minded individuals
+              🧘‍♀️experiences deep trance and hypnosis 
               <br />
-              📈 Access premium content and resources
+              🥗heal your body with healthy diet and simple exercise
             </p>
           </div>
         </div>
@@ -143,14 +146,14 @@ export default function PayPage() {
 
           <div className="text-center">
             <h1 className="mb-4 text-xl font-semibold text-gray-800">
-              Pay ₹99 to Join Group
+            Pay 99 to join session
             </h1>
             <button
               className="w-full rounded-lg bg-green-600 px-6 py-3 text-white transition-colors hover:bg-green-700 disabled:cursor-not-allowed disabled:opacity-50"
               onClick={startPayment}
               disabled={loading || !phone || !name}
             >
-              {loading ? 'Processing...' : 'Pay ₹99 & Join Group'}
+              {loading ? 'Processing...' : 'Pay ₹99 & Join Session'}
             </button>
           </div>
         </div>
