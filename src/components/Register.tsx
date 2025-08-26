@@ -131,63 +131,63 @@ export default function Register() {
               <div className="px-5 pb-5">
                 <div className="pb-4 pt-2">
                   <div className="w-full">
-                    <p>First Name</p>
+                    <p className='pt-2'>First Name</p>
                     <input
                       {...register('firstName')}
                       placeholder="Enter first name"
                       type="text"
-                      className="focus:border-bluegreen-500 focus:shadow-outline mt-2 w-full transform rounded-lg border-transparent bg-green-200 px-4 py-2.5 text-base text-black placeholder-green-600 ring-green-400 ring-offset-2 ring-offset-current transition duration-500 ease-in-out focus:bg-white focus:outline-none focus:ring-2"
+                      className="focus:border-bluegreen-500 focus:shadow-outline w-full transform rounded-lg border-transparent bg-green-200 px-4 py-2.5 text-base text-black placeholder-green-600 ring-green-400 ring-offset-2 ring-offset-current transition duration-500 ease-in-out focus:bg-white focus:outline-none focus:ring-2"
                     />
                   </div>
                   <div className="w-full">
-                    <p>Last Name</p>
+                    <p className='pt-2'>Last Name</p>
                     <input
                       {...register('lastName')}
                       placeholder="Enter last name"
                       type="text"
-                      className="focus:border-bluegreen-500 focus:shadow-outline mt-2 w-full transform rounded-lg border-transparent bg-green-200 px-4 py-2.5 text-base text-black placeholder-green-600 ring-green-400 ring-offset-2 ring-offset-current transition duration-500 ease-in-out focus:bg-white focus:outline-none focus:ring-2"
+                      className="focus:border-bluegreen-500 focus:shadow-outline w-full transform rounded-lg border-transparent bg-green-200 px-4 py-2.5 text-base text-black placeholder-green-600 ring-green-400 ring-offset-2 ring-offset-current transition duration-500 ease-in-out focus:bg-white focus:outline-none focus:ring-2"
                     />
                   </div>
                 </div>
 
                 <div className="">
                   <div className="w-full">
-                    <p>Mobile Number</p>
+                    <p className='pt-2'>Mobile Number</p>
                     <input
                       {...register('mobileNo')}
                       type="number"
                       placeholder="Enter 10 digit mobile number"
-                      className="focus:border-bluegreen-500 focus:shadow-outline mt-2 w-full transform rounded-lg border-transparent bg-green-200 px-4 py-2.5 text-base text-black placeholder-green-600 ring-green-400 ring-offset-2 ring-offset-current transition duration-500 ease-in-out focus:bg-white focus:outline-none focus:ring-2"
+                      className="focus:border-bluegreen-500 focus:shadow-outline w-full transform rounded-lg border-transparent bg-green-200 px-4 py-2.5 text-base text-black placeholder-green-600 ring-green-400 ring-offset-2 ring-offset-current transition duration-500 ease-in-out focus:bg-white focus:outline-none focus:ring-2"
                     />
                   </div>
                   <div className="w-full">
-                    <p>Email ID</p>
+                    <p className='pt-2'>Email ID</p>
                     <input
                       {...register('email')}
                       type="email"
                       placeholder="Enter email ID"
-                      className="focus:border-bluegreen-500 focus:shadow-outline mt-2 w-full transform rounded-lg border-transparent bg-green-200 px-4 py-2.5 text-base text-black placeholder-green-600 ring-green-400 ring-offset-2 ring-offset-current transition duration-500 ease-in-out focus:bg-white focus:outline-none focus:ring-2"
+                      className="focus:border-bluegreen-500 focus:shadow-outline w-full transform rounded-lg border-transparent bg-green-200 px-4 py-2.5 text-base text-black placeholder-green-600 ring-green-400 ring-offset-2 ring-offset-current transition duration-500 ease-in-out focus:bg-white focus:outline-none focus:ring-2"
                     />
                   </div>
                 </div>
 
                 <div className="">
                   <div className="w-full">
-                    <p>Age</p>
+                    <p className='pt-2'>Age</p>
                     <input
                       {...register('age')}
                       type="number"
                       placeholder="Enter your age"
-                      className="focus:border-bluegreen-500 focus:shadow-outline mt-2 w-full transform rounded-lg border-transparent bg-green-200 px-4 py-2.5 text-base text-black placeholder-green-600 ring-green-400 ring-offset-2 ring-offset-current transition duration-500 ease-in-out focus:bg-white focus:outline-none focus:ring-2"
+                      className="focus:border-bluegreen-500 focus:shadow-outline w-full transform rounded-lg border-transparent bg-green-200 px-4 py-2.5 text-base text-black placeholder-green-600 ring-green-400 ring-offset-2 ring-offset-current transition duration-500 ease-in-out focus:bg-white focus:outline-none focus:ring-2"
                     />
                   </div>
                   <div className="w-full">
-                    <p>Place</p>
+                    <p className='pt-2'>Place</p>
                     <input
                       {...register('place')}
                       placeholder="Enter Place"
                       type="text"
-                      className="focus:border-bluegreen-500 focus:shadow-outline mt-2 w-full transform rounded-lg border-transparent bg-green-200 px-4 py-2.5 text-base text-black placeholder-green-600 ring-green-400 ring-offset-2 ring-offset-current transition duration-500 ease-in-out focus:bg-white focus:outline-none focus:ring-2"
+                      className="focus:border-bluegreen-500 focus:shadow-outline w-full transform rounded-lg border-transparent bg-green-200 px-4 py-2.5 text-base text-black placeholder-green-600 ring-green-400 ring-offset-2 ring-offset-current transition duration-500 ease-in-out focus:bg-white focus:outline-none focus:ring-2"
                     />
                   </div>
                 </div>
