@@ -7,6 +7,7 @@ import { Slider } from '@/components/ui/slider';
 import { cn } from '@/lib/utils';
 import { useVideoProgress } from '@/hooks/use-video-pregress';
 import { getVideoProgress } from '@/actions/progress';
+import Script from 'next/script';
 
 interface VimeoPlayerProps {
   vimeoId: string;
@@ -190,101 +191,40 @@ export default function VimeoPlayer({
 
   const vimeoUrl = `https://player.vimeo.com/video/${vimeoId}?badge=0&autopause=0&player_id=0&app_id=58479${autoplay ? '&autoplay=1' : ''}${muted ? '&muted=1' : ''}${loop ? '&loop=1' : ''}`;
 
+  
+
   return (
-    <div
-      ref={containerRef}
-      className={cn(
-        'group relative bg-black',
-        responsive ? 'aspect-video w-full' : 'h-full w-full',
-      )}
-      onMouseEnter={() => setShowControls(true)}
-      onMouseLeave={() => setShowControls(false)}
-    >
-      {/* Vimeo iframe */}
-      <iframe
-        ref={iframeRef}
-        src={vimeoUrl}
-        className="absolute inset-0 h-full w-full"
-        frameBorder="0"
-        allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-        allowFullScreen
-        title={`Vimeo video ${vimeoId}`}
-      />
+    // <div
+    //   ref={containerRef}
+    //   className={cn(
+    //     'group relative bg-black',
+    //     responsive ? 'aspect-video w-full' : 'h-full w-full',
+    //   )}
+    //   onMouseEnter={() => setShowControls(true)}
+    //   onMouseLeave={() => setShowControls(false)}
+    // >
+    //   <iframe
+    //     ref={iframeRef}
+    //     src={vimeoUrl}
+    //     className="absolute inset-0 h-full w-full"
+    //     frameBorder="0"
+    //     allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+    //     allowFullScreen
+    //     title={`Vimeo video ${vimeoId}`}
+    //   />
 
-      {/* Loading overlay */}
-      {isLoading && (
-        <div className="absolute inset-0 flex items-center justify-center bg-black/50">
-          <Loader2 className="h-8 w-8 animate-spin text-white" />
-        </div>
-      )}
+    //   {isLoading && (
+    //     <div className="absolute inset-0 flex items-center justify-center bg-black/50">
+    //       <Loader2 className="h-8 w-8 animate-spin text-white" />
+    //     </div>
+    //   )}
+    // </div>
+<div>
 
-      {/* Custom controls overlay */}
-      {/* {controls && (
-        <div
-          className={cn(
-            'absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-4 transition-opacity duration-300',
-            showControls ? 'opacity-100' : 'opacity-0',
-          )}
-        >
-          <div className="mb-4">
-            <Slider value={[currentTime]} max={duration} step={1} onValueChange={handleSeek} className="w-full" />
-            <div className="mt-1 flex justify-between text-xs text-white/70">
-              <span>{formatTime(currentTime)}</span>
-              <span>{formatTime(duration)}</span>
-            </div>
-          </div>
-
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={togglePlay}
-                className="text-white hover:bg-white/20"
-              >
-                {isPlaying ? (
-                  <Pause className="h-4 w-4" />
-                ) : (
-                  <Play className="h-4 w-4" />
-                )}
-              </Button>
-
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={toggleMute}
-                className="text-white hover:bg-white/20"
-              >
-                {isMuted ? (
-                  <VolumeX className="h-4 w-4" />
-                ) : (
-                  <Volume2 className="h-4 w-4" />
-                )}
-              </Button>
-
-              <div className="flex items-center gap-2">
-                <Slider
-                  value={volume}
-                  max={100}
-                  step={1}
-                  onValueChange={handleVolumeChange}
-                  className="w-20"
-                />
-              </div>
-            </div>
-
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={toggleFullscreen}
-              className="text-white hover:bg-white/20"
-            >
-              <Maximize className="h-4 w-4" />
-            </Button>
-          </div>
-        </div>
-      )} */}
-    </div>
+    <div style={{padding:"56.25%", position: "relative"}}><iframe src={`https://player.vimeo.com/video/${vimeoId}?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479`} frameBorder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerPolicy="strict-origin-when-cross-origin" style={{position:"absolute",top:"0",left:"0",width:"100%",height:"100%"}} title="Day 1"></iframe></div>
+    <Script src="https://player.vimeo.com/api/player.js"></Script>
+    {/* <script src="https://player.vimeo.com/api/player.js"></script> */}
+</div>
   );
 }
 
