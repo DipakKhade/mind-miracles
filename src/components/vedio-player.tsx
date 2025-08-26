@@ -191,40 +191,31 @@ export default function VimeoPlayer({
 
   const vimeoUrl = `https://player.vimeo.com/video/${vimeoId}?badge=0&autopause=0&player_id=0&app_id=58479${autoplay ? '&autoplay=1' : ''}${muted ? '&muted=1' : ''}${loop ? '&loop=1' : ''}`;
 
-  
-
   return (
-    // <div
-    //   ref={containerRef}
-    //   className={cn(
-    //     'group relative bg-black',
-    //     responsive ? 'aspect-video w-full' : 'h-full w-full',
-    //   )}
-    //   onMouseEnter={() => setShowControls(true)}
-    //   onMouseLeave={() => setShowControls(false)}
-    // >
-    //   <iframe
-    //     ref={iframeRef}
-    //     src={vimeoUrl}
-    //     className="absolute inset-0 h-full w-full"
-    //     frameBorder="0"
-    //     allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-    //     allowFullScreen
-    //     title={`Vimeo video ${vimeoId}`}
-    //   />
-
-    //   {isLoading && (
-    //     <div className="absolute inset-0 flex items-center justify-center bg-black/50">
-    //       <Loader2 className="h-8 w-8 animate-spin text-white" />
-    //     </div>
-    //   )}
-    // </div>
-<div>
-
-    <div style={{padding:"56.25%", position: "relative"}}><iframe src={`https://player.vimeo.com/video/${vimeoId}?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479`} frameBorder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerPolicy="strict-origin-when-cross-origin" style={{position:"absolute",top:"0",left:"0",width:"100%",height:"100%"}} title="Day 1"></iframe></div>
+    <div
+    ref={containerRef}
+    className={cn("group relative bg-black", responsive ? "" : "")}
+    onMouseEnter={() => setShowControls(true)}
+    onMouseLeave={() => setShowControls(false)}
+  >
+    <div style={{ paddingBottom: "56.25%", position: "relative", height: 0 }}>
+      <iframe
+        src={`https://player.vimeo.com/video/${vimeoId}?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479`}
+        frameBorder="0"
+        allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+        referrerPolicy="strict-origin-when-cross-origin"
+        style={{
+          position: "absolute",
+          top: "0",
+          left: "0",
+          width: "100%",
+          height: "100%",
+        }}
+        title="Day 1"
+      ></iframe>
+    </div>
     <Script src="https://player.vimeo.com/api/player.js"></Script>
-    {/* <script src="https://player.vimeo.com/api/player.js"></script> */}
-</div>
+  </div>
   );
 }
 
