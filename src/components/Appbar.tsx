@@ -12,11 +12,13 @@ export default function Appbar() {
   const [session, setSession] = useState<any>(null);
   const btnRef = useRef<HTMLInputElement>(null);
   const pathname = usePathname();
-  const { data: userSession , status } = useSession(); 
+  const { data: userSession, status } = useSession();
 
   useEffect(() => {
     (async () => {
       if (status === 'loading') return;
+      console.log('session', session);
+      console.log('status', status);
       setSession(session);
       if (userSession) {
         SetToggleMenu(false);
@@ -107,7 +109,7 @@ export default function Appbar() {
                 <Link href={'/courses'}>Courses</Link>
               </li>
 
-              {session && (
+              {status === 'authenticated' && (
                 <li
                   className={`hover:text-green-600 md:mr-12 ${pathname === '/purchases' && 'text-green-600'}`}
                   onClick={handleMenuToggle}
