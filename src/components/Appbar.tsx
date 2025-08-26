@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import { SignInButton } from './sign-in-button';
 import { AdminMails } from '@/lib';
-import { useEffect, useRef, useState } from 'react';
+import { use, useEffect, useRef, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { usePathname } from 'next/navigation';
 
@@ -17,8 +17,6 @@ export default function Appbar() {
   useEffect(() => {
     (async () => {
       if (status === 'loading') return;
-      console.log('session', session);
-      console.log('status', status);
       setSession(session);
       if (userSession) {
         SetToggleMenu(false);
@@ -45,8 +43,9 @@ export default function Appbar() {
 
   const handleMenuToggle = () => {
     btnRef.current?.click();
-    SetToggleMenu(!toggleMenu);
+    // SetToggleMenu(!toggleMenu);
   };
+
 
   return (
     <>
