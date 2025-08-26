@@ -14,6 +14,7 @@ import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
 import { getCourseProgress } from '@/actions/progress';
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 interface Course {
   id: string;
@@ -35,7 +36,7 @@ export const CourseCard = ({
   enrolledAt: string;
 }) => {
   const [progress, setProgress] = useState<any>(null);
-
+  const router = useRouter();
   useEffect(() => {
     const fetchProgress = async () => {
       try {
@@ -134,20 +135,25 @@ export const CourseCard = ({
       </CardContent>
 
       <CardFooter className="flex gap-2">
-        <Link href={`/courses/watch/${course.id}`}>
-          <Button className="flex-1 bg-green-600 hover:bg-green-700">
-            <Play className="mr-2 h-4 w-4" />
-            Continue Learning
-          </Button>
-        </Link>
-        <Link href={`/invoice/${course.id}`}>
-          <Button
-            variant="outline"
-            className="border-green-200 text-green-700 hover:bg-green-50"
-          >
-            View Invoice
-          </Button>
-        </Link>
+        <Button
+          className="flex-1 bg-green-600 hover:bg-green-700"
+          onClick={() => {
+            router.push(`/courses/watch/${course.id}`);
+          }}
+        >
+          <Play className="mr-2 h-4 w-4" />
+          Continue Learning
+        </Button>
+
+        <Button
+          variant="outline"
+          className="border-green-200 text-green-700 hover:bg-green-50"
+          onClick={() => {
+            router.push(`/invoice/${course.id}`);
+          }}
+        >
+          View Invoice
+        </Button>
       </CardFooter>
     </Card>
   );
