@@ -50,10 +50,9 @@ export function Footer() {
   const quickLinks = [{ name: 'Courses', href: '/courses' }];
 
   const services = [
-    { name: 'Psychology Consultation', href: '/services/consultation' },
-    { name: 'Online Therapy', href: '/services/therapy' },
-    { name: 'Group Sessions', href: '/services/group' },
-    { name: 'Workshops', href: '/services/workshops' },
+    { name: 'Psychology Consultation', href: '/' },
+    { name: 'Mind and body Trance Therapy', href: '/joingroup' },
+    { name: 'Workshops', href: '/' },
   ];
 
   return (
@@ -117,8 +116,8 @@ export function Footer() {
               {services.map((service) => (
                 <li key={service.name}>
                   <Link
-                    // href={service.href}
-                    href={'/'}
+                    href={service.href}
+                    // href={'/'}
                     className="text-gray-300 transition-colors duration-200 hover:text-white"
                   >
                     {service.name}
