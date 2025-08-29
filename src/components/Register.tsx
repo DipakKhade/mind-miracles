@@ -131,7 +131,7 @@ export default function Register() {
               <div className="px-5 pb-5">
                 <div className="pb-4 pt-2">
                   <div className="w-full">
-                    <p className='pt-2'>First Name</p>
+                    <p className="pt-2">First Name</p>
                     <input
                       {...register('firstName')}
                       placeholder="Enter first name"
@@ -140,7 +140,7 @@ export default function Register() {
                     />
                   </div>
                   <div className="w-full">
-                    <p className='pt-2'>Last Name</p>
+                    <p className="pt-2">Last Name</p>
                     <input
                       {...register('lastName')}
                       placeholder="Enter last name"
@@ -152,7 +152,7 @@ export default function Register() {
 
                 <div className="">
                   <div className="w-full">
-                    <p className='pt-2'>Mobile Number</p>
+                    <p className="pt-2">Mobile Number</p>
                     <input
                       {...register('mobileNo')}
                       type="number"
@@ -161,7 +161,7 @@ export default function Register() {
                     />
                   </div>
                   <div className="w-full">
-                    <p className='pt-2'>Email ID</p>
+                    <p className="pt-2">Email ID</p>
                     <input
                       {...register('email')}
                       type="email"
@@ -173,7 +173,7 @@ export default function Register() {
 
                 <div className="">
                   <div className="w-full">
-                    <p className='pt-2'>Age</p>
+                    <p className="pt-2">Age</p>
                     <input
                       {...register('age')}
                       type="number"
@@ -182,7 +182,7 @@ export default function Register() {
                     />
                   </div>
                   <div className="w-full">
-                    <p className='pt-2'>Place</p>
+                    <p className="pt-2">Place</p>
                     <input
                       {...register('place')}
                       placeholder="Enter Place"
