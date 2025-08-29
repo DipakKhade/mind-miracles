@@ -42,7 +42,7 @@ export const PayAndRegisterButton = ({
     SetLoading(true);
     const res = await fetch('/api/createOrder', {
       method: 'POST',
-      body: JSON.stringify({ amount: amountToPay }),
+      body: JSON.stringify({course_id}),
     });
     const data = await res.json();
 

@@ -21,7 +21,7 @@ export default function PayPage() {
     setLoading(true);
     const res = await fetch('/api/createOrder', {
       method: 'POST',
-      body: JSON.stringify({ amount: 9900 }),
+      body: JSON.stringify({ }),
     });
     const data = await res.json();
     const options = {
