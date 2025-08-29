@@ -13,13 +13,12 @@ export async function getCourses(email: string) {
       enrollments: {
         where: {
           user: {
-            email: email
-          }
-        }
-      }
+            email: email,
+          },
+        },
+      },
     },
   });
-  console.log(JSON.stringify(data, null, 2));
   return data;
 }
 
