@@ -16,6 +16,7 @@ export async function POST(req: NextRequest) {
       body: `✅ New Payment Received!\n Name: ${name} \nWhatsApp No: ${phone} \nAmount: ₹99\n\nPlease add them to the WhatsApp group.`,
     });
 
+    console.log(` New Payment Received!\n Name: ${name} \nWhatsApp No: ${phone} \nAmount: ₹99\n\nPlease add them to the WhatsApp group.`)
     await db.wpGroupMembers.create({
       data: {
         name,
