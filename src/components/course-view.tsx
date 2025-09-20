@@ -13,16 +13,21 @@ import Loading from '@/app/purchases/loading';
 import { Card } from './ui/card';
 import VimeoPlayer from './vedio-player';
 import { VideoPlayerSkeleton } from './video-player-skeleton';
+import { toast } from 'sonner';
 
 export function CourseView({ courseId }: { courseId: string }) {
   const [courseData, setCourseData] = useState<any | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
   useEffect(() => {
+    toast.loading('loading...', {
+      position: 'top-center'
+    })
     setIsLoading(true);
     async function getCourseData() {
       const data = await getCourseById(courseId);
       setCourseData(data);
+      toast.dismiss()
     }
     getCourseData();
     setIsLoading(false);
