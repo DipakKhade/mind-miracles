@@ -49,7 +49,7 @@ export function VideoCard({
   };
 
   return (
-    <Card className="overflow-hidden transition-shadow hover:shadow-md">
+    <Card className="overflow-hidden transition-shadow hover:shadow-md lg:max-w-screen-sm">
       <CardContent className="p-0">
         {/* Video Thumbnail Header */}
         <div className="relative">
@@ -85,14 +85,14 @@ export function VideoCard({
               </div>
             </div>
             {/* Status badge */}
-            <div className="absolute right-4 top-4">
+            {/* <div className="absolute right-4 top-4">
               <Badge
                 variant="outline"
                 className={`${getStatusColor(status)} shadow-sm`}
               >
                 {getStatusText(status)}
               </Badge>
-            </div>
+            </div> */}
             {/* Duration badge */}
             <div className="absolute bottom-4 right-4">
               <div className="flex items-center rounded bg-black bg-opacity-70 px-2 py-1 text-xs text-white">
