@@ -102,9 +102,7 @@ export function ProgramRegistrationForm({
   };
 
   const isFormValid =
-    formState.name && formState.email && formState.whatsapp && formState.age
-      ? true
-      : false;
+    formState.name && formState.whatsapp && formState.age ? true : false;
 
   return (
     <section className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 py-16">
@@ -167,7 +165,7 @@ export function ProgramRegistrationForm({
               </div>
 
               {/* Email Field */}
-              <div className="space-y-2">
+              {/* <div className="space-y-2">
                 <Label
                   htmlFor="email"
                   className="text-sm font-medium text-gray-700"
@@ -202,7 +200,7 @@ export function ProgramRegistrationForm({
                     {errors.email}
                   </div>
                 )}
-              </div>
+              </div> */}
 
               {/* WhatsApp Field */}
               <div className="space-y-2">
