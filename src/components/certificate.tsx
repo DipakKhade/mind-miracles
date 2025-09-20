@@ -7,6 +7,7 @@ import img from '../../public/certbimg.png';
 import logo from '../../public/mind_miracles_logo.png';
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
+import * as htmlToImage from 'html-to-image';
 
 interface certificationData {
   course: {
@@ -41,8 +42,17 @@ export default function CertificateComponent({
 
     getCertificateInfo();
   }, []);
+
+
   const handleDownload = () => {
-    console.log('Download PNG');
+    htmlToImage
+  .toJpeg(document.getElementById('cert')!, { quality: 0.95 })
+  .then(function (dataUrl) {
+    var link = document.createElement('a');
+    link.download = 'my-image-name.jpeg';
+    link.href = dataUrl;
+    link.click();
+  });
   };
 
   if (!data) {
@@ -59,7 +69,7 @@ export default function CertificateComponent({
         <div className="absolute bottom-32 left-6 h-24 w-3 rounded-full bg-green-500"></div>
 
         {/* Certificate Content */}
-        <div className="relative z-10 ml-8 px-16 py-12">
+        <div className="relative z-10 ml-8 px-16 py-12" id='cert'>
           <div className="mb-8 flex items-start justify-between">
             <div className="flex items-center gap-4">
               <div className="h-16rounded-full flex w-16 items-center justify-center">
