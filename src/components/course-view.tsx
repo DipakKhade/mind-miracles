@@ -1,7 +1,7 @@
 'use client';
 
 import { getCourseById } from '@/actions/courses';
-import { Suspense, use, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ProgramInfo } from '@/components/ProgramInfo';
 import { VideoPreview } from '@/components/7-days-program/VideoPreview';
 import { FeeInfo } from '@/components/common/fee-info';
@@ -10,24 +10,24 @@ import { Button } from './ui/button';
 import { ArrowLeft } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import Loading from '@/app/purchases/loading';
-import { Card } from './ui/card';
-import VimeoPlayer from './vedio-player';
-import { VideoPlayerSkeleton } from './video-player-skeleton';
 import { toast } from 'sonner';
+import { GoogleSignInButton } from './google-signin-button';
+import { signIn, useSession } from 'next-auth/react';
 
 export function CourseView({ courseId }: { courseId: string }) {
   const [courseData, setCourseData] = useState<any | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const session = useSession();
   const router = useRouter();
   useEffect(() => {
     toast.loading('loading...', {
-      position: 'top-center'
-    })
+      position: 'top-center',
+    });
     setIsLoading(true);
     async function getCourseData() {
       const data = await getCourseById(courseId);
       setCourseData(data);
-      toast.dismiss()
+      toast.dismiss();
     }
     getCourseData();
     setIsLoading(false);
@@ -67,12 +67,27 @@ export function CourseView({ courseId }: { courseId: string }) {
           {courseData?.previewURL && (
             <VideoPreview videolink={courseData?.previewURL ?? ''} />
           )}
+
+          {session.status === 'unauthenticated' && (
+            <div className="flex w-full justify-center">
+              <div className="w-96 space-y-4 pt-8">
+                <GoogleSignInButton
+                  onClick={() => {
+                    signIn('google');
+                  }}
+                />
+              </div>
+            </div>
+          )}
+
           {courseData?.price && <FeeInfo feeAmount={courseData?.price ?? 0} />}
 
-          <ProgramRegistrationForm
-            course_id={courseId}
-            amount_to_pay={courseData?.price ?? 0}
-          />
+          {session.status === 'authenticated' && (
+            <ProgramRegistrationForm
+              course_id={courseId}
+              amount_to_pay={courseData?.price ?? 0}
+            />
+          )}
         </div>
       )}
     </>
