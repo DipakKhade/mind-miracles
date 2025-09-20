@@ -13,18 +13,23 @@ import { getCourses } from '@/actions/courses';
 import { Course } from '@/types';
 import Loading from '@/app/purchases/loading';
 import { useSession } from 'next-auth/react';
+import { toast } from 'sonner';
 
 export default function CoursesList() {
   const [courses, setCourses] = useState<Course[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const { data: session, status } = useSession();
   useEffect(() => {
-    if (status === "loading") return; 
+    if (status === 'loading') return;
+    toast.loading('loading courses...', {
+      position: 'top-center',
+    });
     setLoading(true);
     async function getCoursesData() {
       const data = await getCourses(session?.user?.email || '');
       //@ts-ignore
       setCourses(data);
+      toast.dismiss();
     }
     getCoursesData();
     setLoading(false);
@@ -48,7 +53,7 @@ export default function CoursesList() {
 
             <div className="grid gap-8 md:grid-cols-2">
               {courses &&
-                courses.map((course:any, index) => (
+                courses.map((course: any, index) => (
                   <Card
                     key={index}
                     className="overflow-hidden border-0 shadow-lg"
@@ -91,17 +96,27 @@ export default function CoursesList() {
                         <ul className="space-y-2">
                           {course?.courseFeature &&
                             course?.courseFeature.length &&
-                            course.courseFeature.map((feature:any, idx:any) => (
-                              <li key={idx} className="flex items-start">
-                                <span className="text-gray-700">
-                                  {feature.feature}
-                                </span>
-                              </li>
-                            ))}
+                            course.courseFeature.map(
+                              (feature: any, idx: any) => (
+                                <li key={idx} className="flex items-start">
+                                  <span className="text-gray-700">
+                                    {feature.feature}
+                                  </span>
+                                </li>
+                              ),
+                            )}
                         </ul>
-                        <Link href={course.enrollments.length > 0 ? `courses/watch/${course.id}`: `/courses/view/${course.id}`}>
+                        <Link
+                          href={
+                            course.enrollments.length > 0
+                              ? `courses/watch/${course.id}`
+                              : `/courses/view/${course.id}`
+                          }
+                        >
                           <Button className="mt-6 w-full bg-green-700 text-white hover:bg-[#2f5a32]">
-                            {course.enrollments.length > 0 ? 'Continue Learning' : 'Enroll Now'}
+                            {course.enrollments.length > 0
+                              ? 'Continue Learning'
+                              : 'Enroll Now'}
                           </Button>
                         </Link>
                       </div>
