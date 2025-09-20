@@ -43,16 +43,15 @@ export default function CertificateComponent({
     getCertificateInfo();
   }, []);
 
-
   const handleDownload = () => {
     htmlToImage
-  .toJpeg(document.getElementById('cert')!, { quality: 0.95 })
-  .then(function (dataUrl) {
-    var link = document.createElement('a');
-    link.download = 'my-image-name.jpeg';
-    link.href = dataUrl;
-    link.click();
-  });
+      .toJpeg(document.getElementById('cert')!, { quality: 0.95 })
+      .then(function (dataUrl) {
+        var link = document.createElement('a');
+        link.download = 'certificate.jpeg';
+        link.href = dataUrl;
+        link.click();
+      });
   };
 
   if (!data) {
@@ -69,7 +68,7 @@ export default function CertificateComponent({
         <div className="absolute bottom-32 left-6 h-24 w-3 rounded-full bg-green-500"></div>
 
         {/* Certificate Content */}
-        <div className="relative z-10 ml-8 px-16 py-12" id='cert'>
+        <div className="relative z-10 ml-8 px-16 py-12" id="cert">
           <div className="mb-8 flex items-start justify-between">
             <div className="flex items-center gap-4">
               <div className="h-16rounded-full flex w-16 items-center justify-center">
@@ -186,7 +185,7 @@ export default function CertificateComponent({
               className="bg-white text-gray-900 hover:bg-gray-100"
             >
               <Download className="mr-2 h-4 w-4" />
-              Download PNG
+              Download
             </Button>
           </div>
         </div>
