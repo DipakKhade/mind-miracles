@@ -34,7 +34,7 @@ export async function POST(request: NextRequest) {
     razorpayPaymentId: string;
     razorpaySignature: string;
   };
-  const { name, age, whatsapp, email } = form_values;
+  const { name, age, whatsapp } = form_values;
   try {
     const txn = await db.$transaction(async (tx) => {
       await tx.user.update({
