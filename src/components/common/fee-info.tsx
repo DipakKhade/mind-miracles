@@ -9,7 +9,7 @@ import {
 export const FeeInfo = ({ feeAmount }: { feeAmount: number }) => {
   return (
     <>
-      <section className="px-4 py-16">
+      <section className="px-4 py-8">
         <div className="container mx-auto max-w-4xl text-center">
           <Card className="bg-green-700">
             <CardHeader>
