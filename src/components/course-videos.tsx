@@ -24,8 +24,8 @@ export default function CourseVideos({ courseId }: { courseId: string }) {
     const initializeComponent = async () => {
       try {
         toast.loading('loading', {
-          position: 'top-center'
-        })
+          position: 'top-center',
+        });
         setIsLoading(true);
         setError(null);
 
@@ -67,7 +67,7 @@ export default function CourseVideos({ courseId }: { courseId: string }) {
         console.error('Error initializing course videos:', err);
         toast.error('Failed to load course data');
       } finally {
-        toast.dismiss()
+        toast.dismiss();
         setIsLoading(false);
       }
     };
@@ -177,9 +177,9 @@ export default function CourseVideos({ courseId }: { courseId: string }) {
                   </video>
                 </div>
                 <div className="flex-1">
-                  <div className="mb-4 flex items-start justify-between">
+                  <div className="mb-1 flex items-start justify-between">
                     <div>
-                      <h1 className="mb-2 text-2xl font-bold text-gray-900">
+                      <h1 className="mb-0 text-lg font-bold text-gray-900">
                         {courseData.title}
                       </h1>
                       {/* <p className="mb-4 text-gray-600">
@@ -187,7 +187,7 @@ export default function CourseVideos({ courseId }: { courseId: string }) {
                       </p> */}
                     </div>
                   </div>
-                  <div className="mb-4 grid grid-cols-1 gap-4 md:grid-cols-3">
+                  <div className="mb-2 grid grid-cols-1 gap-4 md:grid-cols-3">
                     <div className="flex items-center text-sm text-gray-600">
                       <Calendar className="mr-2 h-4 w-4" />
                       Enrolled: {formatDate(courseData.enrolledAt)}
@@ -211,6 +211,11 @@ export default function CourseVideos({ courseId }: { courseId: string }) {
                     </div>
                     <Progress value={progress ?? 0} className="h-2" />
                   </div>
+                  <div className='mt-4'>
+                    <Button className='bg-green-600' onClick={()=>router.push(`/certificate/${courseId}`)}>
+                      Claim Certificate
+                    </Button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -228,7 +233,7 @@ export default function CourseVideos({ courseId }: { courseId: string }) {
               completed
             </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             {videos.length > 0 ? (
               videos.map((video) => {
                 return (
