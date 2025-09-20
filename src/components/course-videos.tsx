@@ -23,6 +23,9 @@ export default function CourseVideos({ courseId }: { courseId: string }) {
   useEffect(() => {
     const initializeComponent = async () => {
       try {
+        toast.loading('loading', {
+          position: 'top-center'
+        })
         setIsLoading(true);
         setError(null);
 
@@ -64,6 +67,7 @@ export default function CourseVideos({ courseId }: { courseId: string }) {
         console.error('Error initializing course videos:', err);
         toast.error('Failed to load course data');
       } finally {
+        toast.dismiss()
         setIsLoading(false);
       }
     };
@@ -224,10 +228,9 @@ export default function CourseVideos({ courseId }: { courseId: string }) {
               completed
             </div>
           </div>
-          <div className="grid gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {videos.length > 0 ? (
               videos.map((video) => {
-                const status = getVideoStatus(video);
                 return (
                   <VideoCard courseId={courseId} video={video} key={video.id} />
                 );
