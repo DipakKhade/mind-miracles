@@ -5,7 +5,7 @@ export default function Page() {
   return (
     <div className="min-h-screen bg-[#f5f7f5]">
       <CoursesList />
-      <Register />
+      {/* <Register /> */}
     </div>
   );
 }
