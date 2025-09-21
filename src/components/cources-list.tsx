@@ -21,7 +21,7 @@ export default function CoursesList() {
   const { data: session, status } = useSession();
   useEffect(() => {
     if (status === 'loading') return;
-    toast.loading('loading courses...', {
+    toast.loading('loading...', {
       position: 'top-center',
     });
     setLoading(true);
