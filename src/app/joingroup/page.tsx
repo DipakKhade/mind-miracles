@@ -5,8 +5,9 @@ import { useRouter } from 'next/navigation';
 import Script from 'next/script';
 import { toast } from 'sonner';
 import { Input } from '@/components/ui/input';
+import { TRANS_THREAPY_FEE } from '@/lib';
 
-export default function PayPage() {
+export default function Page() {
   const router = useRouter();
   const [phone, setPhone] = useState('');
   const [name, setName] = useState('');
@@ -21,16 +22,24 @@ export default function PayPage() {
     setLoading(true);
     const res = await fetch('/api/createOrder', {
       method: 'POST',
-      body: JSON.stringify({ }),
+      body: JSON.stringify({}),
     });
     const data = await res.json();
+
+    if(!data.id) {
+      setLoading(false)
+      toast.error(data.message)
+      return;
+    }
+
     const options = {
-      key: process.env.key_id,
+      // key: process.env.key_id,
+      key: 'rzp_test_RMufmRqrHj10hC',
       order_id: data.id,
       amount: data.amount,
       currency: data.currency,
       name: 'Mind Miracles',
-      description: 'Join WhatsApp Group',
+      description: 'Mind and body Trance Therapy',
       handler: async (response: any) => {
         const res = await fetch('/api/verify', {
           method: 'POST',
@@ -43,7 +52,7 @@ export default function PayPage() {
         });
         const data = await res.json();
         if (data.isOk) {
-          toast.success('Payment successful! Admin has been notified.');
+          toast.success(data.message);
           const sendMessage = await fetch('api/adduser', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -148,7 +157,7 @@ export default function PayPage() {
 
           <div className="text-center">
             <h1 className="mb-4 text-xl font-semibold text-gray-800">
-              Pay 99 to join session
+              Pay {TRANS_THREAPY_FEE} to join session
             </h1>
             <button
               className="w-full rounded-lg bg-green-600 px-6 py-3 text-white transition-colors hover:bg-green-700 disabled:cursor-not-allowed disabled:opacity-50"

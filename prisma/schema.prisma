@@ -120,6 +120,7 @@ model WpGroupMembers {
   name              String
   wpNumber          String
   razorpayPaymentId String
+  isAddedToGroup    Boolean? @default(false)
 }
 
 enum UserRole {
