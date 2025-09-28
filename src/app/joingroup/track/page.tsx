@@ -18,7 +18,7 @@ export default function WpGroupMembersPage() {
     if (status === 'loading') return;
     if (status === 'unauthenticated') {
       router.push('/');
-      toast.warning('Please log in to user account');
+      toast.warning('Please log in to your account');
     } else if (!AdminMails.includes(data?.user?.email ?? '')) {
       router.push('/');
       toast.warning('unAuthorized');
@@ -29,7 +29,7 @@ export default function WpGroupMembersPage() {
 
   const getData = async () => {
     toast.loading('loading...', {
-      position:'top-center'
+      position: 'top-center',
     });
     const res = await fetch('/api/adduser/track');
     const response = await res.json();
