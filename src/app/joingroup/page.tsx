@@ -33,8 +33,7 @@ export default function Page() {
     }
 
     const options = {
-      // key: process.env.key_id,
-      key: 'rzp_test_RMufmRqrHj10hC',
+      key: process.env.key_id,
       order_id: data.id,
       amount: data.amount,
       currency: data.currency,
