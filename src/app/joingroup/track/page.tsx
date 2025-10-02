@@ -68,7 +68,7 @@ export default function WpGroupMembersPage() {
           WhatsApp Group Members
         </h1>
         <p className="text-sm text-muted-foreground sm:text-base">
-          Manage your WhatsApp group members and track their addition status
+          Manage WhatsApp group members and track their addition status
         </p>
       </div>
 
