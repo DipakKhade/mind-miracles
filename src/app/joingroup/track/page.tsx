@@ -129,11 +129,8 @@ export default function WpGroupMembersPage() {
           <CardContent className="p-8 text-center sm:p-12">
             <div className="mb-4 text-3xl sm:text-4xl">👥</div>
             <h3 className="mb-2 text-base font-semibold text-foreground sm:text-lg">
-              No members found
+              loading...
             </h3>
-            <p className="text-sm text-muted-foreground sm:text-base">
-              There are no WhatsApp group members to display at the moment.
-            </p>
           </CardContent>
         </Card>
       )}
