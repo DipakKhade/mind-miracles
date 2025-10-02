@@ -10,7 +10,7 @@ export async function GET(req: NextRequest) {
         id: true,
         name: true,
         wpNumber: true,
-        // isAddedToGroup: true,
+        isAddedToGroup: true,
       },
     });
 
