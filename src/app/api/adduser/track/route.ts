@@ -12,6 +12,9 @@ export async function GET(req: NextRequest) {
         wpNumber: true,
         isAddedToGroup: true,
       },
+      orderBy: {
+        isAddedToGroup: 'asc',
+      }
     });
 
     return NextResponse.json({
