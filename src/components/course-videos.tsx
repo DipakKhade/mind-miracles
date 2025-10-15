@@ -196,11 +196,11 @@ export default function CourseVideos({ courseId }: { courseId: string }) {
                       <Users className="mr-2 h-4 w-4" />
                       {courseData.totalVideos} Videos
                     </div>
-                    <div className="flex items-center text-sm text-gray-600">
+                    {/* <div className="flex items-center text-sm text-gray-600">
                       <CheckCircle className="mr-2 h-4 w-4" />
                       {courseData?.completedVideos}/{courseData?.totalVideos}{' '}
                       Completed
-                    </div>
+                    </div> */}
                   </div>
                   <div className="space-y-2">
                     <div className="flex items-center justify-between text-sm">
@@ -211,8 +211,11 @@ export default function CourseVideos({ courseId }: { courseId: string }) {
                     </div>
                     <Progress value={progress ?? 0} className="h-2" />
                   </div>
-                  <div className='mt-4'>
-                    <Button className='bg-green-600' onClick={()=>router.push(`/certificate/${courseId}`)}>
+                  <div className="mt-4">
+                    <Button
+                      className="bg-green-600"
+                      onClick={() => router.push(`/certificate/${courseId}`)}
+                    >
                       Claim Certificate
                     </Button>
                   </div>
