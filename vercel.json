@@ -2,6 +2,16 @@
     "redirects": [
       {
         "source": "/(.*)",
+        "has": [
+          {
+            "type": "host",
+            "value": "mind-miracles-git-master-dipak-khades-projects.vercel.app"
+          },
+          {
+            "type":"host",
+            "value":"https://mind-miracles.vercel.app"
+          }
+        ],
         "destination": "https://mindmiracles.in/$1",
         "permanent": true
       }
