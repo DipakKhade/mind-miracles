@@ -5,11 +5,18 @@
         "has": [
           {
             "type": "host",
-            "value": "mind-miracles-git-master-dipak-khades-projects.vercel.app"
-          },
+            "value": "mind-miracles.vercel.app"
+          }
+        ],
+        "destination": "https://mindmiracles.in/$1",
+        "permanent": true
+      },
+      {
+        "source": "/(.*)",
+        "has": [
           {
-            "type":"host",
-            "value":"https://mind-miracles.vercel.app"
+            "type": "host",
+            "value": "mind-miracles-git-master-dipak-khades-projects.vercel.app"
           }
         ],
         "destination": "https://mindmiracles.in/$1",
