@@ -1,15 +1,16 @@
 import CourseVideos from '@/components/course-videos';
 
-export default function Page({
+export default async function Page({
   params,
 }: {
-  params: {
+  params: Promise<{
     courseId: string;
-  };
+  }>;
 }) {
+  const {courseId} = await params;
   return (
     <>
-      <CourseVideos courseId={params.courseId} />
+      <CourseVideos courseId={courseId} />
     </>
   );
 }
