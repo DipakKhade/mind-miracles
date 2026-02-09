@@ -39,7 +39,7 @@ export async function POST(request: NextRequest) {
   try {
     const certificationId = generateCertificateNumber();
 
-    const txn = await db.$transaction(async (tx) => {
+    const txn = await db.$transaction(async (tx: any) => {
       await tx.user.update({
         where: {
           id: user.id,
