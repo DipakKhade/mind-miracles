@@ -46,7 +46,6 @@ export default function Appbar() {
     // SetToggleMenu(!toggleMenu);
   };
 
-
   return (
     <>
       <nav>
