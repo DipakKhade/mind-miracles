@@ -113,6 +113,7 @@ model ContactUs {
   email     String
   age       Int
   place     String
+  createdAt DateTime @default(now())
 }
 
 model WpGroupMembers {
