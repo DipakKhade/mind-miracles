@@ -14,7 +14,7 @@ export async function GET(req: NextRequest) {
       },
       orderBy: {
         isAddedToGroup: 'asc',
-      }
+      },
     });
 
     return NextResponse.json({
