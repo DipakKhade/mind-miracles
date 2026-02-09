@@ -66,7 +66,7 @@ export async function POST(request: NextRequest) {
               razorpayPaymentId,
               razorpayOrderId: orderId,
               razorpaySignature,
-              certificationId,
+              // certificationId,
             },
           },
         },
