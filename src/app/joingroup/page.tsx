@@ -26,9 +26,9 @@ export default function Page() {
     });
     const data = await res.json();
 
-    if(!data.id) {
-      setLoading(false)
-      toast.error(data.message)
+    if (!data.id) {
+      setLoading(false);
+      toast.error(data.message);
       return;
     }
 
