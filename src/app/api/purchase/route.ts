@@ -4,6 +4,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { FormState } from '@/store';
 import { authOptions } from '@/lib/auth_options';
 import { getServerSession } from 'next-auth';
+import { generateCertificateNumber } from '@/lib/common-functions';
 
 export async function POST(request: NextRequest) {
   const session = await getServerSession(authOptions);
@@ -36,6 +37,8 @@ export async function POST(request: NextRequest) {
   };
   const { name, age, whatsapp } = form_values;
   try {
+    const certificationId = generateCertificateNumber();
+
     const txn = await db.$transaction(async (tx) => {
       await tx.user.update({
         where: {
@@ -63,6 +66,7 @@ export async function POST(request: NextRequest) {
               razorpayPaymentId,
               razorpayOrderId: orderId,
               razorpaySignature,
+              certificationId,
             },
           },
         },

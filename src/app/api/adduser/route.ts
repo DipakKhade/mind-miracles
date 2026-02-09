@@ -25,11 +25,11 @@ export async function POST(req: NextRequest) {
         name,
         wpNumber: phone,
         razorpayPaymentId: razorpay_payment_id,
-        isAddedToGroup: false
+        isAddedToGroup: false,
       },
     });
 
-      return NextResponse.json({
+    return NextResponse.json({
       message: 'Payment verified & admin notified',
     });
   } catch (err) {
