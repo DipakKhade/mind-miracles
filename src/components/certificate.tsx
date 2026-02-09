@@ -45,7 +45,7 @@ export default function CertificateComponent({
 
   const handleDownload = () => {
     htmlToImage
-      .toJpeg(document.getElementById('cert')!, { quality: 0.95 })
+      .toJpeg(document.getElementById('cert')!, { quality: 1 })
       .then(function (dataUrl) {
         var link = document.createElement('a');
         link.download = 'certificate.jpeg';
