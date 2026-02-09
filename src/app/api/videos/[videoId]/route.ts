@@ -5,8 +5,9 @@ import { authOptions } from '@/lib/auth_options';
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { videoId: string } },
+  { params }: { params: Promise<{ videoId: string }> },
 ) {
+  const { videoId } = await params;
   const session = await getServerSession(authOptions);
 
   if (!session?.user?.email) {
@@ -24,7 +25,7 @@ export async function GET(
     }
 
     const video = await db.video.findUnique({
-      where: { id: params.videoId },
+      where: { id: videoId },
       include: { course: true },
     });
 

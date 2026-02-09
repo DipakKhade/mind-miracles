@@ -5,8 +5,9 @@ import { authOptions } from '@/lib/auth_options';
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { courseId: string } },
+  { params }: { params: Promise<{ courseId: string }> },
 ) {
+  const { courseId } = await params;
   const session = await getServerSession(authOptions);
 
   if (!session?.user?.email) {
@@ -26,7 +27,7 @@ export async function GET(
 
     const isUserEnrolled = await db.enrollment.findFirst({
       where: {
-        courseId: params.courseId,
+        courseId: courseId,
         userId: user.id,
       },
     });
@@ -40,7 +41,7 @@ export async function GET(
 
     const course = await db.course.findUnique({
       where: {
-        id: params.courseId,
+        id: courseId,
       },
       include: {
         video: {

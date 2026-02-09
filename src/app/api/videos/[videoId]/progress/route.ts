@@ -5,9 +5,10 @@ import { authOptions } from '@/lib/auth_options';
 
 export async function POST(
   req: Request,
-  { params }: { params: { videoId: string } },
+  { params }: { params: Promise<{ videoId: string }> },
 ) {
   try {
+    const { videoId } =  await params;
     const session = await getServerSession(authOptions);
     if (!session?.user?.email) {
       return new NextResponse('Unauthorized', { status: 401 });
@@ -29,7 +30,7 @@ export async function POST(
       where: {
         userId_videoId: {
           userId: user.id,
-          videoId: params.videoId,
+          videoId: videoId,
         },
       },
       update: {
@@ -39,7 +40,7 @@ export async function POST(
       },
       create: {
         userId: user.id,
-        videoId: params.videoId,
+        videoId: videoId,
         progress,
         completed,
         lastWatched: new Date(),
@@ -55,9 +56,10 @@ export async function POST(
 
 export async function GET(
   req: Request,
-  { params }: { params: { videoId: string } },
+  { params }: { params: Promise<{ videoId: string }> },
 ) {
   try {
+    const { videoId } = await params;
     const session = await getServerSession(authOptions);
     if (!session?.user?.email) {
       return new NextResponse('Unauthorized', { status: 401 });
@@ -77,7 +79,7 @@ export async function GET(
       where: {
         userId_videoId: {
           userId: user.id,
-          videoId: params.videoId,
+          videoId: videoId,
         },
       },
     });
