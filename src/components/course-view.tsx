@@ -9,10 +9,10 @@ import { ProgramRegistrationForm } from '@/components/common/program-registratio
 import { Button } from './ui/button';
 import { ArrowLeft } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import Loading from '@/app/purchases/loading';
 import { toast } from 'sonner';
 import { GoogleSignInButton } from './google-signin-button';
 import { signIn, useSession } from 'next-auth/react';
+import { CourseViewSkeleton } from './skeletons/view-score-skeleton';
 
 export function CourseView({ courseId }: { courseId: string }) {
   const [courseData, setCourseData] = useState<any | null>(null);
@@ -20,23 +20,27 @@ export function CourseView({ courseId }: { courseId: string }) {
   const session = useSession();
   const router = useRouter();
   useEffect(() => {
-    toast.loading('loading...', {
-      position: 'top-center',
-    });
     setIsLoading(true);
     async function getCourseData() {
-      const data = await getCourseById(courseId);
-      setCourseData(data);
-      toast.dismiss();
+      try {
+        const data = await getCourseById(courseId);
+        setCourseData(data);
+      } catch (error) {
+        console.error('Error fetching course:', error);
+        toast.error('Failed to load course. Please try again.', {
+          position: 'top-center',
+        });
+      } finally {
+        setIsLoading(false);
+      }
     }
     getCourseData();
-    setIsLoading(false);
   }, []);
 
   return (
     <>
       {isLoading ? (
-        <Loading />
+        <CourseViewSkeleton />
       ) : (
         <div>
           <header className="border-b border-gray-200 bg-white">
