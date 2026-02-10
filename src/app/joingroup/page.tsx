@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Script from 'next/script';
 import { toast } from 'sonner';
@@ -12,6 +12,10 @@ export default function Page() {
   const [phone, setPhone] = useState('');
   const [name, setName] = useState('');
   const [loading, setLoading] = useState(false);
+
+  useEffect(()=> {
+    router.push('/')
+  })
 
   const startPayment = async () => {
     if (!phone || phone.length < 10) {

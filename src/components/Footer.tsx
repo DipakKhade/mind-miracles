@@ -51,7 +51,7 @@ export function Footer() {
 
   const services = [
     { name: 'Psychology Consultation', href: '/' },
-    { name: 'Mind and body Trance Therapy', href: '/joingroup' },
+    // { name: 'Mind and body Trance Therapy', href: '/joingroup' },
     { name: 'Workshops', href: '/' },
   ];
 
