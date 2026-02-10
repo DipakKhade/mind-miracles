@@ -6,13 +6,13 @@ import { getServerSession } from 'next-auth';
 export default async function Page({
   params,
 }: {
-  params: { courseId: string };
+  params: Promise<{ courseId: string }>;
 }) {
+  const {courseId} = await params;
   const session = await getServerSession(authOptions);
-  console.log(session);
   return (
     <>
-      <CourseView courseId={params.courseId} />
+      <CourseView courseId={courseId} />
       {session && <TermsAndConditions />}
     </>
   );
