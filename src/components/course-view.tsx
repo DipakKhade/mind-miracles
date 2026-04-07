@@ -17,7 +17,7 @@ import { CourseViewSkeleton } from './skeletons/view-score-skeleton';
 export function CourseView({ courseId }: { courseId: string }) {
   const [courseData, setCourseData] = useState<any | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const session = useSession();
+  const { data: session, status } = useSession();
   const router = useRouter();
   useEffect(() => {
     setIsLoading(true);
@@ -35,7 +35,7 @@ export function CourseView({ courseId }: { courseId: string }) {
       }
     }
     getCourseData();
-  }, []);
+  }, [courseId]);
 
   return (
     <>
@@ -72,7 +72,15 @@ export function CourseView({ courseId }: { courseId: string }) {
             <VideoPreview videolink={courseData?.previewURL ?? ''} />
           )}
 
-          {session.status === 'unauthenticated' && (
+          {courseData?.price && <FeeInfo feeAmount={courseData?.price ?? 0} />}
+
+          {status === 'loading' ? (
+            <div className="flex w-full justify-center py-8">
+              <div className="w-96 space-y-4">
+                <CourseViewSkeleton />
+              </div>
+            </div>
+          ) : status === 'unauthenticated' ? (
             <div className="flex w-full justify-center">
               <div className="w-96 space-y-4 pt-8">
                 <GoogleSignInButton
@@ -82,11 +90,7 @@ export function CourseView({ courseId }: { courseId: string }) {
                 />
               </div>
             </div>
-          )}
-
-          {courseData?.price && <FeeInfo feeAmount={courseData?.price ?? 0} />}
-
-          {session.status === 'authenticated' && (
+          ) : (
             <ProgramRegistrationForm
               course_id={courseId}
               amount_to_pay={courseData?.price ?? 0}

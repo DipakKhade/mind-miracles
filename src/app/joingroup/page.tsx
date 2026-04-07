@@ -13,9 +13,9 @@ export default function Page() {
   const [name, setName] = useState('');
   const [loading, setLoading] = useState(false);
 
-  useEffect(()=> {
-    router.push('/')
-  })
+  useEffect(() => {
+    router.push('/');
+  });
 
   const startPayment = async () => {
     if (!phone || phone.length < 10) {

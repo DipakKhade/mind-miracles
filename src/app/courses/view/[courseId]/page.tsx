@@ -8,7 +8,7 @@ export default async function Page({
 }: {
   params: Promise<{ courseId: string }>;
 }) {
-  const {courseId} = await params;
+  const { courseId } = await params;
   const session = await getServerSession(authOptions);
   return (
     <>

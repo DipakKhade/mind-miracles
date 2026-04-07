@@ -53,12 +53,16 @@ export const authOptions = {
     },
 
     async session({ session, token }: { session: any; token: any }) {
+      if (!session.user?.email) {
+        return null;
+      }
+
       const dbUser = await db.user.findUnique({
         where: { email: session.user.email },
       });
 
       if (!dbUser || dbUser.sessionToken !== token.sessionToken) {
-        return null; // force sign out
+        return null;
       }
 
       session.user.role = dbUser.role;

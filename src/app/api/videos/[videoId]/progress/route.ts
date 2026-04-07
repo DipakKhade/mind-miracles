@@ -8,7 +8,7 @@ export async function POST(
   { params }: { params: Promise<{ videoId: string }> },
 ) {
   try {
-    const { videoId } =  await params;
+    const { videoId } = await params;
     const session = await getServerSession(authOptions);
     if (!session?.user?.email) {
       return new NextResponse('Unauthorized', { status: 401 });

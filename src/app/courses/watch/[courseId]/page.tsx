@@ -7,7 +7,7 @@ export default async function Page({
     courseId: string;
   }>;
 }) {
-  const {courseId} = await params;
+  const { courseId } = await params;
   return (
     <>
       <CourseVideos courseId={courseId} />
