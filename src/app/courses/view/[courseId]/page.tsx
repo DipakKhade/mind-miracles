@@ -9,11 +9,16 @@ export default async function Page({
   params: Promise<{ courseId: string }>;
 }) {
   const { courseId } = await params;
-  const session = await getServerSession(authOptions);
+  let session = null;
+  try {
+    session = await getServerSession(authOptions);
+  } catch (error) {
+    console.error('Session error:', error);
+  }
   return (
     <>
       <CourseView courseId={courseId} />
-      {session && <TermsAndConditions />}
+      {session?.user && <TermsAndConditions />}
     </>
   );
 }
