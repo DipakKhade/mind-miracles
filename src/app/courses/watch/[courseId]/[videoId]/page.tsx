@@ -59,18 +59,18 @@ export default function Page({ params }: PageProps) {
   };
 
   return (
-    <main className="min-h-screen bg-background p-4">
+    <main className="min-h-screen bg-[#F8F9FA] px-4 pb-8">
       <GoBack backTo="" backToRoute={`courses/watch/${params.courseId}`} />
-      <div className="mx-auto max-w-4xl space-y-6 pt-4">
+      <div className="mx-auto max-w-4xl space-y-6 pt-6">
         {/* Video Player Card */}
-        <Card className="overflow-hidden">
+        <Card className="overflow-hidden rounded-2xl border-0 shadow-xl shadow-green-900/10">
           <Suspense fallback={<VideoPlayerSkeleton />}>
             <VimeoPlayer vimeoId={vimeoId || ''} videoId={params.videoId} />
           </Suspense>
         </Card>
 
         {/* Video Information Card */}
-        <Card>
+        <Card className="rounded-2xl border-green-100">
           <CardHeader>
             {isLoadingMetadata ? (
               <div className="space-y-2">
@@ -79,7 +79,7 @@ export default function Page({ params }: PageProps) {
               </div>
             ) : (
               <div className="space-y-2">
-                <h1 className="text-2xl font-bold leading-tight text-green-500">
+                <h1 className="text-2xl font-bold leading-tight text-[#003C2F]">
                   {videoMetadata?.title}
                 </h1>
                 {videoMetadata?.duration && (

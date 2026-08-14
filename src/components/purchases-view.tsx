@@ -1,7 +1,7 @@
 'use client';
 
 import { BookOpen } from 'lucide-react';
-import { Link } from 'lucide-react';
+import NextLink from 'next/link';
 import { Button } from './ui/button';
 import { CourseCard } from './course-card';
 import { useEffect, useState } from 'react';
@@ -53,7 +53,7 @@ export default function PurchasesView() {
             <p className="mb-6 text-gray-600">{error}</p>
             <Button
               onClick={() => window.location.reload()}
-              className="bg-green-600 hover:bg-green-700"
+              className="rounded-full bg-green-600 hover:bg-green-700"
             >
               Try Again
             </Button>
@@ -86,11 +86,11 @@ export default function PurchasesView() {
             <p className="mb-6 text-gray-600">
               Start your learning journey by enrolling in a course
             </p>
-            <Link href="/courses">
-              <Button className="bg-green-600 hover:bg-green-700">
+            <NextLink href="/courses">
+              <Button className="rounded-full bg-green-600 shadow-lg shadow-green-600/25 transition-all duration-300 hover:-translate-y-0.5 hover:bg-green-700 hover:shadow-xl">
                 Browse Courses
               </Button>
-            </Link>
+            </NextLink>
           </div>
         )}
       </main>

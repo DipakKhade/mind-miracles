@@ -50,19 +50,25 @@ export function UserForm({ score }: Props) {
 
   return (
     <div className="mx-auto max-w-2xl">
-      <Card className="mb-8">
+      <Card className="mb-8 overflow-hidden rounded-2xl border-green-100">
+        <div className="h-1.5 bg-gradient-to-r from-green-600 to-teal-600" />
         <CardHeader>
-          <CardTitle>Your Assessment Results</CardTitle>
+          <CardTitle className="text-[#003C2F]">
+            Your Assessment Results
+          </CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="mb-4">Score: {score}/20</p>
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-green-600/10 px-4 py-1.5 text-sm font-bold text-green-700">
+            Score: {score}/20
+          </div>
           <p className="text-gray-700">{getRemark(score)}</p>
         </CardContent>
       </Card>
 
-      <Card>
+      <Card className="overflow-hidden rounded-2xl border-green-100">
+        <div className="h-1.5 bg-gradient-to-r from-green-600 to-teal-600" />
         <CardHeader>
-          <CardTitle>
+          <CardTitle className="text-xl text-[#003C2F]">
             If you want to manage your stress level, fill the form!!!
           </CardTitle>
         </CardHeader>
@@ -118,7 +124,7 @@ export function UserForm({ score }: Props) {
             </div>
             <Button
               type="submit"
-              className="w-full bg-green-700 hover:bg-green-800"
+              className="w-full rounded-full bg-green-600 py-6 shadow-lg shadow-green-600/25 transition-all duration-300 hover:-translate-y-0.5 hover:bg-green-700 hover:shadow-xl"
               disabled={loading}
             >
               {loading ? 'Submitting...' : 'Submit'}

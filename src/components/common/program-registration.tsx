@@ -116,7 +116,8 @@ export function ProgramRegistrationForm({
           </p>
         </div>
 
-        <Card className="border-0 bg-white/80 shadow-2xl backdrop-blur-sm">
+        <Card className="overflow-hidden rounded-3xl border-0 bg-white/85 shadow-2xl backdrop-blur-md">
+          <div className="h-1.5 bg-gradient-to-r from-blue-500 via-green-500 to-purple-500" />
           <CardHeader className="pb-8 text-center">
             <CardTitle className="text-2xl font-semibold text-gray-800">
               Registration Form
@@ -125,7 +126,7 @@ export function ProgramRegistrationForm({
               Fill in your details to secure your spot in the program
             </CardDescription>
           </CardHeader>
-          <CardContent className="px-8 pb-8">
+          <CardContent className="px-5 pb-8 sm:px-8">
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Full Name Field */}
               <div className="space-y-2">
@@ -298,8 +299,8 @@ export function ProgramRegistrationForm({
             </form>
 
             {/* Additional Info */}
-            <div className="mt-8 rounded-lg border border-blue-200 bg-blue-50 p-4">
-              <p className="text-sm text-blue-800">
+            <div className="mt-8 rounded-2xl border border-blue-200 bg-blue-50 p-5">
+              <p className="text-sm leading-relaxed text-blue-800">
                 <strong>Note:</strong> Your information is secure and will only
                 be used for program communication. We respect your privacy and
                 will never share your details with third parties.

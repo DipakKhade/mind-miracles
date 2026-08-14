@@ -30,44 +30,42 @@ const features = [
 
 export function Features() {
   return (
-    <div className="py-24 pt-8 sm:py-32">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+    <div className="py-16 sm:py-24">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-base font-semibold leading-7 text-green-600">
+          <span className="inline-flex items-center rounded-full border border-green-600/20 bg-green-600/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-green-700">
             Our Approach
-          </h2>
-          <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+          </span>
+          <p className="mt-4 text-3xl font-bold tracking-tight text-[#003C2F] sm:text-4xl">
             Everything you need for mental wellness
           </p>
         </div>
-        <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
-          <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-4">
-            {features.map((feature) => (
-              <motion.div
-                key={feature.name}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                viewport={{ once: true }}
-                className="flex flex-col"
-              >
-                <dt className="text-center">
-                  <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-lg bg-green-600">
-                    <feature.icon
-                      className="h-8 w-8 text-white"
-                      aria-hidden="true"
-                    />
-                  </div>
-                  <span className="text-lg font-semibold leading-7 text-gray-900">
-                    {feature.name}
-                  </span>
-                </dt>
-                <dd className="mt-1 flex flex-auto flex-col text-base leading-7 text-gray-600">
-                  <p className="flex-auto text-center">{feature.description}</p>
-                </dd>
-              </motion.div>
-            ))}
-          </dl>
+        <div className="mx-auto mt-12 grid max-w-xl grid-cols-1 gap-5 sm:mt-16 sm:grid-cols-2 lg:max-w-none lg:grid-cols-4">
+          {features.map((feature, i) => (
+            <motion.div
+              key={feature.name}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              viewport={{ once: true }}
+              className="group flex flex-col rounded-2xl border border-green-900/5 bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-green-600/20 hover:shadow-xl hover:shadow-green-900/10"
+            >
+              <dt>
+                <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-green-600 to-teal-700 shadow-lg shadow-green-600/25 transition-transform duration-300 group-hover:rotate-3 group-hover:scale-110">
+                  <feature.icon
+                    className="h-7 w-7 text-white"
+                    aria-hidden="true"
+                  />
+                </div>
+                <span className="text-lg font-bold leading-7 text-[#003C2F]">
+                  {feature.name}
+                </span>
+              </dt>
+              <dd className="mt-2 flex flex-auto flex-col text-base leading-7 text-[#003C2F]/70">
+                <p className="flex-auto">{feature.description}</p>
+              </dd>
+            </motion.div>
+          ))}
         </div>
       </div>
     </div>

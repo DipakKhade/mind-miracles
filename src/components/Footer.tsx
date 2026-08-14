@@ -81,10 +81,10 @@ export function Footer() {
                       href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`text-gray-400 transition-colors duration-200 ${social.color}`}
+                      className={`flex h-10 w-10 items-center justify-center rounded-full bg-white/5 text-gray-400 transition-all duration-300 hover:-translate-y-1 ${social.color}`}
                       aria-label={social.name}
                     >
-                      <IconComponent className="h-6 w-6" />
+                      <IconComponent className="h-5 w-5" />
                     </Link>
                   );
                 })}

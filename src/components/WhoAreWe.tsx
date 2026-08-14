@@ -32,7 +32,7 @@ export default function WhoWeAre() {
         variants={variants}
         className="pb-12 pt-12"
       >
-        <motion.h1
+        <motion.div
           initial={{ opacity: 0.5, y: 100 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{
@@ -40,38 +40,40 @@ export default function WhoWeAre() {
             duration: 0.8,
             ease: 'easeInOut',
           }}
-          className="mt-8 bg-gradient-to-br from-slate-300 to-green-500 bg-clip-text py-4 text-center font-medium tracking-tight text-slate-50 text-transparent"
+          className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8"
         >
-          <div className="justify-around md:flex" id="about">
-            <div className="flex justify-center">
-              <div className="flex flex-col">
-                <div className="font-mono text-4xl text-green-900 md:pt-12 md:text-5xl">
-                  WHO ARE WE ?
-                </div>
-
-                <div>
-                  <div className="flex justify-center">
-                    <Image
-                      alt="mindmiracles"
-                      src={weweare_logo}
-                      height={700}
-                      width={500}
-                    />
-                  </div>
-                </div>
+          <div
+            className="flex flex-col items-center justify-between gap-10 md:flex-row md:gap-16"
+            id="about"
+          >
+            <div className="flex flex-col items-center md:items-start">
+              <span className="inline-flex items-center rounded-full border border-green-600/20 bg-green-600/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-green-700">
+                About Us
+              </span>
+              <h2 className="mt-4 text-center text-4xl font-bold tracking-tight text-green-900 md:text-start md:text-5xl">
+                WHO ARE WE ?
+              </h2>
+              <div className="mt-6 flex justify-center">
+                <Image
+                  alt="mindmiracles"
+                  src={weweare_logo}
+                  height={560}
+                  width={400}
+                  className="rounded-3xl object-cover shadow-2xl shadow-green-900/20"
+                />
               </div>
             </div>
 
-            <div className="pt-4 text-base/loose text-teal-800 md:w-[500px] md:pt-24 md:text-2xl">
+            <div className="w-full max-w-xl text-center text-base leading-relaxed text-teal-800 md:text-start md:text-xl md:leading-loose">
               Mind Miracles is a dedicated center for psychological healing and
               Hypnotherapy, established in 2019, focused on enhancing mental
               health, especially for the youth. We specialize in psychological
               therapies, relaxation techniques, and counseling to address a wide
               range of mental, emotional, and behavioral needs with professional
-              care and expertise.{' '}
+              care and expertise.
             </div>
           </div>
-        </motion.h1>
+        </motion.div>
       </motion.div>
     </>
   );

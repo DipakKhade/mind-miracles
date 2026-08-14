@@ -2,12 +2,12 @@
 export const VideoPreview = ({ videolink }: { videolink: string }) => {
   return (
     <>
-      <section className="bg-green-700 px-4 py-16">
+      <section className="bg-gradient-to-br from-green-600 to-teal-800 px-4 py-16">
         <div className="container mx-auto max-w-4xl text-center">
           <h2 className="mb-8 text-3xl font-bold text-white">
             Program Preview
           </h2>
-          <div className="aspect-video overflow-hidden rounded-lg bg-black/10">
+          <div className="aspect-video overflow-hidden rounded-2xl bg-black/10 shadow-2xl shadow-green-900/40 ring-4 ring-white/10">
             {/* <iframe
                 width="100%"
                 height="100%"

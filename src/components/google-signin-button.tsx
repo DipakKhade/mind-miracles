@@ -18,7 +18,7 @@ export function GoogleSignInButton({
       variant="outline"
       onClick={onClick}
       disabled={disabled}
-      className={`flex w-full items-center justify-center gap-3 border border-green-400 ${className}`}
+      className={`flex h-12 w-full items-center justify-center gap-3 rounded-full border border-green-300 bg-white text-base font-semibold text-[#003C2F] shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-green-500 hover:bg-green-50 hover:shadow-lg hover:shadow-green-600/10 ${className}`}
     >
       <svg
         className="h-5 w-5"

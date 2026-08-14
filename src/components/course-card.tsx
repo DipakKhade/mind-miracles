@@ -59,10 +59,10 @@ export const CourseCard = ({
   };
 
   return (
-    <Card className="overflow-hidden border-green-100 transition-shadow duration-300 hover:shadow-lg">
-      <div className="relative">
+    <Card className="group overflow-hidden rounded-2xl border-green-100 transition-all duration-300 hover:-translate-y-1.5 hover:border-green-200 hover:shadow-xl hover:shadow-green-900/10">
+      <div className="relative aspect-video overflow-hidden">
         <video
-          className="h-full w-full object-cover"
+          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
           width="100%"
           height="auto"
           autoPlay
@@ -74,14 +74,15 @@ export const CourseCard = ({
           Your browser does not support the video tag.
         </video>
         <div className="absolute right-4 top-4">
-          <Badge className="bg-green-600 hover:bg-green-700">
+          <Badge className="bg-green-600 shadow-md shadow-green-600/30 hover:bg-green-700">
             ₹ {course.price}
           </Badge>
         </div>
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
       </div>
 
       <CardHeader>
-        <CardTitle className="line-clamp-2 text-lg font-semibold text-gray-900">
+        <CardTitle className="line-clamp-2 text-lg font-semibold text-[#003C2F]">
           {course.title}
         </CardTitle>
         <CardDescription className="line-clamp-3 text-gray-600">
@@ -136,7 +137,7 @@ export const CourseCard = ({
 
       <CardFooter className="flex gap-2">
         <Button
-          className="flex-1 bg-green-600 hover:bg-green-700"
+          className="flex-1 rounded-full bg-green-600 hover:bg-green-700"
           onClick={() => {
             router.push(`/courses/watch/${course.id}`);
           }}
@@ -147,7 +148,7 @@ export const CourseCard = ({
 
         <Button
           variant="outline"
-          className="border-green-200 text-green-700 hover:bg-green-50"
+          className="rounded-full border-green-200 text-green-700 hover:bg-green-50"
           onClick={() => {
             router.push(`/invoice/${course.id}`);
           }}

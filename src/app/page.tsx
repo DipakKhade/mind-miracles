@@ -10,24 +10,19 @@ import { Features } from '@/components/features';
 
 export default function Home() {
   return (
-    <main className="bg-slate-50 p-2">
+    <main className="bg-slate-50">
       <Script
         id="razorpay-checkout-js"
         src="https://checkout.razorpay.com/v1/checkout.js"
       />
-      <div className="md:p-8">
-        <Hero />
-        <Features />
-        <WhoWeAre />
-        <div>{/* <ServicesCards /> */}</div>
-        <div className="flex min-h-screen items-center justify-center">
-          <MissionVision />
-        </div>
-        <div className="">
-          <Founder />
-        </div>
-        {/* <Payment/> */}
+      <Hero />
+      <Features />
+      <WhoWeAre />
+      <div>{/* <ServicesCards /> */}</div>
+      <div className="flex items-center justify-center py-8 md:py-16">
+        <MissionVision />
       </div>
+      <Founder />
       <Register />
       {/* <Footer /> */}
     </main>

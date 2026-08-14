@@ -7,7 +7,11 @@ import NextTopLoader from 'nextjs-toploader';
 import { Providers } from './Providers';
 import { Footer } from '@/components/Footer';
 
-const merriweather = Merriweather({ subsets: ['latin'], weight: '300' });
+const merriweather = Merriweather({
+  subsets: ['latin'],
+  weight: ['300', '400', '700', '900'],
+  style: ['normal', 'italic'],
+});
 
 export const metadata: Metadata = {
   title: 'Mindmiracles',

@@ -49,16 +49,16 @@ export function VideoCard({
   };
 
   return (
-    <Card className="overflow-hidden transition-shadow hover:shadow-md lg:max-w-screen-sm">
+    <Card className="group overflow-hidden rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-lg lg:max-w-screen-sm">
       <CardContent className="p-0">
         {/* Video Thumbnail Header */}
         <div className="relative">
-          <div className="relative h-auto w-full bg-gray-100">
+          <div className="relative aspect-video w-full overflow-hidden bg-gray-100">
             {video.thumbnailURL ? (
               <img
                 src={video.thumbnailURL || '/placeholder.svg'}
                 alt={`Day ${video.dayNumber}: ${video.title}`}
-                className="h-full w-full object-cover"
+                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
             ) : (
               <div className="flex h-full w-full items-center justify-center bg-gray-200">
@@ -67,35 +67,26 @@ export function VideoCard({
             )}
             {/* Play button overlay */}
             <div
-              className="absolute inset-0 flex cursor-pointer items-center justify-center bg-black bg-opacity-30 opacity-0 transition-opacity hover:opacity-100"
+              className="absolute inset-0 flex cursor-pointer items-center justify-center bg-black bg-opacity-40 opacity-0 transition-opacity duration-300 hover:opacity-100"
               onClick={() => {
                 router.push(
                   `/courses/watch/${courseId}/${video.id}?vid=${video.vimeoId}`,
                 );
               }}
             >
-              <div className="rounded-full bg-white bg-opacity-90 p-4">
+              <div className="scale-90 rounded-full bg-white bg-opacity-90 p-4 transition-transform duration-300 group-hover:scale-100">
                 <Play className="h-8 w-8 text-gray-800" />
               </div>
             </div>
             {/* Day number badge */}
             <div className="absolute left-4 top-4">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-green-600 text-sm font-semibold text-white shadow-lg">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-green-600 text-sm font-bold text-white shadow-lg shadow-green-600/30 ring-2 ring-white/60">
                 {video.dayNumber}
               </div>
             </div>
-            {/* Status badge */}
-            {/* <div className="absolute right-4 top-4">
-              <Badge
-                variant="outline"
-                className={`${getStatusColor(status)} shadow-sm`}
-              >
-                {getStatusText(status)}
-              </Badge>
-            </div> */}
             {/* Duration badge */}
             <div className="absolute bottom-4 right-4">
-              <div className="flex items-center rounded bg-black bg-opacity-70 px-2 py-1 text-xs text-white">
+              <div className="flex items-center rounded-full bg-black bg-opacity-70 px-3 py-1 text-xs text-white backdrop-blur-sm">
                 <Clock className="mr-1 h-3 w-3" />
                 {video.duration}
               </div>
@@ -106,7 +97,7 @@ export function VideoCard({
         {/* Video Info */}
         <div className="p-6">
           <div className="mb-3">
-            <h3 className="mb-2 text-lg font-medium text-gray-900">
+            <h3 className="mb-2 text-lg font-semibold text-[#003C2F]">
               {video.title}
             </h3>
             <p className="line-clamp-2 text-sm text-gray-600">
@@ -137,7 +128,7 @@ export function VideoCard({
           <div className="flex items-center justify-between">
             <Button
               size="sm"
-              className="bg-green-600 hover:bg-green-700"
+              className="rounded-full bg-green-600 hover:bg-green-700"
               onClick={() => {
                 router.push(
                   `/courses/watch/${courseId}/${video.id}?vid=${video.vimeoId}`,

@@ -1,21 +1,14 @@
 'use client';
 
-import { signIn, signOut } from 'next-auth/react';
-import { useSession } from 'next-auth/react';
+import { signIn, signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { useEffect, useState, useRef } from 'react';
-import { BiSolidPurchaseTagAlt } from 'react-icons/bi';
-import { PiSignOutBold } from 'react-icons/pi';
+import { User, LogOut, ChevronDown } from 'lucide-react';
 
 export const SignInButton = () => {
-  const [imageURl, setImageURl] = useState<string>('');
   const session = useSession();
   const [toggleMenu, SetToggleMenu] = useState<boolean>(false);
-  const menuRef = useRef<HTMLSpanElement>(null);
-
-  useEffect(() => {
-    setImageURl(session.data?.user?.image ?? '');
-  }, [session.data?.user?.image]);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -49,78 +42,77 @@ export const SignInButton = () => {
     };
   }, [toggleMenu]);
 
-  const handleMenuToggle = () => {
-    SetToggleMenu(!toggleMenu);
-  };
+  const user = session.data?.user;
+  const userInitial = (user?.name ?? user?.email ?? '?')
+    .charAt(0)
+    .toUpperCase();
 
-  const handleMenuItemClick = () => {
-    SetToggleMenu(false);
-  };
+  if (user) {
+    return (
+      <div className="relative" ref={menuRef}>
+        <button
+          onClick={() => SetToggleMenu((prev) => !prev)}
+          aria-expanded={toggleMenu}
+          aria-haspopup="true"
+          aria-label="Profile menu"
+          className="flex items-center gap-2 rounded-full p-1 pr-2.5 transition-all duration-200 hover:bg-green-600/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-600/40"
+        >
+          {user.image ? (
+            <img
+              alt={`${user.name ?? 'User'} avatar`}
+              src={user.image}
+              className="h-9 w-9 rounded-full object-cover ring-2 ring-green-600/30"
+            />
+          ) : (
+            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-green-600 to-teal-700 text-sm font-bold text-white shadow-md shadow-green-600/25">
+              {userInitial}
+            </span>
+          )}
+          <ChevronDown
+            className={`h-4 w-4 text-[#003C2F]/60 transition-transform duration-200 ${
+              toggleMenu ? 'rotate-180' : ''
+            }`}
+          />
+        </button>
+
+        {toggleMenu && (
+          <div className="absolute right-0 top-full z-50 mt-3 w-56 overflow-hidden rounded-2xl border border-green-900/10 bg-white shadow-xl shadow-green-900/10">
+            <div className="border-b border-gray-100 px-4 py-3">
+              <p className="truncate text-sm font-bold text-[#003C2F]">
+                {user.name}
+              </p>
+              <p className="truncate text-xs text-[#003C2F]/60">{user.email}</p>
+            </div>
+            <Link
+              href="/profile"
+              onClick={() => SetToggleMenu(false)}
+              className="flex items-center gap-3 px-4 py-3 text-sm font-medium text-[#003C2F]/80 transition-colors hover:bg-green-50 hover:text-green-700"
+            >
+              <User className="h-4 w-4" />
+              My Profile
+            </Link>
+            <button
+              onClick={() => {
+                SetToggleMenu(false);
+                signOut();
+              }}
+              className="flex w-full items-center gap-3 border-t border-gray-100 px-4 py-3 text-sm font-medium text-red-600 transition-colors hover:bg-red-50"
+            >
+              <LogOut className="h-4 w-4" />
+              Sign Out
+            </button>
+          </div>
+        )}
+      </div>
+    );
+  }
 
   return (
-    <>
-      {session && session.data?.user ? (
-        // <span className="relative z-[10]" ref={menuRef}>
-        //   <button
-        //     onClick={handleMenuToggle}
-        //     aria-expanded={toggleMenu}
-        //     aria-haspopup="true"
-        //   >
-        //     <img
-        //       alt="User profile"
-        //       src={
-        //         imageURl
-        //           ? imageURl
-        //           : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxH2CteA3O6uK6JmgQfdzDg4IHMtZyzpbx2w&s'
-        //       }
-        //       className="relative inline-block h-10 w-10 cursor-pointer rounded-full object-cover object-center"
-        //       data-popover-target="profile-menu"
-        //     />
-        //   </button>
-
-        //   {toggleMenu && (
-        //     <ul
-        //       role="menu"
-        //       data-popover="profile-menu"
-        //       data-popover-placement="bottom"
-        //       className="absolute right-0 top-full z-20 mt-2 min-w-[150px] overflow-auto rounded-lg border border-slate-200 bg-white p-1.5 shadow-lg focus:outline-none"
-        //     >
-        //       <li
-        //         role="menuitem"
-        //         className="flex w-full cursor-pointer items-center rounded-md p-3 text-sm text-slate-800 transition-all hover:bg-slate-100 focus:bg-slate-100 active:bg-slate-100"
-        //       >
-        //         <BiSolidPurchaseTagAlt />
-        //         <Link href="/purchases" onClick={handleMenuItemClick}>
-        //           <p className="ml-2 font-medium text-slate-800">Purchases</p>
-        //         </Link>
-        //       </li>
-        //       <hr className="my-2 border-slate-200" role="menuitem" />
-        //       <li
-        //         role="menuitem"
-        //         className="flex w-full cursor-pointer items-center rounded-md p-3 text-sm text-slate-800 transition-all hover:bg-slate-100 focus:bg-slate-100 active:bg-slate-100"
-        //       >
-        //         <PiSignOutBold />
-        //         <button
-        //           className="ml-2 font-medium text-slate-800"
-        //           onClick={() => {
-        //             signOut();
-        //             handleMenuItemClick();
-        //           }}
-        //         >
-        //           Sign Out
-        //         </button>
-        //       </li>
-        //     </ul>
-        //   )}
-        // </span>
-        <div className="hover:text-green-600 md:mr-12">
-          <button onClick={() => signOut()}>Sign Out</button>
-        </div>
-      ) : (
-        <div className="hover:text-green-600 md:mr-12">
-          <button onClick={() => signIn('google')}>Sign In</button>
-        </div>
-      )}
-    </>
+    <button
+      onClick={() => signIn('google')}
+      className="inline-flex items-center justify-center rounded-full bg-green-600 px-5 py-2 text-sm font-semibold text-white shadow-md shadow-green-600/25 transition-all duration-200 hover:-translate-y-0.5 hover:bg-green-700 hover:shadow-lg hover:shadow-green-600/30"
+    >
+      Sign In
+    </button>
   );
 };
