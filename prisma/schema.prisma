@@ -124,6 +124,18 @@ model WpGroupMembers {
   isAddedToGroup    Boolean? @default(false)
 }
 
+model ProgramRegistration {
+  id                String   @id @default(auto()) @map("_id") @db.ObjectId
+  name              String
+  whatsappNumber    String
+  amount            Float
+  razorpayOrderId   String
+  razorpayPaymentId String
+  razorpaySignature String
+  status            PaymentStatus @default(PENDING)
+  registeredAt      DateTime @default(now())
+}
+
 model AssessmentResult {
   id String @id @default(auto()) @map("_id") @db.ObjectId
   name String

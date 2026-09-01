@@ -14,6 +14,7 @@ const navLinks = [
   { name: 'Home', href: '/' },
   { name: 'About', href: '/#about' },
   { name: 'Courses', href: '/courses' },
+  { name: '21 Days Program', href: '/21-days-program' },
   { name: 'Contact Us', href: '/#contact' },
 ];
 
