@@ -1,13 +1,15 @@
 'use client';
+import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { ChevronLeft, ChevronRight, Quote } from 'lucide-react';
+import { Quote } from 'lucide-react';
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
+  type CarouselApi,
 } from '@/components/ui/carousel';
 
 const reviews = [
@@ -31,6 +33,43 @@ const reviews = [
 ];
 
 export default function ReviewGallery() {
+  const [api, setApi] = useState<CarouselApi>();
+  const [paused, setPaused] = useState(false);
+  const resumeTimer = useRef<number | null>(null);
+
+  const pauseOnTouch = () => {
+    setPaused(true);
+    if (resumeTimer.current) {
+      window.clearTimeout(resumeTimer.current);
+    }
+  };
+
+  const handlePointer = () => {
+    pauseOnTouch();
+    resumeTimer.current = window.setTimeout(() => setPaused(false), 8000);
+  };
+
+  useEffect(() => {
+    if (!api || paused) {
+      return;
+    }
+    const interval = setInterval(() => {
+      if (document.hidden) {
+        return;
+      }
+      api.scrollNext();
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [api, paused]);
+
+  useEffect(() => {
+    return () => {
+      if (resumeTimer.current) {
+        window.clearTimeout(resumeTimer.current);
+      }
+    };
+  }, []);
+
   return (
     <section className="bg-gradient-to-b from-green-50/60 to-white px-4 py-16 md:py-24">
       <div className="container mx-auto max-w-6xl">
@@ -63,6 +102,7 @@ export default function ReviewGallery() {
           className="relative"
         >
           <Carousel
+            setApi={setApi}
             opts={{
               align: 'start',
               loop: true,
@@ -75,7 +115,12 @@ export default function ReviewGallery() {
                   key={review.src}
                   className="pl-4 md:basis-1/2 lg:basis-1/3"
                 >
-                  <div className="group relative overflow-hidden rounded-2xl border border-green-100 bg-white p-2 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+                  <div
+                    className="group relative overflow-hidden rounded-2xl border border-green-100 bg-white p-2 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                    onPointerDown={pauseOnTouch}
+                    onPointerUp={handlePointer}
+                    onPointerCancel={handlePointer}
+                  >
                     <div className="relative aspect-auto overflow-hidden rounded-xl">
                       <Image
                         src={review.src}
@@ -90,8 +135,8 @@ export default function ReviewGallery() {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="-left-12 top-1/2 hidden h-10 w-10 rounded-full border-green-200 bg-white text-green-700 shadow-md hover:bg-green-50 hover:text-green-800 md:flex" />
-            <CarouselNext className="-right-12 top-1/2 hidden h-10 w-10 rounded-full border-green-200 bg-white text-green-700 shadow-md hover:bg-green-50 hover:text-green-800 md:flex" />
+            <CarouselPrevious className="-left-3 flex h-9 w-9 rounded-full border-green-200 bg-white/95 text-green-700 shadow-md hover:bg-green-50 hover:text-green-800 md:-left-12 md:h-10 md:w-10" />
+            <CarouselNext className="-right-3 flex h-9 w-9 rounded-full border-green-200 bg-white/95 text-green-700 shadow-md hover:bg-green-50 hover:text-green-800 md:-right-12 md:h-10 md:w-10" />
           </Carousel>
         </motion.div>
 
