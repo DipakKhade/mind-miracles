@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Hero from './Hero';
 import InfoVideo from './InfoVideo';
 import Testimonials from './Testimonials';
+import ReviewGallery from './ReviewGallery';
 import ProgramDetails from './ProgramDetails';
 import SessionInfo from './SessionInfo';
 import ProgramBenefits from './ProgramBenefits';
@@ -19,6 +20,7 @@ export default function TwentyOneDaysProgramPage() {
     <main className="bg-white">
       <Hero />
       <InfoVideo />
+      <ReviewGallery />
       <Testimonials />
       <ProgramDetails />
       <SessionInfo />
