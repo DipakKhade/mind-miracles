@@ -1,16 +1,24 @@
 import { NextRequest, NextResponse } from 'next/server';
 import crypto from 'crypto';
 import db from '@/db';
+import { get21DaysProgramRegistrationMail } from '@/mail';
 
 export async function POST(request: NextRequest) {
-  const { name, whatsappNumber, orderId, razorpayPaymentId, razorpaySignature } =
-    (await request.json()) as {
-      name: string;
-      whatsappNumber: string;
-      orderId: string;
-      razorpayPaymentId: string;
-      razorpaySignature: string;
-    };
+  const {
+    name,
+    whatsappNumber,
+    batchNo,
+    orderId,
+    razorpayPaymentId,
+    razorpaySignature,
+  } = (await request.json()) as {
+    name: string;
+    whatsappNumber: string;
+    batchNo?: number;
+    orderId: string;
+    razorpayPaymentId: string;
+    razorpaySignature: string;
+  };
 
   if (!name || !whatsappNumber) {
     return NextResponse.json(
@@ -33,16 +41,29 @@ export async function POST(request: NextRequest) {
   }
 
   try {
+    const systemParameter = await db.systemParameter.findFirst();
+    const programFee = Number(systemParameter?.fees) || 1549;
+
     await db.programRegistration.create({
       data: {
         name,
         whatsappNumber,
-        amount: 1549,
+        batchNo,
+        amount: programFee,
         razorpayOrderId: orderId,
         razorpayPaymentId,
         razorpaySignature,
         status: 'COMPLETED',
       },
+    });
+
+    await get21DaysProgramRegistrationMail({
+      name,
+      whatsappNumber,
+      batchNo,
+      orderId,
+      razorpayPaymentId,
+      amount: programFee,
     });
 
     return NextResponse.json(

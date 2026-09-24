@@ -31,7 +31,7 @@ const highlights = [
 
 export default function Testimonials() {
   return (
-    <section className="bg-gradient-to-b from-white to-green-50/60 px-4 py-16 md:py-24">
+    <section className="bg-gradient-to-b from-white to-emerald-50/60 px-4 py-16 md:py-24">
       <div className="container mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -48,8 +48,8 @@ export default function Testimonials() {
             <span className="text-green-600">सहभागींचे म्हणणे</span>
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-gray-600">
-            21 Days Life Changing Program मधील सहभागींनी आत्मशोध, मानसिक
-            आरोग्य आणि वैयक्तिक वाढीचा अनुभव कसा घेतला.
+            21 Days Life Changing Program मधील सहभागींनी आत्मशोध, मानसिक आरोग्य
+            आणि वैयक्तिक वाढीचा अनुभव कसा घेतला.
           </p>
         </motion.div>
 
@@ -84,7 +84,7 @@ export default function Testimonials() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
           viewport={{ once: true }}
-          className="mt-12 rounded-3xl bg-gradient-to-br from-green-600 to-teal-700 p-8 text-center text-white md:p-12"
+          className="mt-12 rounded-3xl bg-gradient-to-br from-emerald-700 to-teal-800 p-8 text-center text-white md:p-12"
         >
           <Quote className="mx-auto mb-4 h-10 w-10 text-green-200" />
           <p className="mx-auto max-w-3xl text-xl font-medium leading-relaxed md:text-2xl">
@@ -93,9 +93,7 @@ export default function Testimonials() {
           </p>
           <div className="mt-6">
             <p className="text-lg font-bold">- मा. सोनाली खाडे</p>
-            <p className="text-sm text-white/80">
-              संस्थापिका, Mind Miracles
-            </p>
+            <p className="text-sm text-white/80">संस्थापिका, Mind Miracles</p>
           </div>
         </motion.div>
       </div>

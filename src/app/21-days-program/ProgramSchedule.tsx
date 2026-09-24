@@ -50,7 +50,7 @@ const programIncludes = [
 
 export default function ProgramSchedule() {
   return (
-    <section className="bg-white px-4 py-16 md:py-24">
+    <section className="bg-gradient-to-b from-white to-green-50/50 px-4 py-16 md:py-24">
       <div className="container mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -67,8 +67,8 @@ export default function ProgramSchedule() {
             <span className="text-green-600"> प्रवास</span>
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-gray-600">
-            तीन परिवर्तनकारी आठवड्यांमध्ये विभागलेला काळजीपूर्वक रचलेला कार्यक्रम,
-            प्रत्येक आठवडा मागील आठवड्यावर आधारित.
+            तीन परिवर्तनकारी आठवड्यांमध्ये विभागलेला काळजीपूर्वक रचलेला
+            कार्यक्रम, प्रत्येक आठवडा मागील आठवड्यावर आधारित.
           </p>
         </motion.div>
 
@@ -101,7 +101,7 @@ export default function ProgramSchedule() {
               className="overflow-hidden rounded-3xl border border-green-100 bg-white shadow-sm transition-all duration-300 hover:shadow-lg"
             >
               <div className="flex flex-col md:flex-row">
-                <div className="flex w-full flex-col justify-center bg-gradient-to-br from-green-600 to-teal-700 p-8 text-white md:w-72">
+                <div className="flex w-full flex-col justify-center bg-gradient-to-br from-emerald-700 to-teal-800 p-8 text-white md:w-72">
                   <span className="text-sm font-medium opacity-80">
                     {week.week}
                   </span>

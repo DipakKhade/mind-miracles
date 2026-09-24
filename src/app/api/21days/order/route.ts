@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { RZR_PRECISION_CONST } from '@/lib';
 import Razorpay from 'razorpay';
-
-const PROGRAM_FEE = 1549;
+import db from '@/db';
 
 const razorpay = new Razorpay({
   key_id: process.env.key_id as string,
@@ -11,8 +10,10 @@ const razorpay = new Razorpay({
 
 export async function POST(req: NextRequest) {
   try {
+    const systemParameter = await db.systemParameter.findFirst();
+    const programFee = Number(systemParameter?.fees) || 1549;
     const order = await razorpay.orders.create({
-      amount: PROGRAM_FEE * RZR_PRECISION_CONST,
+      amount: programFee * RZR_PRECISION_CONST,
       currency: 'INR',
       receipt: `21days_${Date.now()}`,
     });

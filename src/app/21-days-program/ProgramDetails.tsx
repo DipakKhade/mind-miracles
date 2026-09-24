@@ -88,7 +88,7 @@ export default function ProgramDetails() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
           viewport={{ once: true }}
-          className="mt-16 rounded-3xl bg-gradient-to-br from-green-600 to-teal-700 p-8 text-white md:p-12"
+          className="mt-16 rounded-3xl bg-gradient-to-br from-teal-700 to-emerald-800 p-8 text-white md:p-12"
         >
           <div className="grid items-center gap-8 md:grid-cols-2">
             <div>

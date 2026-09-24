@@ -32,6 +32,29 @@ export async function getMailonRegister(data: any) {
   }
 }
 
+export async function get21DaysProgramRegistrationMail(data: any) {
+  const { name, whatsappNumber, batchNo, orderId, razorpayPaymentId, amount } =
+    data;
+  try {
+    await Transporter.sendMail({
+      from: 'carrers.dp@gmail.com',
+      to: 'mindmiracles1707@gmail.com',
+      subject: '21 Days Program - New Payment Received',
+      html: `<div>
+        <h1>21 Days Program Registration</h1>
+        <p><b>Name:</b> <span>${name}</span></p>
+        <p><b>WhatsApp Number:</b> <span>${whatsappNumber}</span></p>
+        <p><b>Batch No:</b> <span>${batchNo ?? 'N/A'}</span></p>
+        <p><b>Amount:</b> <span>₹${amount}</span></p>
+        <p><b>Razorpay Order Id:</b> <span>${orderId}</span></p>
+        <p><b>Razorpay Payment Id:</b> <span>${razorpayPaymentId}</span></p>
+      </div>`,
+    });
+  } catch (error) {
+    console.error('Error sending 21 days program mail:', error);
+  }
+}
+
 export async function getTestResultMail(data: any) {
   try {
     const { name, age, occupation, mobile, email, score } = data;

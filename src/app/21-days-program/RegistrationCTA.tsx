@@ -2,16 +2,34 @@
 import { motion } from 'framer-motion';
 import { toast } from 'sonner';
 import { useState } from 'react';
-import { ArrowRight, Timer, Users, Video, Phone, User } from 'lucide-react';
+import {
+  ArrowRight,
+  Calendar,
+  Clock,
+  ShieldCheck,
+  Users,
+  Video,
+} from 'lucide-react';
 import Script from 'next/script';
+import { formatStartDate } from '@/lib/marathi-date';
 
-const PROGRAM_FEE = 1549;
+interface RegistrationCTAProps {
+  batchNo?: number;
+  startDate?: string;
+  fees?: string;
+}
 
 const inputClasses =
-  'w-full rounded-xl border border-green-200 bg-white px-4 py-3 text-base text-[#003C2F] shadow-sm transition-all duration-300 placeholder:text-green-600/50 focus:border-green-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-green-400/40';
+  'w-full rounded-xl border border-gray-200 bg-gray-50/50 px-4 py-3 text-base text-[#003C2F] transition-all duration-200 placeholder:text-gray-400 focus:border-emerald-500 focus:bg-white focus:outline-none focus:ring-4 focus:ring-emerald-500/10';
 
-export default function RegistrationCTA() {
+export default function RegistrationCTA({
+  batchNo,
+  startDate = '',
+  fees = '',
+}: RegistrationCTAProps) {
   const [loading, setLoading] = useState(false);
+  const formattedStartDate = formatStartDate(startDate);
+  const programFee = Number(fees) || 1549;
 
   async function handlePayment(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -50,6 +68,7 @@ export default function RegistrationCTA() {
             body: JSON.stringify({
               name,
               whatsappNumber,
+              batchNo,
               orderId: response.razorpay_order_id,
               razorpayPaymentId: response.razorpay_payment_id,
               razorpaySignature: response.razorpay_signature,
@@ -80,143 +99,136 @@ export default function RegistrationCTA() {
   return (
     <section
       id="register"
-      className="relative overflow-hidden bg-gradient-to-br from-green-700 via-teal-800 to-emerald-900 px-4 py-16 text-white md:py-24"
+      className="bg-gradient-to-b from-emerald-50/60 to-white px-4 py-16 md:py-24"
     >
       <Script
         id="razorpay-checkout-js"
         src="https://checkout.razorpay.com/v1/checkout.js"
       />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -left-20 -top-20 h-72 w-72 rounded-full bg-white/10 blur-3xl"
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -bottom-24 -right-24 h-72 w-72 rounded-full bg-yellow-400/10 blur-3xl"
-      />
-
-      <div className="container relative mx-auto max-w-6xl">
+      <div className="container mx-auto max-w-5xl">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="mb-12 text-center"
+          className="mb-10 text-center"
         >
-          <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider backdrop-blur-sm">
+          <span className="mb-4 inline-flex items-center rounded-full border border-emerald-200 bg-white px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-emerald-700">
             आजच नोंदणी करा
           </span>
-          <h2 className="mt-4 text-3xl font-bold md:text-5xl">
+          <h2 className="mt-4 text-3xl font-bold text-[#003C2F] md:text-4xl">
             आजच तुमच परिवर्तन सुरू करा
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-lg opacity-90">
+          <p className="mx-auto mt-3 max-w-xl text-gray-500">
             आता तुमची जागा आरक्षित करा आणि नवीन, अधिक चांगल्या तुमच्याकडे पहिलं
             पाऊल टाका.
           </p>
-
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-sm font-medium opacity-90">
-            <div className="flex items-center gap-2">
-              <Timer className="h-5 w-5" />
-              <span>कार्यक्रम ७ ऑगस्ट २०२६ पासून सुरू</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Video className="h-5 w-5" />
-              <span>दररोज रात्री ९:०० वाजता Zoom वर</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Users className="h-5 w-5" />
-              <span>चुकलेल्या सत्राचे रेकॉर्डिंग मिळते</span>
-            </div>
-          </div>
         </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={{ duration: 0.6, delay: 0.15 }}
           viewport={{ once: true }}
-          className="mx-auto max-w-xl overflow-hidden rounded-3xl bg-white shadow-2xl"
+          className="grid overflow-hidden rounded-3xl bg-white shadow-xl shadow-emerald-900/5 ring-1 ring-black/5 md:grid-cols-5"
         >
-          <div className="bg-gradient-to-r from-green-600 to-teal-700 px-8 py-6 text-center">
-            <p className="text-sm font-medium uppercase tracking-wider text-white/80">
+          <div className="flex flex-col bg-gradient-to-br from-emerald-700 via-teal-800 to-emerald-900 p-8 text-white md:col-span-2 md:p-10">
+            <p className="text-sm font-medium uppercase tracking-wider text-white/70">
               21 Days Life Changing Program
             </p>
-            <p className="mt-2 text-5xl font-bold text-white">₹{PROGRAM_FEE}</p>
-            <p className="mt-1 text-sm text-white/80">
-              एक-वेळ पेमेंट - संपूर्ण कार्यक्रम प्रवेश
+            <p className="mt-4 text-5xl font-bold">₹{programFee}</p>
+            <p className="mt-1 text-sm text-white/70">
+              एक-वेळ पेमेंट · संपूर्ण कार्यक्रम प्रवेश
             </p>
+
+            {batchNo && (
+              <span className="mt-6 inline-flex w-fit rounded-full bg-white/10 px-4 py-1.5 text-xs font-semibold backdrop-blur-sm">
+                बॅच {batchNo}
+              </span>
+            )}
+
+            <ul className="mt-8 space-y-4 text-sm text-white/90">
+              <li className="flex items-center gap-3">
+                <Calendar className="h-4 w-4 flex-shrink-0 text-emerald-300" />
+                <span>
+                  {formattedStartDate
+                    ? `${formattedStartDate} पासून सुरू`
+                    : 'लवकरच सुरू होत आहे'}
+                </span>
+              </li>
+              <li className="flex items-center gap-3">
+                <Clock className="h-4 w-4 flex-shrink-0 text-emerald-300" />
+                <span>दररोज रात्री ९:०० वाजता Zoom वर</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <Users className="h-4 w-4 flex-shrink-0 text-emerald-300" />
+                <span>चुकलेल्या सत्राचे रेकॉर्डिंग मिळते</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <ShieldCheck className="h-4 w-4 flex-shrink-0 text-emerald-300" />
+                <span>सुरक्षित पेमेंट Razorpay द्वारे</span>
+              </li>
+            </ul>
+
+            <div className="mt-auto flex items-center gap-2 pt-8 text-xs text-white/60">
+              <Video className="h-4 w-4 flex-shrink-0" />
+              संपूर्ण कार्यक्रम मराठीमध्ये
+            </div>
           </div>
 
-          <form
-            className="p-6 text-[#003C2F] sm:p-8"
-            onSubmit={handlePayment}
-          >
-            <div className="space-y-4">
+          <div className="p-8 text-[#003C2F] md:col-span-3 md:p-10">
+            <h3 className="text-2xl font-bold">नोंदणी करा</h3>
+            <p className="mt-1 text-sm text-gray-500">
+              खालील माहिती भरून पेमेंट पूर्ण करा.
+            </p>
+
+            <form className="mt-8 space-y-5" onSubmit={handlePayment}>
               <div>
                 <label className="mb-1.5 block text-sm font-semibold text-[#003C2F]/80">
                   पूर्ण नाव <span className="text-red-500">*</span>
                 </label>
-                <div className="relative">
-                  <User className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-                  <input
-                    name="name"
-                    placeholder="तुमचे पूर्ण नाव"
-                    type="text"
-                    className={`${inputClasses} pl-10`}
-                  />
-                </div>
+                <input
+                  name="name"
+                  placeholder="तुमचे पूर्ण नाव"
+                  type="text"
+                  className={inputClasses}
+                />
               </div>
 
               <div>
                 <label className="mb-1.5 block text-sm font-semibold text-[#003C2F]/80">
                   व्हॉट्सॲप नंबर <span className="text-red-500">*</span>
                 </label>
-                <div className="relative">
-                  <Phone className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-                  <input
-                    name="whatsappNumber"
-                    type="tel"
-                    placeholder="१० अंकी मोबाईल नंबर"
-                    className={`${inputClasses} pl-10`}
-                  />
-                </div>
+                <input
+                  name="whatsappNumber"
+                  type="tel"
+                  placeholder="१० अंकी मोबाईल नंबर"
+                  className={inputClasses}
+                />
               </div>
 
-              <div className="flex items-center gap-2 rounded-xl bg-green-50 px-4 py-3 text-sm text-green-800">
-                <Users className="h-4 w-4 flex-shrink-0" />
-                <span>सुरक्षित पेमेंट Razorpay द्वारे</span>
-              </div>
+              <button
+                type="submit"
+                disabled={loading}
+                className="group flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-700 px-6 py-4 text-center text-base font-semibold text-white shadow-lg shadow-emerald-700/25 transition-all duration-300 hover:-translate-y-0.5 hover:bg-emerald-800 hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-70"
+              >
+                {loading
+                  ? 'प्रक्रिया होत आहे...'
+                  : `₹${programFee} भरून नोंदणी करा`}
+                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+              </button>
 
-              <div className="pt-2">
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="group flex w-full items-center justify-center gap-2 rounded-full bg-green-600 px-6 py-4 text-center text-base font-semibold text-white shadow-lg shadow-green-600/30 transition-all duration-300 hover:-translate-y-0.5 hover:bg-green-700 hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-70"
+              <p className="text-center text-xs leading-relaxed text-gray-400">
+                कोणत्याही शंकेसाठी संपर्क साधा:{' '}
+                <a
+                  href="tel:7020053425"
+                  className="font-semibold text-emerald-700 hover:text-emerald-800 hover:underline"
                 >
-                  {loading ? 'प्रक्रिया होत आहे...' : `₹${PROGRAM_FEE} भरून नोंदणी करा`}
-                  <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                </button>
-              </div>
-            </div>
-          </form>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          viewport={{ once: true }}
-          className="mt-8 text-center"
-        >
-          <p className="text-white/80">
-            कोणत्याही शंकेसाठी किंवा अधिक माहितीसाठी संपर्क साधा:{' '}
-            <a
-              href="tel:7020053425"
-              className="font-bold text-white underline-offset-4 transition-colors hover:text-yellow-300 hover:underline"
-            >
-              7020053425
-            </a>
-          </p>
+                  7020053425
+                </a>
+              </p>
+            </form>
+          </div>
         </motion.div>
       </div>
     </section>

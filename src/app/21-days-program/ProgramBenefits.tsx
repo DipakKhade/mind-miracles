@@ -1,29 +1,25 @@
 'use client';
 import { motion } from 'framer-motion';
-import {
-  Brain,
-  Heart,
-  Shield,
-  Sparkles,
-  Target,
-  Zap,
-} from 'lucide-react';
+import { Brain, Heart, Shield, Sparkles, Target, Zap } from 'lucide-react';
 
 const benefits = [
   {
     icon: Brain,
     title: 'मानसिक स्पष्टता',
-    description: 'विचारांमध्ये आणि निर्णय घेण्यात तीव्र लक्ष आणि स्पष्टता मिळवा.',
+    description:
+      'विचारांमध्ये आणि निर्णय घेण्यात तीव्र लक्ष आणि स्पष्टता मिळवा.',
   },
   {
     icon: Heart,
     title: 'भावनिक संतुलन',
-    description: 'भावनिक स्थैर्य मिळवा आणि आत्मविश्वासाने परिस्थितीला सामोरे जा.',
+    description:
+      'भावनिक स्थैर्य मिळवा आणि आत्मविश्वासाने परिस्थितीला सामोरे जा.',
   },
   {
     icon: Shield,
     title: 'तणावमुक्ती',
-    description: 'तणाव कायमस्वरूपी कमी करण्यासाठी प्रभावी तंत्रे शिका आणि व्यवस्थापित करा.',
+    description:
+      'तणाव कायमस्वरूपी कमी करण्यासाठी प्रभावी तंत्रे शिका आणि व्यवस्थापित करा.',
   },
   {
     icon: Sparkles,
@@ -33,18 +29,20 @@ const benefits = [
   {
     icon: Target,
     title: 'ध्येय साध्य',
-    description: 'तुमची वैयक्तिक आणि व्यावसायिक ध्येये साध्य करण्यासाठी मानसिकता आणि साधने विकसित करा.',
+    description:
+      'तुमची वैयक्तिक आणि व्यावसायिक ध्येये साध्य करण्यासाठी मानसिकता आणि साधने विकसित करा.',
   },
   {
     icon: Zap,
     title: 'ऊर्जा आणि जोम',
-    description: 'तुमची ऊर्जा पातळी पुन्हा भरा आणि अधिक जिवंत आणि उत्साही वाटू लागा.',
+    description:
+      'तुमची ऊर्जा पातळी पुन्हा भरा आणि अधिक जिवंत आणि उत्साही वाटू लागा.',
   },
 ];
 
 export default function ProgramBenefits() {
   return (
-    <section className="bg-gradient-to-b from-gray-50 to-white px-4 py-16 md:py-24">
+    <section className="bg-gradient-to-b from-green-50/70 to-white px-4 py-16 md:py-24">
       <div className="container mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

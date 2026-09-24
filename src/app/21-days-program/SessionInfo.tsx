@@ -23,9 +23,7 @@ export default function SessionInfo() {
               </h3>
               <p className="text-gray-600">
                 सत्र दररोज रात्री{' '}
-                <span className="font-semibold text-green-700">
-                  ९:०० वाजता
-                </span>{' '}
+                <span className="font-semibold text-green-700">९:०० वाजता</span>{' '}
                 Zoom वर आयोजित केली जातात.
               </p>
             </div>
@@ -49,8 +47,8 @@ export default function SessionInfo() {
             </div>
           </div>
 
-          <div className="flex items-start gap-5 rounded-3xl border border-green-100 bg-gradient-to-br from-orange-50 to-white p-8">
-            <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-orange-500 to-amber-600 shadow-lg shadow-orange-500/30">
+          <div className="flex items-start gap-5 rounded-3xl border border-emerald-100 bg-gradient-to-br from-emerald-50 to-white p-8">
+            <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 shadow-lg shadow-emerald-500/30">
               <PhoneCall className="h-7 w-7 text-white" />
             </div>
             <div>
@@ -61,9 +59,9 @@ export default function SessionInfo() {
                 प्रश्न, शंका किंवा अधिक माहितीसाठी संपर्क साधा:
                 <a
                   href="tel:7020053425"
-                  className="mt-2 block text-lg font-bold text-[#003C2F] transition-colors hover:text-orange-600"
+                  className="mt-2 block text-lg font-bold text-[#003C2F] transition-colors hover:text-emerald-600"
                 >
-                  <span className="font-semibold text-orange-600">
+                  <span className="font-semibold text-emerald-600">
                     7020053425
                   </span>{' '}
                   - कॉल करा

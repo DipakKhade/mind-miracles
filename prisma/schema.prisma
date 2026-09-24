@@ -128,6 +128,7 @@ model ProgramRegistration {
   id                String   @id @default(auto()) @map("_id") @db.ObjectId
   name              String
   whatsappNumber    String
+  batchNo           Int?
   amount            Float
   razorpayOrderId   String
   razorpayPaymentId String
@@ -146,6 +147,13 @@ model AssessmentResult {
   score Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model SystemParameter {
+  id        String @id @default(auto()) @map("_id") @db.ObjectId
+  batchNo   Int    @map("21DaysProgramSeq")
+  startDate String
+  fees      String?
 }
 
 enum UserRole {

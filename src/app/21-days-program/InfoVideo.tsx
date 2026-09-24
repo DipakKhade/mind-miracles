@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 export default function InfoVideo() {
   return (
-    <section className="bg-gradient-to-br from-green-600 to-teal-800 px-4 py-16 md:py-20">
+    <section className="bg-gradient-to-br from-teal-700 to-emerald-900 px-4 py-16 md:py-20">
       <div className="container mx-auto max-w-4xl text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -14,7 +14,7 @@ export default function InfoVideo() {
           <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider backdrop-blur-sm">
             माहितीपर व्हिडिओ
           </span>
-          <h2 className="mt-4 mb-6 text-3xl font-bold text-white md:text-4xl">
+          <h2 className="mb-6 mt-4 text-3xl font-bold text-white md:text-4xl">
             कार्यक्रमाबद्दल अधिक जाणून घ्या
           </h2>
           <p className="mx-auto mb-10 max-w-2xl text-white/80">
